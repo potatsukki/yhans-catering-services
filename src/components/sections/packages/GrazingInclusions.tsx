@@ -8,7 +8,7 @@ import { SectionHeading } from '../../ui/SectionHeading';
 const inclusionGroups = [
   { title: 'Fruits', items: GRAZING_INCLUSIONS.fruits, icon: 'fruit', gridClassName: 'lg:col-span-2', itemGridClassName: 'grid-cols-1 sm:grid-cols-2' },
   { title: 'Fresh items', items: GRAZING_INCLUSIONS.freshItems, icon: 'leaf', gridClassName: 'lg:col-span-2', itemGridClassName: 'grid-cols-1 sm:grid-cols-2' },
-  { title: 'Desserts and sweets', items: GRAZING_INCLUSIONS.dessertsAndSweets, icon: 'cake', gridClassName: 'sm:col-span-2 lg:col-span-2', itemGridClassName: 'grid-cols-3' },
+  { title: 'Desserts and sweets', items: GRAZING_INCLUSIONS.dessertsAndSweets, icon: 'cake', gridClassName: 'sm:col-span-2 lg:col-span-2', itemGridClassName: 'grid-cols-3 lg:grid-cols-2' },
   { title: 'Savory items', items: GRAZING_INCLUSIONS.savoryItems, icon: 'utensils', gridClassName: 'sm:col-span-2 lg:col-span-4', itemGridClassName: 'grid-cols-3' },
   { title: 'Beverages', items: GRAZING_INCLUSIONS.beverages, icon: 'drink', gridClassName: 'sm:col-span-2 lg:col-span-2', itemGridClassName: 'grid-cols-2' },
 ] as const;
