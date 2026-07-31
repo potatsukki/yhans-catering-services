@@ -182,7 +182,7 @@
 
 ## D-026 — Phase 9 production-origin stop condition
 
-- Status: Resolved by explicit user-approved sequencing amendment.
+- Status: Superseded as the final production target by D-030.
 - P9-T01 through P9-T04 passed before the production-origin dependency was reached. The user then expressly authorized creation of the single planned Vercel project to obtain its assigned origin before the GitHub push.
 - The assigned origin is `https://yhans-catering-services.vercel.app`. P9-T05 and the full P9-T06 gate passed against that origin; no provisional domain was guessed.
 
@@ -203,3 +203,10 @@
 - Status: Resolved on 2026-08-01 with owner approval.
 - The approved repository was empty and correctly identified, but the active GitHub CLI account `sean-camara` initially had only `READ` permission. The authenticated `potatsukki` owner account sent a repository collaborator invitation, and `sean-camara` accepted it through the existing GitHub CLI session.
 - The target now reports `viewerPermission: WRITE`. The repository, owner, and branch remain exactly as approved; no alternate repository or access-control bypass was used.
+
+## D-030 — Final Vercel team and production target
+
+- Status: Approved by explicit user direction on 2026-08-01.
+- The final launch target is the Git-connected project `yhans-catering-services` in the `potatsukki-7878s-projects` Vercel team, connected to `potatsukki/yhans-catering-services` on production branch `main`.
+- The final assigned production origin and production `VITE_SITE_URL` are `https://yhans-catering-services-eight.vercel.app`.
+- This supersedes the earlier `seans-projects-4f512072/yhans-catering-services` project as the deployment target. That earlier project was retained without deletion or transfer because no such change was authorized.

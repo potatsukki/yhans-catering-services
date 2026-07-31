@@ -146,6 +146,17 @@ In local work, place the value in `.env.local` (which is ignored by Git). On Ver
 4. Use `npm run build` as the build command and `dist` as the output directory.
 5. Deploy a preview, verify direct refreshes for `/`, `/packages`, and `/about-contact`, then promote only after the production-origin SEO output and final QA checks pass.
 
+## Current production deployment
+
+- Repository: [`potatsukki/yhans-catering-services`](https://github.com/potatsukki/yhans-catering-services)
+- Production branch: `main`
+- Vercel project: `potatsukki-7878s-projects / yhans-catering-services`
+- Production URL: [https://yhans-catering-services-eight.vercel.app](https://yhans-catering-services-eight.vercel.app)
+- Production `VITE_SITE_URL`: `https://yhans-catering-services-eight.vercel.app`
+- Deployment configuration: `npm ci`, `npm run build`, output directory `dist`.
+
+Pushes to `main` deploy through the connected Vercel project. The earlier project under the separate `seans-projects-4f512072` team was retained and is not the production target.
+
 ## Pending owner confirmations
 
 The following details remain intentionally unpublished until confirmed: regular-package additional-head pricing; serving-staff inclusion; complete food-tray menu and prices; food-pack minimum, delivery, and inclusion details; booking lead times; guest-count and menu-change deadlines; overtime rules; final cancellation/rescheduling wording; approved real photos; and approved real testimonials.

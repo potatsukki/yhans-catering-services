@@ -11,7 +11,7 @@
 - [x] Phase 7 — Responsive and accessibility
 - [x] Phase 8 — Testing and CI
 - [x] Phase 9 — Final QA
-- [ ] Phase 10 — GitHub Push and Vercel Deployment
+- [x] Phase 10 — GitHub Push and Vercel Deployment
 
 ## Phase 1 completed
 
@@ -55,8 +55,8 @@ The fifteen generated placeholder images listed in `docs/ASSET_INVENTORY.md` wer
 
 ## Current blockers and unresolved issues
 
-- The assigned production origin is `https://yhans-catering-services.vercel.app`; production-origin validation now passes.
-- Phase 10 P10-T04 is complete: the `potatsukki` owner account granted `sean-camara` collaborator access, `sean-camara` accepted the invitation, and the approved repository now reports `viewerPermission: WRITE`.
+- The final assigned production origin is `https://yhans-catering-services-eight.vercel.app`; production-origin validation now passes.
+- The prior `seans-projects-4f512072` Vercel project is retained but is not the current production target; see D-030.
 - The owner confirmations listed above remain pending and must not be invented.
 - Two high-severity React Router audit findings remain unresolved; see D-013. No forced or breaking dependency change was applied.
 
@@ -267,5 +267,19 @@ Phase 9 — Final QA and Production Readiness. Stop here and wait for approval; 
 - The user explicitly amended the sequence to resolve the P9/P10 production-origin circular dependency. One Vercel project named `yhans-catering-services` was created early, assigning `https://yhans-catering-services.vercel.app`; no provisional origin was guessed.
 - P9-T05 passed: the generated `robots.txt`, `sitemap.xml`, canonical URLs, Open Graph URLs, and LocalBusiness JSON-LD resolve to the assigned HTTPS origin. Production routes `/`, `/packages`, `/about-contact`, `/robots.txt`, and `/sitemap.xml` return 200.
 - P9-T06 passed on 2026-08-01: `npm ls`, typecheck, 16 Vitest files/51 tests, production build, and 39 Playwright tests all passed. Coverage passed at 92.25% statements, 80.45% branches, 96.03% functions, and 93.25% lines. A separate live-production Playwright run also passed 39/39.
+
+## Phase 10 completed
+
+- P10-T01 through P10-T05 completed: Phase 9 was approved, the complete local gate passed, the tracked-file audit passed, Git access was confirmed, and initial commit `f6af50d1a0de97613f8c7694ae2cad139f144747` (`feat: launch Yhan's Catering Services website`) was pushed to `https://github.com/potatsukki/yhans-catering-services` on `main` without a pull request or force-push.
+- P10-T06 through P10-T08 completed: at the owner's explicit direction, the final deployment target was changed to the Git-connected `potatsukki-7878s-projects / yhans-catering-services` Vercel project. It uses `main` as the production branch, `npm ci`, `npm run build`, output directory `dist`, and production-only `VITE_SITE_URL=https://yhans-catering-services-eight.vercel.app`.
+- The final production URL is `https://yhans-catering-services-eight.vercel.app`. The earlier project under `seans-projects-4f512072` is retained but is not the production target; see D-030.
+- P10-T09 passed: production returned HTTP 200 for `/`, `/packages`, `/about-contact`, `/robots.txt`, and `/sitemap.xml`. A full Playwright run against the final origin passed 39/39 in 21.8 seconds. Browser inspection confirmed canonical URL, Open Graph URL, LocalBusiness JSON-LD, robots, and sitemap use the final origin; 14 production images had no empty sources.
+- P10-T10 records this deployment in `README.md`, `docs/DECISIONS.md`, `docs/PROGRESS.md`, and `docs/ACCEPTANCE_CRITERIA.md`. The required documentation-only commit follows this record.
+- Final local validation immediately before the initial push: `npm ci`, `npm run typecheck`, `npm run test` (16 files/51 tests), `npm run test:coverage` (92.25% statements, 80.45% branches, 96.03% functions, 93.25% lines), `npm run build` (108 modules), and `npm run test:e2e` (39/39) all passed.
+- A PowerShell metadata probe initially used the reserved `$HOME` variable name and therefore did not complete; it made no product change. The corrected production browser inspection validated the client-hydrated canonical, Open Graph, and JSON-LD metadata directly.
+- Remaining issues are limited to the documented owner-content confirmations and the fifteen temporary placeholder images, plus the two high-severity React Router audit findings in D-013. No forced or breaking dependency change was applied.
+- No further delivery phase is authorized. Stop after the Phase 10 documentation commit and verification.
 - Phase 10 received explicit approval. P10-T01 through P10-T03 passed, including the repeated six-command local gate and tracked-file audit. P10-T04 completed after the owner granted `sean-camara` collaborator access and the invitation was accepted; Git was then initialized locally on the approved `main` branch with the exact approved `origin` URL.
 - P10-T04 authorization record: `gh repo view potatsukki/yhans-catering-services --json nameWithOwner,url,defaultBranchRef,isEmpty,viewerPermission` initially returned `viewerPermission: READ`; the owner-authorized collaborator invitation was accepted through the existing CLI account, and the same command then returned `viewerPermission: WRITE`.
+- P10-T05 completed: all 150 audited project files were staged with excluded generated and local-environment paths omitted; initial commit `f6af50d1a0de97613f8c7694ae2cad139f144747` (`feat: launch Yhan's Catering Services website`) was pushed to `origin/main`. `git ls-remote origin refs/heads/main` returned the same SHA.
+- P10-T06 is blocked only by the Vercel-to-GitHub account linkage. The one existing Vercel project remains `yhans-catering-services` (`prj_sTe7TZ1k5j2wXAVGaNsR0wvfK5EU`) with the assigned production domain. The Vercel dashboard confirms the project is not yet connected to Git, and its active `sean-camara` GitHub connection lists only `sean-camara` repositories. GitHub confirms the Vercel App is installed for `potatsukki` with repository access, but that owner account must be added to the active Vercel account's Git connections before `potatsukki/yhans-catering-services` can be selected. No duplicate project or connector-upload deployment was created.

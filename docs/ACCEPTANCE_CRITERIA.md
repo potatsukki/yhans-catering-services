@@ -122,19 +122,19 @@
 
 ## Phase 10 — GitHub Push and Vercel Deployment
 
-- [ ] Phase 9 passed and received approval before deployment work began.
-- [ ] The full local gate passed immediately before the initial push.
-- [ ] No secrets, local environment files, Vercel local metadata, or generated validation directories were committed.
-- [ ] Approved code was pushed to `potatsukki/yhans-catering-services` on `main`.
-- [ ] No force-push or pull request was used.
-- [ ] A Vercel project named `yhans-catering-services` is connected to `potatsukki/yhans-catering-services` with `main` as the production branch.
-- [ ] `VITE_SITE_URL` uses the real assigned production HTTPS origin with no path or trailing slash.
-- [ ] The production deployment succeeded.
-- [ ] `/`, `/packages`, `/about-contact`, `/robots.txt`, and `/sitemap.xml` work in production.
-- [ ] Direct refresh works on `/packages` and `/about-contact` without an unexpected 404.
-- [ ] Canonical, Open Graph, JSON-LD, sitemap, and robots output use the final production origin and confirmed information.
-- [ ] Production logo, local assets, Facebook links, phone links, and email links work.
-- [ ] Production has no browser console errors or mobile horizontal overflow.
-- [ ] Documentation records the final repository URL, production branch, commit SHAs, Vercel project, deployment URL, `VITE_SITE_URL`, deployment date, and validation results.
-- [ ] Remaining placeholder assets and owner confirmations are clearly documented.
-- [ ] Remaining security or dependency warnings are clearly documented.
+- [x] Phase 9 passed and received approval before deployment work began.
+- [x] The full local gate passed immediately before the initial push.
+- [x] No secrets, local environment files, Vercel local metadata, or generated validation directories were committed.
+- [x] Approved code was pushed to `potatsukki/yhans-catering-services` on `main`.
+- [x] No force-push or pull request was used.
+- [x] A Vercel project named `yhans-catering-services` is connected to `potatsukki/yhans-catering-services` with `main` as the production branch.
+- [x] `VITE_SITE_URL` uses the real assigned production HTTPS origin with no path or trailing slash.
+- [x] The production deployment succeeded.
+- [x] `/`, `/packages`, `/about-contact`, `/robots.txt`, and `/sitemap.xml` work in production.
+- [x] Direct refresh works on `/packages` and `/about-contact` without an unexpected 404.
+- [x] Canonical, Open Graph, JSON-LD, sitemap, and robots output use the final production origin and confirmed information.
+- [x] Production logo, local assets, Facebook links, phone links, and email links work.
+- [x] Production has no browser console errors or mobile horizontal overflow.
+- [x] Documentation records the final repository URL, production branch, commit SHAs, Vercel project, deployment URL, `VITE_SITE_URL`, deployment date, and validation results.
+- [x] Remaining placeholder assets and owner confirmations are clearly documented.
+- [x] Remaining security or dependency warnings are clearly documented.
