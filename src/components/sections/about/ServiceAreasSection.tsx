@@ -1,0 +1,38 @@
+import { BUSINESS } from '../../../data/business';
+import { FARTHER_LOCATIONS_NOTE } from '../../../data/booking';
+import { GALLERY } from '../../../data/gallery';
+import { Container } from '../../ui/Container';
+import { DecorativeDivider } from '../../ui/DecorativeDivider';
+import { Icon } from '../../ui/Icon';
+import { ResponsiveImage } from '../../ui/ResponsiveImage';
+import { SectionHeading } from '../../ui/SectionHeading';
+
+export function ServiceAreasSection() {
+  return (
+    <section aria-labelledby="service-areas-title" className="bg-cream-50 py-16 sm:py-20 lg:py-24" id="service-areas">
+      <Container className="grid items-center gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-14">
+        <div>
+          <SectionHeading align="left" id="service-areas-title" title="Service Areas" />
+          <DecorativeDivider className="mt-4 justify-start" />
+          <ul className="mt-7 grid gap-4 sm:grid-cols-2">
+            {BUSINESS.serviceAreas.map((area) => (
+              <li className="flex items-center gap-3 text-base font-semibold text-ink-900" key={area}>
+                <Icon className="shrink-0 text-gold-600" name="location" size={26} />
+                <span>{area}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-7 rounded-2xl border border-gold-200 bg-cream-100 p-5 text-sm leading-6 text-ink-700">
+            {FARTHER_LOCATIONS_NOTE}
+          </p>
+        </div>
+        <div className="relative overflow-hidden rounded-3xl border-4 border-cream-100 bg-cream-200 shadow-lg">
+          <ResponsiveImage asset={GALLERY.receptionTable} />
+          <span className="absolute bottom-3 right-3 rounded-full bg-cream-50/90 px-3 py-1 font-body text-xs font-semibold text-ink-700">
+            Sample image
+          </span>
+        </div>
+      </Container>
+    </section>
+  );
+}
