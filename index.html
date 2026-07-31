@@ -6,9 +6,56 @@
     <meta name="description" content="Yhan's Catering Services provides catering, grazing tables, food trays, and packed meals for celebrations and group events in Quezon City and nearby Metro Manila areas." />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <title>Yhan's Catering Services | Catering in Quezon City</title>
+    <style>
+      #app-loading {
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        color: #620816;
+        background: #fffdf8;
+        font-family: Georgia, serif;
+      }
+
+      #app-loading > div {
+        display: grid;
+        justify-items: center;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      #app-loading span {
+        width: 2.25rem;
+        height: 2.25rem;
+        border: 3px solid #f9e6a8;
+        border-top-color: #7b0d1e;
+        border-radius: 999px;
+        animation: app-loading-spin 700ms linear infinite;
+      }
+
+      #app-loading p {
+        margin: 0;
+        font-size: 1.125rem;
+        font-weight: 700;
+      }
+
+      @keyframes app-loading-spin {
+        to { transform: rotate(360deg); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #app-loading span { animation: none; }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="app-loading" role="status" aria-live="polite">
+        <div>
+          <span aria-hidden="true"></span>
+          <p>Preparing your celebration…</p>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

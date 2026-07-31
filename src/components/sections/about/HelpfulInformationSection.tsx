@@ -13,18 +13,18 @@ const HELPFUL_ICON_BY_ID: Record<string, IconName> = {
 
 export function HelpfulInformationSection() {
   return (
-    <section aria-labelledby="helpful-information-title" className="bg-cream-100 py-16 sm:py-20 lg:py-24" id="helpful-information">
+    <section aria-labelledby="helpful-information-title" className="bg-cream-100 py-11 sm:py-12 lg:py-14" id="helpful-information">
       <Container>
         <SectionHeading id="helpful-information-title" title="Helpful Information" />
         <DecorativeDivider className="mt-4" />
-        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           {HELPFUL_INFORMATION.map((item) => (
-            <article className="rounded-2xl border border-cream-300 bg-cream-50 p-5 shadow-sm" key={item.id}>
+            <article className="rounded-xl border border-cream-300 bg-cream-50 p-4 shadow-sm" key={item.id}>
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-cream-200 text-burgundy-800">
                 <Icon name={HELPFUL_ICON_BY_ID[item.id] ?? 'sparkle'} size={26} />
               </span>
-              <h3 className="mt-4 font-display text-2xl font-bold leading-tight text-burgundy-900">{item.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-ink-700">{item.description}</p>
+              <h3 className="mt-3 font-display text-xl font-bold leading-tight text-burgundy-900">{item.title}</h3>
+              <p className="mt-2 text-sm leading-5 text-ink-700">{item.description}</p>
             </article>
           ))}
         </div>

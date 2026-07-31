@@ -283,3 +283,119 @@ Phase 9 — Final QA and Production Readiness. Stop here and wait for approval; 
 - P10-T04 authorization record: `gh repo view potatsukki/yhans-catering-services --json nameWithOwner,url,defaultBranchRef,isEmpty,viewerPermission` initially returned `viewerPermission: READ`; the owner-authorized collaborator invitation was accepted through the existing CLI account, and the same command then returned `viewerPermission: WRITE`.
 - P10-T05 completed: all 150 audited project files were staged with excluded generated and local-environment paths omitted; initial commit `f6af50d1a0de97613f8c7694ae2cad139f144747` (`feat: launch Yhan's Catering Services website`) was pushed to `origin/main`. `git ls-remote origin refs/heads/main` returned the same SHA.
 - Historical P10-T06 blocker before the owner-directed target change: the earlier `seans-projects-4f512072` project was not Git-connected because its GitHub connection exposed only `sean-camara` repositories. This blocker was resolved by the separate Git-connected `potatsukki-7878s-projects` project documented in D-030; the earlier project remains retained and is not the production target.
+
+## Post-launch visual refinement completed
+
+- Reinspected all three approved mockups and the official logo, then captured all three local routes at 1440×900 and 390×844 before and after refinement.
+- Tightened the shared 1180px layout, header/logo, image-led heroes, typography hierarchy, section rhythm, cards, image ratios, package presentation, grazing inclusions, CTA bands, and footer proportions without changing confirmed business content or adding features.
+- Estimated visual similarity improved from 62% to 84% for Home, 58% to 87% for Packages & Services, and 64% to 86% for About & Contact; overall estimated match is 86%.
+- The first requested Playwright run exposed six desktop accessibility failures because compact footer links measured 32–36px. Footer interactive rows were restored to a 40px minimum, after which the complete requested 35-test run passed.
+- Final validation: typecheck passed; 16 Vitest files/51 tests passed; production build passed with 108 modules; 35 requested Playwright tests passed; all route/viewport geometry checks passed; and Axe reported zero serious or critical violations.
+- Details, remaining visual differences, exact files, viewport results, and validation evidence are recorded in `docs/VISUAL_AUDIT_REPORT.md`.
+- No dependency, factual-content, Git, GitHub, or Vercel change was made in the initial visual pass. These visual refinements remain local and uncommitted pending approval.
+
+## Owner visual-feedback follow-up completed
+
+- Converted the Home hero buffet image from a separate card into the full hero background with a cream readability gradient and reduced the headline's responsive maximum size.
+- Centered the regular-package inclusions heading, changed grazing package cards to image-first stacked layouts, and compacted the footer Request a Quote control to a single line while preserving accessible dimensions.
+- Removed the optional grazing estimator from the rendered Packages page at the owner's direction. Confirmed grazing pricing and minimum information remain visible, and the isolated estimator calculations remain tested.
+- Final validation passed: typecheck; 16 Vitest files/51 tests; production build with 106 modules; and 35 Home, Packages, About/Contact, mobile, and accessibility Playwright tests. All six geometry viewports passed on every route, including 390×844 and 1440×900, with zero serious or critical Axe violations.
+- Updated overall visual-match estimate: Home 88%, Packages & Services 89%, About & Contact 86%, overall 88%.
+- Changes remain local and uncommitted. No dependency, confirmed business-content, GitHub, or Vercel change was made.
+
+## Owner hero, testimonial, and motion follow-up completed
+
+- Converted the Packages and About & Contact heroes to the same full-background buffet-image composition used on Home, with route-specific cream gradients, readable content panels on smaller screens, and unchanged confirmed wording.
+- Rebuilt the About highlights as a readable two-column grid within the story layout and removed the duplicate final Request a Quote button because it shared the Facebook URL with Message Us on Facebook.
+- Added four centralized Home testimonial placeholders. No customer names, quotations, ratings, event details, or other unconfirmed claims were invented; each card is visibly marked pending owner approval.
+- Added reduced-motion-safe section translation reveals and an animated sticky header that hides on downward scrolling, returns on upward scrolling, and returns when it receives keyboard focus.
+- The first 36-test Playwright run found two temporary contrast violations while Axe sampled a section during an opacity fade. Opacity animation was removed while retaining translation motion; the repeated full run passed 36/36 with zero serious or critical Axe violations.
+- Final validation passed: typecheck; 16 Vitest files/51 tests; production build with 108 modules; and 36 requested Home, Packages, About/Contact, mobile, and accessibility Playwright tests. All required geometry viewports, including 390×844 and 1440×900, passed without horizontal overflow.
+- Updated visual-match estimate: Home 89%, Packages & Services 90%, About & Contact 90%, overall 90%.
+- Changes remain local and uncommitted. No dependency, confirmed business-content, package data, GitHub, or Vercel change was made.
+
+## Owner CTA, occasion-row, and package-density follow-up completed
+
+- Home hero actions were reduced to `View Packages` and one `Message Us on Facebook` control. The Packages final CTA now contains only the Facebook action, removing duplicate destinations without changing the confirmed URL.
+- Replaced the Home occasion grid with a slow, seamless, one-line left-to-right marquee. Hover and keyboard focus pause it; reduced-motion mode disables animation and retains horizontal access to every occasion.
+- Increased spacing below the Regular package inclusions heading, reduced grazing image height, removed the visible grazing Best Seller badge, and kept the footer tagline on one line.
+- Centralized package facts remain unchanged: Pork Menudo remains the confirmed best seller in typed data and Home Popular Choices, but the grazing-card badge is intentionally hidden per owner direction.
+- Final validation passed: typecheck; 16 Vitest files/51 tests; production build with 108 modules; and 37 requested Home, Packages, About/Contact, mobile, and accessibility Playwright tests. The new Playwright coverage confirms marquee animation, hover pause, and reduced-motion behavior. All required geometry viewports passed with zero serious or critical Axe violations.
+- Changes remain local and uncommitted. No dependency, package price/menu, confirmed contact information, GitHub, or Vercel change was made.
+
+## Owner mobile-density follow-up completed
+
+- Removed service-card icon overlays so images are fully visible and converted Services into a touch-friendly horizontal snap scroller on phones and tablets while retaining the four-column desktop grid.
+- Removed the opaque mobile Home hero panel, reduced the overlay gradient, and confirmed that the buffet photograph remains visible behind readable content at 390px.
+- Reduced occasion-card dimensions on smaller screens, changed Popular Choices to two mobile columns, and converted testimonial placeholders into a horizontal snap scroller below the desktop breakpoint.
+- Removed the duplicate Request a Quote action from the Home final CTA, leaving one Message Us on Facebook control with the confirmed URL.
+- Final validation passed: typecheck; 16 Vitest files/51 tests; production build with 108 modules; and 37 requested Home, Packages, About/Contact, mobile, and accessibility Playwright tests. Automated mobile checks confirm transparent hero content, internal horizontal overflow for Services and Testimonials, two Popular Choices columns, no service-card SVG overlays, no document overflow, and zero serious or critical Axe violations.
+- Changes remain local and uncommitted. No dependency, confirmed business content, price/menu, contact information, GitHub, or Vercel change was made.
+
+## Owner Packages and About mobile-density follow-up completed
+
+- Made the Packages and About & Contact mobile hero content transparent over lighter directional gradients so their background photography remains visible without changing confirmed copy.
+- Converted Regular Catering Packages, Packed Meals, and Booking Process cards into touch-friendly horizontal snap scrollers on mobile.
+- Changed grazing package cards, grazing inclusions, additional event services, and About highlight cards to compact two-column mobile layouts.
+- Converted What We Cater into the same accessible left-to-right marquee used for Home occasions, including hover, focus, and touch-hold pause behavior plus a reduced-motion fallback.
+- Added targeted Vitest and Playwright assertions for duplicated marquee content, transparent hero wrappers, internal scroller overflow, exact two-column layouts, animation behavior, and absence of document-level horizontal overflow.
+- Final validation passed: typecheck; 16 Vitest files/51 tests; production build with 108 modules; and 37 requested Home, Packages, About/Contact, mobile, and accessibility Playwright tests. All required viewport geometry, 200% zoom proxy, image reliability, console/page-error, keyboard/mobile-menu, and Axe checks passed with zero serious or critical violations.
+- Changes remain local and uncommitted. No dependency, confirmed business content, price/menu, contact information, GitHub, or Vercel change was made.
+
+## Owner grazing-scroller and scrollbar follow-up completed
+
+- Replaced the mobile two-column grazing package grid with a single-card horizontal snap scroller so package imagery and menu text retain comfortable proportions.
+- Rebalanced Regular package inclusions into two mobile columns, eliminating the unused right side of the card while preserving readable labels.
+- Added a rounded burgundy-on-cream custom treatment for the main document scrollbar and every internal swipe-row scrollbar.
+- Validation passed: typecheck; 16 Vitest files/51 tests; production build with 108 modules; and both Packages Playwright scenarios. The mobile test confirms grazing swipe overflow, two inclusion columns, and no document-level horizontal overflow.
+- Changes remain local and uncommitted. No dependency or confirmed business content changed.
+
+## Owner About photography and founder-story follow-up completed
+
+- Copied the two owner-supplied JPEG files into `src/assets/images/about/` without modifying the Downloads originals and registered both in the centralized gallery.
+- Replaced the temporary story image with the authentic Yhan's Catering Services crew photograph and removed its sample-image disclosure.
+- Added an editorial founder feature for Marianne P. Natanawan using her supplied chef portrait, confirmed `Chef / Proprietor` role, and an inspiring but evidence-bounded account of building the business from humble beginnings.
+- Moved each Booking Process number to the card's top-left and added automated mobile-position coverage.
+- Focused About and accessibility validation passed across all required viewports, the 200% zoom proxy, image reliability, document-overflow checks, and Axe scans with zero serious or critical violations.
+- Changes remain local and uncommitted. No dependency, package data, price, menu, policy, or contact detail changed.
+
+## Owner customer-profile and grazing-inclusions follow-up completed
+
+- Replaced the four anonymous testimonial placeholders with the owner-supplied names and event categories while retaining neutral pending-feedback wording; no testimonial quotation or rating was invented.
+- Redesigned Grazing-table inclusions with four custom category icons plus the existing utensils icon, category counts, richer burgundy/gold surfaces, responsive 3-over-2 desktop composition, item pills, and subtle background decoration.
+- Extended the shared Accordion styling API without changing its `aria-expanded`, controlled-panel, keyboard, or disclosure behavior.
+- Updated Home and Packages unit/E2E coverage for the supplied profiles, pending wording, visible category counts, and the Home `Best choice` badge label.
+- Final validation passed: typecheck; 16 Vitest files/51 tests; production build with 110 modules; and 33 Home, Packages, responsive, reliability, zoom, and accessibility Playwright tests. All required viewports passed with no page-level overflow and zero serious or critical Axe violations.
+- Changes remain local and uncommitted. No dependency, price, menu item, package inclusion, policy, or contact detail changed.
+
+## Owner tablet, regular-inclusions, and testimonial follow-up completed
+
+- Removed the tablet-only hero content panels from Home, Packages, and About while preserving the photographic gradients and transparent mobile/desktop composition.
+- Rebuilt Regular package inclusions as a split burgundy-and-cream feature panel with seven compact inclusion tiles and no change to confirmed inclusions.
+- Changed Dessert and Savory grazing item lists to three columns on mobile, substantially reducing their vertical footprint while retaining accessible Accordion controls.
+- Removed testimonial initial-letter icons and pending labels, then published the four owner-authorized feedback statements recorded in the content source of truth.
+- The first Playwright run passed 34 tests and exposed one test-only strict-selector ambiguity because `Birthday Celebration` appeared in both the category and feedback sentence. The assertion was narrowed to the exact category label; no implementation change was required.
+- Final validation passed: typecheck; 16 Vitest files/51 tests; production build with 110 modules; and 35 Home, Packages, About, responsive, reliability, zoom, and accessibility Playwright tests. All required viewports passed with no page-level overflow and zero serious or critical Axe violations.
+- Changes remain local and uncommitted. No dependency, price, menu item, package inclusion, policy, or contact detail changed.
+
+## Animation and delivery performance refinement completed
+
+- Converted marquee, section-reveal, and mobile-menu movement to explicit `translate3d` transform paths and retained the passive, `requestAnimationFrame`-throttled header scroll handler.
+- Removed sticky-header backdrop blur, added paint containment around the continuous marquee, and limited `will-change` to elements that genuinely animate frequently or briefly.
+- Replaced broad Fontsource entries with installed Latin-only entries. Production CSS fell from 67.37 KB/18.33 KB gzip to 44.48 KB/9.08 KB gzip, and unnecessary emitted language-subset files were removed from the production build.
+- Final validation passed: typecheck; 16 Vitest files/51 tests; production build; and 31 Home, responsive, reliability, zoom, accessibility, reduced-motion, header-scroll, and marquee Playwright checks.
+- A Chrome DevTools Core Web Vitals trace was not available because the required local MCP connection is not configured. No dependency was installed or changed, and all work remains local and uncommitted.
+
+## Refresh state and responsive scrollbar follow-up completed
+
+- Added an immediately available branded refresh/loading status to the static document shell. It prevents a blank page while React, CSS, fonts, and images are loading and disables its spinner for reduced-motion users.
+- Kept the custom burgundy document scrollbar for desktop/laptop displays and hid visual scrollbars below 1024px without disabling mobile/tablet scrolling. Internal swipe rows remain scrollbar-free and usable.
+- Updated the Packages responsive test to reflect the owner-approved single-column mobile grazing-inclusion groups.
+- Final validation passed: typecheck; focused Packages Vitest tests (3/3); production build; and the full Playwright suite (41/41), covering all routes, target viewports, keyboard behavior, mobile navigation, loading reliability, overflow, and accessibility.
+
+## About location map and food-tasting request follow-up completed
+
+- Added `LocationMapSection` after the Direct Contact section and before Helpful Information. It provides the complete visible address, business hours, visit note, controlled food-tasting information, responsive Google Maps iframe, and the requested Maps, Facebook, and phone actions.
+- Centralized all map and visit data in `LOCATION_DETAILS`, updated the content source of truth, and removed the duplicate Footer Request a Quote button.
+- Validated the exact iframe title, lazy loading, fullscreen support, coordinates, official map URL, safe external-link behavior, responsive map height, CTA targets, no form/calendar/date input, address wrapping, and no horizontal overflow.
+- Final validation passed: typecheck; 16 Vitest files/52 tests; production build; and 31 targeted About, mobile, responsive, reliability, zoom, and accessibility Playwright tests with zero serious or critical Axe violations.

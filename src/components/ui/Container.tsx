@@ -16,11 +16,10 @@ export function Container<T extends ElementType = 'div'>({
 
   return (
     <Component
-      className={`mx-auto w-full max-w-[1240px] px-4 sm:px-5 md:px-8 lg:px-10 xl:px-12 ${className}`}
+      className={`mx-auto w-full max-w-[1180px] px-4 sm:px-6 md:px-8 lg:px-10 ${className}`}
       {...props}
     >
       {children}
     </Component>
   );
 }
-

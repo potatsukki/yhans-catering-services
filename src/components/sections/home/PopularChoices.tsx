@@ -8,7 +8,7 @@ import { SectionHeading } from '../../ui/SectionHeading';
 
 export function PopularChoices() {
   return (
-    <section aria-labelledby="popular-choices-title" className="bg-cream-50 py-16 sm:py-20 lg:py-24">
+    <section aria-labelledby="popular-choices-title" className="bg-cream-50 py-11 sm:py-12 lg:py-14">
       <Container>
         <SectionHeading
           description="A few confirmed menu and service highlights to help you start planning."
@@ -16,15 +16,19 @@ export function PopularChoices() {
           title="Popular Choices"
         />
         <DecorativeDivider className="mt-4" />
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3" data-testid="popular-choices-grid">
           {HOME_POPULAR_CHOICES.map((choice) => (
-            <article className="overflow-hidden rounded-2xl border border-cream-300 bg-cream-50 shadow-sm" key={choice.id}>
-              <div className="aspect-[4/3] overflow-hidden bg-cream-200">
-                <ResponsiveImage asset={GALLERY[choice.imageKey as GalleryKey]} />
+            <article className="relative rounded-xl border border-cream-300 bg-cream-50 shadow-[0_4px_16px_rgba(74,7,17,0.07)] md:grid md:grid-cols-[0.95fr_1.05fr]" key={choice.id}>
+              {choice.badge ? (
+                <Badge className="absolute -right-1 -top-2 z-10 min-h-0 whitespace-nowrap px-2 py-0.5 text-[0.6rem] tracking-[0.1em] shadow-sm" tone="gold">
+                  {choice.badge}
+                </Badge>
+              ) : null}
+              <div className="aspect-[16/10] overflow-hidden rounded-t-[calc(0.75rem-1px)] bg-cream-200 md:aspect-auto md:rounded-l-[calc(0.75rem-1px)] md:rounded-tr-none [&_img]:h-full">
+                <ResponsiveImage asset={GALLERY[choice.imageKey as GalleryKey]} className="h-full" />
               </div>
-              <div className="flex min-h-24 items-center justify-between gap-3 p-5">
-                <h3 className="font-display text-2xl font-bold text-burgundy-900">{choice.name}</h3>
-                {choice.badge ? <Badge tone="gold">{choice.badge}</Badge> : null}
+              <div className="flex min-h-24 flex-col items-start justify-center p-4">
+                <h3 className="font-display text-lg font-bold text-burgundy-900 sm:text-xl">{choice.name}</h3>
               </div>
             </article>
           ))}
@@ -33,4 +37,3 @@ export function PopularChoices() {
     </section>
   );
 }
-

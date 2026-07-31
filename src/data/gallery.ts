@@ -1,5 +1,7 @@
 import type { ImageAsset } from '../types/content';
 import logoUrl from '../assets/brand/yhans-logo.png';
+import marianneChefUrl from '../assets/images/about/marianne-natanawan-chef.jpg';
+import cateringCrewUrl from '../assets/images/about/yhans-catering-crew.jpg';
 import buffetHeroUrl from '../assets/images/placeholders/shared/buffet-hero.webp';
 import receptionTableUrl from '../assets/images/placeholders/shared/reception-table.webp';
 import fullCateringUrl from '../assets/images/placeholders/services/full-catering.webp';
@@ -18,6 +20,8 @@ import imageFallbackUrl from '../assets/images/placeholders/shared/image-fallbac
 
 export type GalleryKey =
   | 'logo'
+  | 'marianneChef'
+  | 'cateringCrew'
   | 'buffetHero'
   | 'receptionTable'
   | 'fullCatering'
@@ -46,6 +50,18 @@ export const GALLERY: Record<GalleryKey, ImageAsset> = {
     alt: "Yhan's Catering Services logo",
     width: 2172,
     height: 724,
+  },
+  marianneChef: {
+    src: marianneChefUrl,
+    alt: 'Chef Marianne P. Natanawan in chef uniform in a commercial kitchen',
+    width: 549,
+    height: 960,
+  },
+  cateringCrew: {
+    src: cateringCrewUrl,
+    alt: "Yhan's Catering Services crew standing behind a catered buffet",
+    width: 2048,
+    height: 1536,
   },
   buffetHero: {
     src: buffetHeroUrl,

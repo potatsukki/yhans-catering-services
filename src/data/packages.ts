@@ -195,7 +195,7 @@ export const HOME_POPULAR_CHOICES = [
     id: 'pork-menudo',
     name: 'Pork Menudo',
     imageKey: 'porkMenudo',
-    badge: 'Best seller',
+    badge: 'Best choice',
   },
   {
     id: 'beef-caldereta',

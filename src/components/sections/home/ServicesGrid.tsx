@@ -2,16 +2,8 @@ import { GALLERY, type GalleryKey } from '../../../data/gallery';
 import { SERVICE_OFFERINGS } from '../../../data/services';
 import { Container } from '../../ui/Container';
 import { DecorativeDivider } from '../../ui/DecorativeDivider';
-import { Icon, type IconName } from '../../ui/Icon';
 import { ResponsiveImage } from '../../ui/ResponsiveImage';
 import { SectionHeading } from '../../ui/SectionHeading';
-
-const SERVICE_ICON_BY_ID: Record<string, IconName> = {
-  'full-catering': 'utensils',
-  'grazing-tables': 'sparkle',
-  'food-trays': 'cash',
-  'packed-meals': 'calendar',
-};
 
 const SERVICE_IMAGE_BY_ID: Record<string, GalleryKey> = {
   'full-catering': 'fullCatering',
@@ -22,7 +14,7 @@ const SERVICE_IMAGE_BY_ID: Record<string, GalleryKey> = {
 
 export function ServicesGrid() {
   return (
-    <section aria-labelledby="services-title" className="bg-cream-100 py-16 sm:py-20 lg:py-24">
+    <section aria-labelledby="services-title" className="bg-cream-100 py-11 sm:py-12 lg:py-14">
       <Container>
         <SectionHeading
           description="Food and service options for celebrations, business functions, and group events."
@@ -30,17 +22,14 @@ export function ServicesGrid() {
           title="Our Services"
         />
         <DecorativeDivider className="mt-4" />
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="horizontal-card-scroller -mx-4 mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0 lg:pb-0" data-testid="services-scroller">
           {SERVICE_OFFERINGS.map((service) => (
-            <article className="overflow-hidden rounded-2xl border border-cream-300 bg-cream-50 shadow-sm" key={service.id}>
-              <div className="relative aspect-[4/3] overflow-hidden bg-cream-200">
+            <article className="w-[82vw] max-w-[20rem] shrink-0 snap-start overflow-hidden rounded-xl border border-cream-300 bg-cream-50 shadow-[0_4px_16px_rgba(74,7,17,0.07)] lg:w-auto lg:max-w-none" key={service.id}>
+              <div className="aspect-[16/10] overflow-hidden bg-cream-200">
                 <ResponsiveImage asset={GALLERY[SERVICE_IMAGE_BY_ID[service.id]]} />
-                <span className="absolute bottom-3 left-4 flex h-12 w-12 items-center justify-center rounded-full border-2 border-cream-50 bg-burgundy-800 text-cream-50 shadow-md">
-                  <Icon name={SERVICE_ICON_BY_ID[service.id] ?? 'sparkle'} size={25} />
-                </span>
               </div>
-              <div className="flex min-h-44 flex-col gap-3 p-5">
-                <h3 className="font-display text-2xl font-bold text-burgundy-900">{service.name}</h3>
+              <div className="flex min-h-36 flex-col gap-2 p-4">
+                <h3 className="font-display text-xl font-bold text-burgundy-900">{service.name}</h3>
                 <p className="text-sm leading-6 text-ink-700">{service.description}</p>
               </div>
             </article>
@@ -50,4 +39,3 @@ export function ServicesGrid() {
     </section>
   );
 }
-

@@ -9,12 +9,12 @@ import { SectionHeading } from '../../ui/SectionHeading';
 
 export function ServiceAreasSection() {
   return (
-    <section aria-labelledby="service-areas-title" className="bg-cream-50 py-16 sm:py-20 lg:py-24" id="service-areas">
-      <Container className="grid items-center gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-14">
+    <section aria-labelledby="service-areas-title" className="bg-cream-50 py-11 sm:py-12 lg:py-14" id="service-areas">
+      <Container className="grid items-center gap-8 lg:grid-cols-[1fr_0.9fr] lg:gap-10">
         <div>
           <SectionHeading align="left" id="service-areas-title" title="Service Areas" />
           <DecorativeDivider className="mt-4 justify-start" />
-          <ul className="mt-7 grid gap-4 sm:grid-cols-2">
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             {BUSINESS.serviceAreas.map((area) => (
               <li className="flex items-center gap-3 text-base font-semibold text-ink-900" key={area}>
                 <Icon className="shrink-0 text-gold-600" name="location" size={26} />
@@ -22,11 +22,11 @@ export function ServiceAreasSection() {
               </li>
             ))}
           </ul>
-          <p className="mt-7 rounded-2xl border border-gold-200 bg-cream-100 p-5 text-sm leading-6 text-ink-700">
+          <p className="mt-6 rounded-xl border border-gold-200 bg-cream-100 p-4 text-sm leading-6 text-ink-700">
             {FARTHER_LOCATIONS_NOTE}
           </p>
         </div>
-        <div className="relative overflow-hidden rounded-3xl border-4 border-cream-100 bg-cream-200 shadow-lg">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border-2 border-cream-100 bg-cream-200 shadow-lg [&_img]:h-full">
           <ResponsiveImage asset={GALLERY.receptionTable} />
           <span className="absolute bottom-3 right-3 rounded-full bg-cream-50/90 px-3 py-1 font-body text-xs font-semibold text-ink-700">
             Sample image

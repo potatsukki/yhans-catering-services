@@ -21,16 +21,22 @@ describe('HomePage', () => {
     expect(screen.getByText('Our Services')).toBeInTheDocument();
     expect(screen.getByText('Popular Choices')).toBeInTheDocument();
     expect(screen.getByText("Why Choose Yhan's?")).toBeInTheDocument();
+    expect(screen.getByText('Testimonials')).toBeInTheDocument();
     expect(screen.getByText('From Recent Events')).toBeInTheDocument();
     expect(screen.getByText("Let's Make Your Next Event Delicious & Memorable")).toBeInTheDocument();
 
     const hero = screen.getByTestId('home-hero');
     expect(within(hero).getByRole('link', { name: 'View Packages' })).toHaveAttribute('href', '/packages');
-    expect(within(hero).getByRole('link', { name: /Request a Quote/ })).toHaveAttribute(
+    expect(within(hero).getByRole('link', { name: /Message Us on Facebook/ })).toHaveAttribute(
       'href',
       'https://www.facebook.com/share/1EnpK8EnM1/',
     );
-    expect(within(hero).getByRole('link', { name: /Message Us on Facebook/ })).toHaveAttribute(
+    expect(within(hero).queryByRole('link', { name: /Request a Quote/ })).not.toBeInTheDocument();
+
+    const finalCta = screen.getByRole('heading', { name: "Let's Make Your Next Event Delicious & Memorable" }).closest('section');
+    expect(finalCta).not.toBeNull();
+    expect(within(finalCta as HTMLElement).getAllByRole('link')).toHaveLength(1);
+    expect(within(finalCta as HTMLElement).getByRole('link', { name: /Message Us on Facebook/ })).toHaveAttribute(
       'href',
       'https://www.facebook.com/share/1EnpK8EnM1/',
     );
@@ -40,19 +46,31 @@ describe('HomePage', () => {
     renderHome();
 
     ['Weddings', 'Debuts', 'Baptisms', 'Graduations', 'Seminars', 'Corporate Events', 'Family Gatherings'].forEach((label) => {
-      expect(screen.getByText(label)).toBeInTheDocument();
+      expect(screen.getAllByText(label)).toHaveLength(2);
     });
     ['Full Catering', 'Grazing Tables', 'Food Trays', 'Packed Meals'].forEach((label) => {
       expect(screen.getByText(label)).toBeInTheDocument();
     });
+    expect(screen.getByTestId('services-scroller').querySelectorAll('article svg')).toHaveLength(0);
     expect(screen.getByText('Pork Menudo')).toBeInTheDocument();
-    expect(screen.getByText('Best seller')).toBeInTheDocument();
+    expect(screen.getByText('Best choice')).toBeInTheDocument();
     expect(screen.getByText('Grazing Table')).toBeInTheDocument();
     expect(screen.getByText('Trusted since 2010')).toBeInTheDocument();
     expect(screen.getByText('Professional presentation')).toBeInTheDocument();
     expect(screen.getAllByText('DTI and BIR registered')).toHaveLength(2);
     expect(screen.getByText(/Sample images only/)).toBeInTheDocument();
-    expect(screen.queryByText(/testimonial|customer review/i)).not.toBeInTheDocument();
+    ['Glydel Anne Dabu', 'Yhen Natanawan', 'Jonathan Camara', 'Alexandra Alarcon'].forEach((name) => {
+      expect(screen.getByText(name)).toBeInTheDocument();
+    });
+    ['School Event', 'BPO Company', 'Wedding', 'Birthday Celebration'].forEach((eventType) => {
+      expect(screen.getByText(eventType)).toBeInTheDocument();
+    });
+    expect(screen.getByText(/service helped our school event run smoothly/)).toBeInTheDocument();
+    expect(screen.getByText(/company food service efficiently/)).toBeInTheDocument();
+    expect(screen.getByText(/wedding celebration warm and memorable/)).toBeInTheDocument();
+    expect(screen.getByText(/birthday celebration easy to enjoy/)).toBeInTheDocument();
+    expect(screen.queryByText(/pending feedback approval/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/five stars|rated|customer review/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Pork Caldereta.*best seller/i)).not.toBeInTheDocument();
   });
 

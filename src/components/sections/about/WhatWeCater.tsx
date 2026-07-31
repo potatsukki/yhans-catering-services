@@ -17,7 +17,7 @@ const EVENT_ICON_BY_ID: Record<string, IconName> = {
 
 export function WhatWeCater() {
   return (
-    <section aria-labelledby="what-we-cater-title" className="bg-cream-100 py-16 sm:py-20 lg:py-24" id="what-we-cater">
+    <section aria-labelledby="what-we-cater-title" className="bg-cream-100 py-11 sm:py-12 lg:py-14" id="what-we-cater">
       <Container>
         <SectionHeading
           description="Food service for celebrations, business functions, and group events."
@@ -25,13 +25,22 @@ export function WhatWeCater() {
           title="What We Cater"
         />
         <DecorativeDivider className="mt-4" />
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {EVENT_TYPES.map((event) => (
-            <article className="flex min-h-28 flex-col items-center justify-center gap-3 rounded-2xl border border-cream-300 bg-cream-50 p-4 text-center shadow-sm transition-transform duration-200 hover:-translate-y-1" key={event.id}>
-              <Icon className="text-burgundy-800" name={EVENT_ICON_BY_ID[event.id] ?? 'sparkle'} size={34} />
-              <h3 className="font-body text-sm font-semibold leading-5 text-ink-900">{event.name}</h3>
-            </article>
-          ))}
+        <div className="occasion-marquee mt-6 overflow-hidden py-1" data-testid="what-we-cater-marquee">
+          <div className="occasion-marquee-track flex w-max">
+            {[false, true].map((isDuplicate) => (
+              <div aria-hidden={isDuplicate || undefined} className="flex shrink-0 gap-3 pr-3" key={isDuplicate ? 'duplicate' : 'primary'}>
+                {EVENT_TYPES.map((event) => (
+                  <article
+                    className="flex min-h-24 w-36 shrink-0 flex-col items-center justify-center gap-2 rounded-xl border border-cream-300 bg-cream-50 p-2 text-center shadow-sm sm:min-h-28 sm:w-44 sm:p-3 lg:w-48"
+                    key={`${isDuplicate ? 'duplicate' : 'primary'}-${event.id}`}
+                  >
+                    <Icon className="h-7 w-7 text-burgundy-800 sm:h-[34px] sm:w-[34px]" name={EVENT_ICON_BY_ID[event.id] ?? 'sparkle'} size={34} />
+                    <h3 className="font-body text-xs font-semibold leading-5 text-ink-900 sm:text-sm">{event.name}</h3>
+                  </article>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </Container>
     </section>

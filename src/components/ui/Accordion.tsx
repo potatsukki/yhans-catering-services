@@ -7,9 +7,18 @@ export type AccordionProps = {
   readonly children: ReactNode;
   readonly defaultOpen?: boolean;
   readonly className?: string;
+  readonly buttonClassName?: string;
+  readonly panelClassName?: string;
 };
 
-export function Accordion({ title, children, defaultOpen = false, className = '' }: AccordionProps) {
+export function Accordion({
+  title,
+  children,
+  defaultOpen = false,
+  className = '',
+  buttonClassName = '',
+  panelClassName = '',
+}: AccordionProps) {
   const [open, setOpen] = useState(defaultOpen);
   const panelId = useId();
 
@@ -19,7 +28,7 @@ export function Accordion({ title, children, defaultOpen = false, className = ''
         <button
           aria-controls={panelId}
           aria-expanded={open}
-          className="flex min-h-14 w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-burgundy-900"
+          className={`flex min-h-14 w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-burgundy-900 ${buttonClassName}`}
           onClick={() => setOpen((current) => !current)}
           type="button"
         >
@@ -27,10 +36,9 @@ export function Accordion({ title, children, defaultOpen = false, className = ''
           <Icon name={open ? 'chevronDown' : 'chevronRight'} size={20} />
         </button>
       </h3>
-      <div className={open ? 'border-t border-cream-300 px-5 py-4 text-sm leading-6 text-ink-700' : 'hidden'} id={panelId}>
+      <div className={open ? `border-t border-cream-300 px-5 py-4 text-sm leading-6 text-ink-700 ${panelClassName}` : 'hidden'} id={panelId}>
         {children}
       </div>
     </div>
   );
 }
-
