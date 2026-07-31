@@ -6,14 +6,14 @@ import { SectionHeading } from '../../ui/SectionHeading';
 
 export function RecentEvents() {
   return (
-    <section aria-labelledby="recent-events-title" className="bg-cream-50 py-16 sm:py-20 lg:py-24">
+    <section aria-labelledby="recent-events-title" className="bg-cream-50 py-11 sm:py-12 lg:py-14">
       <Container>
         <SectionHeading id="recent-events-title" title="From Recent Events" />
         <DecorativeDivider className="mt-4" />
-        <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3">
+        <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
           {RECENT_EVENT_GALLERY_KEYS.map((galleryKey) => (
-            <div className="overflow-hidden rounded-2xl border border-cream-300 bg-cream-200 shadow-sm" key={galleryKey}>
-              <ResponsiveImage asset={GALLERY[galleryKey]} />
+            <div className="aspect-[16/10] overflow-hidden rounded-xl border border-cream-300 bg-cream-200 shadow-sm [&_img]:h-full" key={galleryKey}>
+              <ResponsiveImage asset={GALLERY[galleryKey]} className="h-full" />
             </div>
           ))}
         </div>
@@ -24,4 +24,3 @@ export function RecentEvents() {
     </section>
   );
 }
-

@@ -21,7 +21,17 @@ Use this file as the factual source of truth. Do not invent prices, inclusions, 
 - Facebook URL: **https://www.facebook.com/share/1EnpK8EnM1/**
 - Address:
   **Block 19, Lot 11, Dahlia Extension Street, BIR Village, West Fairview, Quezon City 1118, Philippines**
-- Business response hours: **Daily, 8:00 AM to 7:00 PM**
+- Business response hours: **Daily, 8:00 AM–7:00 PM**
+
+### Visit location and food tasting
+
+- Display hours for the location section: **Daily, 8:00 AM–7:00 PM**
+- Google Maps coordinates: **14.6995033, 121.0536876**
+- Official Google Maps page: **https://www.google.com/maps/place/Natanawan+Residence/@14.6995046,121.0530439,19z/data=!3m1!4b1!4m6!3m5!1s0x3397b100609ab79b:0x8660534f6a53f2a!8m2!3d14.6995033!4d121.0536876!16s%2Fg%2F11ybc4ythr?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D**
+- Visit note: **Please message or call before visiting so Yhan's Catering Services can confirm availability.**
+- Food tasting: Customers may request a complimentary tasting of selected menu items before confirming an event. Tastings are subject to availability; Marianne P. Natanawan arranges and confirms the final schedule.
+
+Do not promise a tasting request will be approved, imply that a tasting is included with every booking, promise every requested dish will be available, or allow customers to select or reserve their own tasting date or time.
 
 ## Payment methods
 
@@ -38,6 +48,15 @@ Approved public wording:
 > Established in 2010, Yhan's Catering Services started with a simple setup and limited equipment. Through years of experience, hard work, and continuous investment, the business grew into a more professional catering service with improved equipment, presentation, hygiene standards, and event setup. Today, Yhan's Catering Services serves private celebrations, business functions, and group events with dependable food and service.
 
 Do not claim an exact investment amount. “Continuous investment” is sufficient.
+
+### Founder profile
+
+- Founder and owner: **Marianne P. Natanawan**
+- Public role: **Chef / Proprietor**
+- Owner-confirmed framing: Marianne built Yhan's Catering Services from humble beginnings, starting with the simple setup and limited equipment described above and leading its growth through hard work, hands-on experience, and continuous investment.
+- Approved emphasis: she has led **Yhan's Catering Services** toward improved equipment, presentation, hygiene standards, event setup, and dependable service for private celebrations, business functions, and group events.
+
+Do not add awards, rankings, celebrity claims, exact investment figures, culinary credentials, or biographical details that the owner has not confirmed.
 
 ## Events served
 
@@ -424,6 +443,9 @@ For prototype imagery:
 
 For testimonials:
 
-- do not create fake named customers;
-- use a neutral placeholder such as “Approved customer feedback will be added here”;
-- real testimonials will be added later.
+- owner-approved customer profiles and feedback wording may be displayed;
+- Glydel Anne Dabu — School Event: “The food was delicious, and the service helped our school event run smoothly. Thank you for making the occasion feel special.”
+- Yhen Natanawan — BPO Company: “The team handled our company food service efficiently, and everything was prepared and presented well for our group.”
+- Jonathan Camara — Wedding: “The catering helped make our wedding celebration warm and memorable. Our guests enjoyed the food and the beautiful setup.”
+- Alexandra Alarcon — Birthday Celebration: “The food, presentation, and service made the birthday celebration easy to enjoy with family and friends.”
+- do not add dates, venues, ratings, or additional event details unless the owner confirms them.

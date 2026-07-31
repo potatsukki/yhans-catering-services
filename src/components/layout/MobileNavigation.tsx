@@ -73,10 +73,10 @@ export function MobileNavigation({ className = '' }: MobileNavigationProps) {
       </button>
 
       {isOpen ? (
-        <div className="fixed inset-0 top-[76px] z-40 bg-ink-900/35" data-mobile-nav-backdrop data-testid="mobile-nav-backdrop">
+        <div className="fixed inset-0 top-[84px] z-40 bg-ink-900/35" data-mobile-nav-backdrop data-testid="mobile-nav-backdrop">
           <div
             aria-label="Mobile navigation"
-            className={`absolute left-0 right-0 top-0 border-t border-cream-300 bg-cream-50 px-4 pb-6 pt-4 shadow-xl ${reducedMotion ? '' : 'animate-[slideDown_180ms_ease-out]'}`}
+            className={`absolute left-0 right-0 top-0 border-t border-cream-300 bg-cream-50 px-4 pb-6 pt-4 shadow-xl ${reducedMotion ? '' : 'will-change-[transform,opacity] animate-[slideDown_180ms_ease-out]'}`}
             id="mobile-navigation"
             aria-modal="true"
             ref={panelRef}

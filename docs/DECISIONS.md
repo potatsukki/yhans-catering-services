@@ -210,3 +210,103 @@
 - The final launch target is the Git-connected project `yhans-catering-services` in the `potatsukki-7878s-projects` Vercel team, connected to `potatsukki/yhans-catering-services` on production branch `main`.
 - The final assigned production origin and production `VITE_SITE_URL` are `https://yhans-catering-services-eight.vercel.app`.
 - This supersedes the earlier `seans-projects-4f512072/yhans-catering-services` project as the deployment target. That earlier project was retained without deletion or transfer because no such change was authorized.
+
+## D-031 — Mockup-aligned visual density refinement
+
+- Status: Approved by the owner's direct visual-refinement request on 2026-08-01.
+- Use the generated mockups' 1180px editorial density, shallower image crops, compact warm-border cards, split desktop package layouts, stronger hero/header proportions, shallow CTA bands, and structured footer columns as the shared presentation target.
+- Preserve the existing semantic structure, centralized confirmed content, responsive stacking, reduced-motion behavior, and tested interactive-size requirements. Visual similarity never overrides factual correctness or accessibility.
+- The final visual audit estimates an overall 88% mockup match after the owner's targeted follow-up. Remaining differences are documented in `docs/VISUAL_AUDIT_REPORT.md` and are primarily approved-content and temporary-asset constraints.
+
+## D-032 — Owner-directed hero, package-card, and estimator follow-up
+
+- Status: Approved by direct visual feedback on 2026-08-01.
+- The Home buffet image fills the hero background behind a cream readability gradient; the headline uses a smaller responsive maximum so it no longer dominates the initial viewport.
+- The regular-package inclusions heading is centered above its list, grazing package cards use image-first stacked composition, and the footer quote action remains compact and single-line without reducing its accessible target size.
+- The optional grazing estimator is no longer rendered on the Packages route. Confirmed grazing pricing, the 50-guest minimum, and direct-confirmation wording remain visible; the calculation modules remain isolated and tested rather than being destructively removed.
+
+## D-033 — Owner-directed hero parity, motion, and testimonial safeguards
+
+- Status: Approved by direct visual feedback on 2026-08-01.
+- Packages and About & Contact use the same full-background buffet-image hero treatment as Home, with route-specific confirmed copy protected by a cream contrast gradient.
+- The header animates out while scrolling down and returns while scrolling up or when keyboard focus enters it. Section reveal motion uses translation only, not opacity, so text and controls retain compliant contrast throughout the animation. All new motion respects the existing reduced-motion preference.
+- The Home page includes four testimonial placeholders because no customer quotations, names, or ratings have been approved. Every card explicitly says that approved customer feedback will be added and remains pending owner approval. Real testimonials must replace these only after the owner supplies and approves them.
+- The About final CTA exposes only the Facebook message action because the removed Request a Quote action used the same Facebook destination. No contact channel or confirmed business fact was removed.
+
+## D-034 — Owner-directed CTA deduplication and occasion marquee
+
+- Status: Approved by direct visual feedback on 2026-08-01.
+- The Home hero now exposes `View Packages` and one `Message Us on Facebook` action; the former Request a Quote action used the same Facebook destination and was relabeled instead of retaining two duplicate Facebook controls.
+- The Packages final CTA now exposes only `Message Us on Facebook` for the same deduplication reason. Header and footer navigation retain their existing Request a Quote links because the owner comments targeted the page CTA bands, not global navigation.
+- Home occasions use a single-line, slow left-to-right marquee that pauses on hover or focus. A duplicate visual track makes the loop seamless, is hidden from assistive technology, and becomes a static horizontally scrollable row when reduced motion is requested.
+- The visible grazing-card Best Seller badge is suppressed at the owner's direction. The confirmed Pork Menudo best-seller fact remains unchanged in centralized package data and in the approved Home Popular Choices presentation.
+
+## D-035 — Owner-directed mobile content density and horizontal scrollers
+
+- Status: Approved by direct visual feedback on 2026-08-01.
+- On mobile, the Home hero no longer places an opaque cream card over the buffet photograph. A transparent content wrapper and lighter directional gradient preserve text contrast while allowing the image to remain visible.
+- Services and testimonial placeholders use native horizontal scrolling with snap points below the desktop breakpoint. Desktop retains the approved four-column grids. These regions do not auto-scroll, preserving predictable touch, keyboard, and reduced-motion behavior.
+- Service image icon overlays were removed so the temporary photographs remain unobstructed. Popular Choices uses two columns on mobile, and occasion cards use reduced mobile dimensions while retaining the continuous marquee behavior.
+- The Home final CTA now exposes only `Message Us on Facebook`; its removed Request a Quote action used the same Facebook destination. The global header and footer navigation remain unchanged because the owner comment targeted the Home CTA band.
+
+## D-036 — Owner-directed Packages and About mobile layout refinement
+
+- Status: Approved by direct visual feedback on 2026-08-01.
+- The Packages and About & Contact mobile heroes use transparent content wrappers over lighter cream-to-transparent image gradients so the buffet photograph remains visible while confirmed headings and descriptions retain readable contrast.
+- Regular Catering Packages, Packed Meals, and the Booking Process use native horizontal snap scrollers on mobile. Grazing packages, grazing inclusions, additional services, and About highlight cards use compact two-column mobile grids. Desktop layouts remain unchanged at their existing breakpoints.
+- What We Cater uses the same slow, seamless left-to-right marquee pattern as Home occasions. It pauses on hover, keyboard focus, or an active touch hold; reduced-motion mode disables automatic movement and leaves a manually scrollable row.
+- These changes reduce mobile page length without removing confirmed content. No business fact, price, menu item, contact detail, route, dependency, global architecture, or desktop presentation was changed.
+
+## D-037 — Owner-directed grazing scroller and scrollbar refinement
+
+- Status: Approved by direct visual feedback on 2026-08-01.
+- Grazing package cards use a single-card horizontal snap scroller on mobile instead of the cramped two-column presentation. Large-screen grid behavior is retained.
+- Regular package inclusions use two columns at the smallest breakpoint to use the card width efficiently while retaining four columns on large screens.
+- The document scrollbar and all internal horizontal card scrollers use a rounded burgundy thumb on a cream track. Native scrolling behavior, keyboard access, touch interaction, and reduced-motion behavior are unchanged.
+
+## D-038 — Owner-supplied About photography and founder profile
+
+- Status: Approved by direct owner request and supplied assets on 2026-08-01.
+- The temporary About story photograph is replaced by the owner-supplied Yhan's Catering Services crew photograph. A separate founder feature uses the owner-supplied portrait of Marianne P. Natanawan in chef uniform. Neither authentic image is labeled as sample imagery.
+- Marianne's profile identifies her by the confirmed name and public role `Chef / Proprietor`. Its inspiring narrative is limited to confirmed or newly owner-supplied facts: the 2010 start, simple setup, limited equipment, humble beginnings, hard work, hands-on experience, continuous investment, and her leadership of the business's professional growth.
+- No awards, rankings, celebrity claim, exact investment figure, culinary credential, customer claim, or unsupported biographical detail was added.
+- Booking-step numbers are anchored at the top-left of each card instead of centered above the icon, improving the visual sequence in the horizontal mobile scroller.
+
+## D-039 — Owner-supplied customer profiles and grazing-inclusions redesign
+
+- Status: Approved by direct owner request on 2026-08-01; the pending-feedback restriction is superseded by D-040.
+- The Testimonials section may display the four owner-supplied profile names and event categories: Glydel Anne Dabu — School Event; Yhen Natanawan — BPO Company; Jonathan Camara — Wedding; and Alexandra Alarcon — Birthday Celebration.
+- Because no testimonial quotations were supplied, every profile retains neutral pending-feedback wording and a visible `Pending feedback approval` label. No quote, rating, endorsement, outcome, or event detail was invented.
+- Grazing-table inclusions retain the confirmed centralized item lists and accessible Accordion behavior. Their presentation now uses custom category icons, item counts, decorated card surfaces, check-mark item pills, and a balanced responsive composition.
+- The shared Accordion accepts optional button and panel class extensions so this richer treatment does not duplicate or replace its accessible state behavior.
+
+## D-040 — Owner-approved feedback and tablet presentation refinement
+
+- Status: Approved by direct owner request on 2026-08-01.
+- The owner authorized complete feedback wording for the four named customer profiles. The exact published wording is recorded in `docs/CONTENT_SOURCE_OF_TRUTH.md`; pending labels and initial-letter profile icons are removed. Dates, venues, ratings, and additional event details remain prohibited unless confirmed.
+- Home, Packages, and About hero content wrappers remain transparent at tablet widths. The prior tablet-only cream surface, padding, shadow, and backdrop blur are removed while the shared readability gradients remain.
+- Regular package inclusions use a split burgundy-and-cream feature panel with a concise confirmed-package explanation and seven individual inclusion tiles. The centralized inclusion list remains unchanged.
+- Dessert and savory grazing items use three-column mobile grids to reduce excess vertical length. Accordion semantics and every confirmed item remain unchanged.
+
+## D-041 — Compositor-safe motion and Latin-only font delivery
+
+- Status: Approved by direct owner performance request on 2026-08-01.
+- Continuous marquee movement, section reveals, the scroll-aware header, and the mobile-menu entrance use compositor-friendly transforms. Animation timing remains browser-driven, allowing the browser to synchronize with 60 Hz, 90 Hz, or 120 Hz displays without a fixed JavaScript frame interval.
+- Permanent GPU promotion is limited to the continuously moving marquee and the single scroll-aware header. Large page sections are not permanently promoted, avoiding excessive GPU memory use.
+- The sticky header uses an opaque cream surface instead of backdrop blur, removing an expensive continuously resampled effect while scrolling. Reduced-motion behavior remains unchanged.
+- Bundled font imports are restricted to the Latin subsets required by the site's confirmed English content. This reduced production CSS from 18.33 KB gzip to 9.08 KB gzip without changing typography or dependencies.
+
+## D-042 — Initial refresh state and responsive scrollbar visibility
+
+- Status: Approved by direct owner request on 2026-08-01.
+- `index.html` provides a small branded `Preparing your celebration…` status indicator before the React bundle has loaded. It uses a transform-only spinner and honors `prefers-reduced-motion`; React replaces it as soon as the application mounts.
+- The burgundy document scrollbar remains visible on desktop and laptop screens. On mobile and tablet widths below 1024px, browser scrollbars are visually hidden while native touch, wheel, keyboard, and programmatic scrolling remain available.
+- Internal horizontal card scrollers remain visually scrollbar-free at every width, retaining their native swipe and snap behavior. This supersedes the mobile/tablet portion of D-037's internal-scrollbar appearance only.
+
+## D-043 — Location map and availability-controlled food-tasting requests
+
+- Status: Approved by direct owner request on 2026-08-01.
+- The About & Contact route adds a `Where to Find Us` section after Direct Contact and before Helpful Information. It uses the owner-supplied Google Maps embed coordinates and official Google Maps page URL; no JavaScript Maps API, API key, map dependency, geolocation request, calendar, form, or reservation system is used.
+- Address, hours, coordinates, map URLs, visit note, food-tasting wording, Facebook URL, and call action are centralized in `LOCATION_DETAILS`.
+- Food tasting is presented only as a complimentary request for selected items, subject to availability. Marianne P. Natanawan arranges and confirms the final schedule; visitors cannot choose or reserve a tasting date or time.
+- The duplicate Footer `Request a Quote` link is removed because it points to the same Facebook destination as existing inquiry actions.

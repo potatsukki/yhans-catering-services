@@ -21,7 +21,7 @@ describe('PackagesPage', () => {
     expect(screen.getByRole('heading', { name: 'Regular Catering Packages' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Grazing Table Packages' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Grazing-table inclusions' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Grazing Table Estimate' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Grazing Table Estimate' })).not.toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Packed Meals' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Food Trays' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Additional Event Services' })).toBeInTheDocument();
@@ -52,8 +52,8 @@ describe('PackagesPage', () => {
     const packageB = screen.getByRole('heading', { name: 'Package B' }).closest('article');
     expect(packageB).not.toBeNull();
     expect(within(packageB as HTMLElement).getByText('Pork Menudo')).toBeInTheDocument();
-    expect(within(packageB as HTMLElement).getByText('Best seller')).toBeInTheDocument();
-    expect(screen.getAllByText('Best seller')).toHaveLength(1);
+    expect(within(packageB as HTMLElement).queryByText('Best seller')).not.toBeInTheDocument();
+    expect(screen.queryByText('Best seller')).not.toBeInTheDocument();
   });
 
   it('renders packed meals, food-tray inquiry, partner services, and customization rules', () => {

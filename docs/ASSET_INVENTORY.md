@@ -20,6 +20,15 @@
 | `reference/screenshots/original-ui-reference.png` | 1536×1024 | Third-party/source UI reference | No | Inspiration only; do not copy or crop |
 | `reference/screenshots/facebook-page.jpg` | 691×1536 | Business identity/contact screenshot | Never | Evidence only; do not import, crop, publish, or use as a visual asset |
 
+## Owner-supplied production photography
+
+| Source | Application destination | Dimensions | Classification | Production use |
+|---|---|---:|---|---|
+| `C:/Users/Sean John Camara/Downloads/marianne's photo chef uniform.jpg` | `src/assets/images/about/marianne-natanawan-chef.jpg` | 549×960 | Owner-supplied portrait of Marianne P. Natanawan | Yes; About founder feature |
+| `C:/Users/Sean John Camara/Downloads/yhan's catering crew or staff.jpg` | `src/assets/images/about/yhans-catering-crew.jpg` | 2048×1536 | Owner-supplied Yhan's Catering Services crew photograph | Yes; About story image |
+
+Both files were copied without modifying their source files. They are registered centrally in `src/data/gallery.ts`, use descriptive alt text, and are not labeled as temporary sample images.
+
 ## Phase 2 placeholder manifest
 
 Generate consistent warm catering photography without text, logos, watermarks, identifiable people, customer names, venue names, or claims of real events.

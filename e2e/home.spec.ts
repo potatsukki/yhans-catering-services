@@ -16,6 +16,12 @@ test.describe('Home page', () => {
     await expect(page.getByText('Our Services')).toBeVisible();
     await expect(page.getByText('Popular Choices')).toBeVisible();
     await expect(page.getByText("Why Choose Yhan's?")).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Testimonials' })).toBeVisible();
+    await expect(page.getByText(/service helped our school event run smoothly/)).toBeVisible();
+    await expect(page.getByText(/wedding celebration warm and memorable/)).toBeVisible();
+    await expect(page.getByText(/pending feedback approval/i)).toHaveCount(0);
+    await expect(page.getByText('Glydel Anne Dabu')).toBeVisible();
+    await expect(page.getByText('Birthday Celebration', { exact: true })).toBeVisible();
     await expect(page.getByText('From Recent Events')).toBeVisible();
     await expect(page.getByText("Let's Make Your Next Event Delicious & Memorable")).toBeVisible();
 
@@ -24,9 +30,7 @@ test.describe('Home page', () => {
     const facebookCta = hero.getByRole('link', { name: /Message Us on Facebook/ });
     await expect(facebookCta).toHaveAttribute('href', 'https://www.facebook.com/share/1EnpK8EnM1/');
     await expect(facebookCta).toHaveAttribute('target', '_blank');
-    const quoteCta = hero.getByRole('link', { name: /Request a Quote/ });
-    await expect(quoteCta).toHaveAttribute('href', 'https://www.facebook.com/share/1EnpK8EnM1/');
-    await expect(quoteCta).toHaveAttribute('target', '_blank');
+    await expect(hero.getByRole('link', { name: /Request a Quote/ })).toHaveCount(0);
 
     await page.evaluate(async () => {
       const step = Math.max(1, window.innerHeight * 0.8);
@@ -67,10 +71,54 @@ test.describe('Home page', () => {
     await expect(page.getByTestId('home-hero').getByRole('link', { name: 'View Packages' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'View Packages' })).toHaveAttribute('href', '/packages');
     await expect(page.getByText('Sample images only')).toBeVisible();
+    await expect(page.getByTestId('home-hero-content')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+
+    const servicesScroller = page.getByTestId('services-scroller');
+    const testimonialsScroller = page.getByTestId('testimonials-scroller');
+    expect(await servicesScroller.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
+    expect(await testimonialsScroller.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
+    await expect(servicesScroller.locator('article svg')).toHaveCount(0);
+
+    const popularColumns = await page.getByTestId('popular-choices-grid').evaluate((element) =>
+      getComputedStyle(element).gridTemplateColumns.split(' ').filter(Boolean).length,
+    );
+    expect(popularColumns).toBe(2);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await page.goto('/');
+    await expect(page.getByTestId('home-hero-content')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
 
     await page.getByTestId('home-hero').getByRole('link', { name: 'View Packages' }).click();
     await expect(page).toHaveURL(/\/packages$/);
     await expect(page.locator('h1')).toHaveText('Packages & Services');
+  });
+
+  test('hides the header while scrolling down and restores it while scrolling up', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+
+    const header = page.locator('[data-site-header]');
+    await expect(header).toHaveAttribute('data-scroll-state', 'visible');
+
+    await page.evaluate(() => window.scrollTo(0, 900));
+    await expect(header).toHaveAttribute('data-scroll-state', 'hidden');
+
+    await page.evaluate(() => window.scrollBy(0, -300));
+    await expect(header).toHaveAttribute('data-scroll-state', 'visible');
+  });
+
+  test('moves occasions in one line, pauses on hover, and respects reduced motion', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+
+    const marquee = page.getByTestId('occasion-marquee');
+    const track = marquee.locator('.occasion-marquee-track');
+    await expect(track).toHaveCSS('animation-name', 'occasion-marquee-left-to-right');
+    await marquee.hover();
+    await expect(track).toHaveCSS('animation-play-state', 'paused');
+
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await expect(track).toHaveCSS('animation-name', 'none');
   });
 });

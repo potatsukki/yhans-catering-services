@@ -16,17 +16,21 @@ export type IconName =
   | 'cross'
   | 'email'
   | 'facebook'
+  | 'fruit'
   | 'gcash'
   | 'graduation'
   | 'heart'
+  | 'leaf'
   | 'location'
   | 'menu'
   | 'message'
+  | 'cake'
   | 'phone'
   | 'people'
   | 'minus'
   | 'plus'
   | 'presentation'
+  | 'drink'
   | 'rings'
   | 'sparkle'
   | 'utensils'
@@ -108,6 +112,8 @@ function IconArtwork({ name }: Pick<IconProps, 'name'>) {
       );
     case 'facebook':
       return <path {...commonPathProps} d="M13.5 21v-8h2.75l.5-3h-3.25V8.1c0-.87.25-1.6 1.7-1.6h1.8V3.8c-.32-.04-1.42-.13-2.7-.13-2.67 0-4.5 1.63-4.5 4.62V10H7v3h2.8v8" />;
+    case 'fruit':
+      return <path {...commonPathProps} d="M12 7c-2-2-6-1.5-7.5 1.5C2.5 12.5 6 20 12 21c6-1 9.5-8.5 7.5-12.5C18 5.5 14 5 12 7Zm0 0c0-2 1-4 3-5m-3 3C10 3 8 3 7 4" />;
     case 'gcash':
       return (
         <>
@@ -119,6 +125,8 @@ function IconArtwork({ name }: Pick<IconProps, 'name'>) {
       return <path {...commonPathProps} d="m3 9 9-5 9 5-9 5-9-5Zm4 3v5c3 2 7 2 10 0v-5M21 9v6" />;
     case 'heart':
       return <path {...commonPathProps} d="M20.8 8.7c0 5.3-8.8 10.3-8.8 10.3S3.2 14 3.2 8.7A4.7 4.7 0 0 1 12 6.2a4.7 4.7 0 0 1 8.8 2.5Z" />;
+    case 'leaf':
+      return <path {...commonPathProps} d="M20 4C12 4 6 7 5 14c-.5 3.5 2 6 5.5 5.5C17.5 18.5 20 12 20 4ZM5 20c2-5 6-8 11-10" />;
     case 'location':
       return (
         <>
@@ -132,6 +140,8 @@ function IconArtwork({ name }: Pick<IconProps, 'name'>) {
       return <path {...commonPathProps} d="M5 12h14" />;
     case 'message':
       return <path {...commonPathProps} d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.8 8.8 0 0 1-3-.5L4 20l1.6-3.6A7.4 7.4 0 0 1 4 11.5 7.5 7.5 0 0 1 12 4a7.5 7.5 0 0 1 8 7.5Z" />;
+    case 'cake':
+      return <path {...commonPathProps} d="M5 11h14v9H5zM4 15h16M8 11V8m4 3V7m4 4V8M8 5h.01M12 4h.01M16 5h.01" />;
     case 'phone':
       return <path {...commonPathProps} d="M7.5 4.5 5 6c-.8.5-.9 1.6-.6 2.5 1.6 4.8 5.3 8.5 10.1 10.1.9.3 2 0 2.5-.6l1.5-2.5-4-2.5-1.5 1.5a12 12 0 0 1-4-4L10.5 9l-3-4.5Z" />;
     case 'people':
@@ -143,6 +153,8 @@ function IconArtwork({ name }: Pick<IconProps, 'name'>) {
       );
     case 'presentation':
       return <path {...commonPathProps} d="M4 4h16v11H4zM8 20l4-5 4 5M7 8h10M7 11h6" />;
+    case 'drink':
+      return <path {...commonPathProps} d="M6 4h12l-1.5 17h-9L6 4Zm1 5h10M14 4l3-2" />;
     case 'plus':
       return <path {...commonPathProps} d="M12 5v14M5 12h14" />;
     case 'rings':

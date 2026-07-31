@@ -7,23 +7,25 @@ import { ResponsiveImage } from './ResponsiveImage';
 export type PackageCardProps = {
   readonly packageData: RegularPackage | GrazingPackage;
   readonly image?: ImageAsset;
+  readonly layout?: 'split' | 'stacked';
+  readonly showBestSellerBadge?: boolean;
   readonly className?: string;
 };
 
-export function PackageCard({ packageData, image, className = '' }: PackageCardProps) {
+export function PackageCard({ packageData, image, layout = 'split', showBestSellerBadge = true, className = '' }: PackageCardProps) {
   const isRegularPackage = 'pricePhp' in packageData;
-  const bestSellerDish = !isRegularPackage && packageData.isBestSeller ? packageData.bestSellerDish : undefined;
+  const bestSellerDish = showBestSellerBadge && !isRegularPackage && packageData.isBestSeller ? packageData.bestSellerDish : undefined;
 
   return (
-    <article className={`overflow-hidden rounded-2xl border border-cream-300 bg-cream-50 shadow-sm ${className}`}>
+    <article className={`overflow-hidden rounded-xl border border-cream-300 bg-cream-50 shadow-[0_4px_16px_rgba(74,7,17,0.07)] ${layout === 'split' ? 'lg:grid lg:grid-cols-[0.78fr_1.22fr]' : ''} ${className}`}>
       {image ? (
-        <div className="aspect-[4/3] overflow-hidden bg-cream-200">
-          <ResponsiveImage asset={image} />
+        <div className={`overflow-hidden bg-cream-200 [&_img]:h-full ${layout === 'split' ? 'aspect-[16/10] lg:aspect-auto lg:min-h-full' : 'aspect-[16/7] sm:aspect-[16/8] xl:aspect-[16/7]'}`}>
+          <ResponsiveImage asset={image} className="h-full" />
         </div>
       ) : null}
-      <div className="flex flex-col gap-4 p-5 sm:p-6">
+      <div className="flex flex-col gap-3 p-4 sm:p-5">
         <div className="flex flex-wrap items-start justify-between gap-3">
-          <h3 className="font-display text-2xl font-bold text-burgundy-900">{packageData.name}</h3>
+          <h3 className="font-display text-xl font-bold text-burgundy-900 sm:text-2xl lg:text-xl">{packageData.name}</h3>
         </div>
         {isRegularPackage ? (
           <div className="flex flex-col gap-1">
@@ -36,7 +38,7 @@ export function PackageCard({ packageData, image, className = '' }: PackageCardP
             <p className="text-sm font-semibold text-ink-700">Minimum {packageData.minimumGuests} guests</p>
           </div>
         )}
-        <ul className="grid gap-2 text-sm leading-6 text-ink-700">
+        <ul className="grid gap-1.5 text-sm leading-5 text-ink-700">
           {packageData.dishes.map((dish) => (
             <li className="flex items-start gap-2" key={dish}>
               <Icon className="mt-1 shrink-0 text-gold-600" name="check" size={16} />

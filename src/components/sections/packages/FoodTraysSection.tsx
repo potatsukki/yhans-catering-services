@@ -9,8 +9,8 @@ import { SectionHeading } from '../../ui/SectionHeading';
 
 export function FoodTraysSection() {
   return (
-    <section aria-labelledby="food-trays-title" className="bg-cream-100 py-16 sm:py-20 lg:py-24" id="food-trays">
-      <Container className="grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+    <section aria-labelledby="food-trays-title" className="bg-cream-100 py-11 sm:py-12 lg:py-14" id="food-trays">
+      <Container className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10">
         <div>
           <SectionHeading align="left" id="food-trays-title" title={FOOD_TRAY.name} />
           <DecorativeDivider className="mt-4 justify-start" />
@@ -19,7 +19,7 @@ export function FoodTraysSection() {
             Ask for the Food Tray Menu
           </ButtonLink>
         </div>
-        <div className="relative overflow-hidden rounded-3xl border-4 border-cream-50 bg-cream-200 shadow-lg">
+        <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border-2 border-cream-50 bg-cream-200 shadow-lg [&_img]:h-full">
           <ResponsiveImage asset={GALLERY.foodTrays} />
           <span className="absolute bottom-3 right-3 rounded-full bg-cream-50/90 px-3 py-1 font-body text-xs font-semibold text-ink-700">
             Sample image
