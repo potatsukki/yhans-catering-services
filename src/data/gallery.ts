@@ -2,19 +2,25 @@ import type { ImageAsset } from '../types/content';
 import logoUrl from '../assets/brand/yhans-logo.png';
 import marianneChefUrl from '../assets/images/about/marianne-natanawan-chef.jpg';
 import cateringCrewUrl from '../assets/images/about/yhans-catering-crew.jpg';
-import buffetHeroUrl from '../assets/images/placeholders/shared/buffet-hero.webp';
+import buffetHeroUrl from '../assets/images/hero-buffet.png';
 import receptionTableUrl from '../assets/images/placeholders/shared/reception-table.webp';
-import fullCateringUrl from '../assets/images/placeholders/services/full-catering.webp';
-import grazingTableUrl from '../assets/images/placeholders/services/grazing-table.webp';
-import foodTraysUrl from '../assets/images/placeholders/services/food-trays.webp';
-import packedMealsUrl from '../assets/images/placeholders/services/packed-meals.webp';
-import porkMenudoUrl from '../assets/images/placeholders/dishes/pork-menudo.webp';
-import beefCalderetaUrl from '../assets/images/placeholders/dishes/beef-caldereta.webp';
-import sampleBuffetUrl from '../assets/images/placeholders/events/sample-buffet.webp';
-import sampleGrazingTableUrl from '../assets/images/placeholders/events/sample-grazing-table.webp';
-import sampleReceptionUrl from '../assets/images/placeholders/events/sample-reception.webp';
+import whyChooseEventUrl from '../assets/images/why-choose-blue-event.png';
+import fullCateringUrl from '../assets/images/full-catering-team.png';
+import grazingTableUrl from '../assets/images/grazing-table-spread.png';
+import grazingPackageAUrl from '../assets/images/grazing-package-a.png';
+import grazingPackageBUrl from '../assets/images/grazing-package-b.png';
+import grazingPackageCUrl from '../assets/images/grazing-package-c.png';
+import popularGrazingTableUrl from '../assets/images/popular-grazing-table.png';
+import foodTraysUrl from '../assets/images/food-tray-seafood.png';
+import foodTraysFeatureUrl from '../assets/images/food-trays-feature.png';
+import packedMealsUrl from '../assets/images/packed-meal-box.png';
+import porkMenudoUrl from '../assets/images/pork-menudo-chafing-dish.png';
+import beefCalderetaUrl from '../assets/images/beef-caldereta-tray.png';
+import regularPackageThreeUrl from '../assets/images/regular-package-three-lumpia.png';
+import sampleBuffetUrl from '../assets/images/recent-event-christmas-dinner.png';
+import sampleGrazingTableUrl from '../assets/images/recent-event-blue-celebration.png';
+import sampleReceptionUrl from '../assets/images/recent-event-evening-buffet.png';
 import breakfastPackUrl from '../assets/images/placeholders/meals/breakfast-pack.webp';
-import lunchPackUrl from '../assets/images/placeholders/meals/lunch-pack.webp';
 import groupMealPackUrl from '../assets/images/placeholders/meals/group-meal-pack.webp';
 import imageFallbackUrl from '../assets/images/placeholders/shared/image-fallback.webp';
 
@@ -24,17 +30,23 @@ export type GalleryKey =
   | 'cateringCrew'
   | 'buffetHero'
   | 'receptionTable'
+  | 'whyChooseEvent'
   | 'fullCatering'
   | 'grazingTable'
+  | 'grazingPackageA'
+  | 'grazingPackageB'
+  | 'grazingPackageC'
+  | 'popularGrazingTable'
   | 'foodTrays'
+  | 'foodTraysFeature'
   | 'packedMeals'
   | 'porkMenudo'
   | 'beefCaldereta'
+  | 'regularPackageThree'
   | 'sampleBuffet'
   | 'sampleGrazingTable'
   | 'sampleReception'
   | 'breakfastPack'
-  | 'lunchPack'
   | 'groupMealPack'
   | 'imageFallback';
 
@@ -65,9 +77,9 @@ export const GALLERY: Record<GalleryKey, ImageAsset> = {
   },
   buffetHero: {
     src: buffetHeroUrl,
-    alt: 'Sample buffet setup',
-    width: 1600,
-    height: 900,
+    alt: 'Buffet setup with gold chafing dishes and floral decor',
+    width: 1916,
+    height: 821,
     isPlaceholder: true,
   },
   receptionTable: {
@@ -77,79 +89,105 @@ export const GALLERY: Record<GalleryKey, ImageAsset> = {
     height: 900,
     isPlaceholder: true,
   },
+  whyChooseEvent: {
+    src: whyChooseEventUrl,
+    alt: 'Blue-clothed banquet tables prepared for an event',
+    width: 1448,
+    height: 1086,
+  },
   fullCatering: {
     src: fullCateringUrl,
-    alt: 'Sample full catering buffet',
-    width: 1200,
-    height: 900,
-    isPlaceholder: true,
+    alt: "Yhan's Catering Services team standing behind a buffet setup",
+    width: 1536,
+    height: 1024,
   },
   grazingTable: {
     src: grazingTableUrl,
-    alt: 'Sample grazing-table presentation',
-    width: 1200,
-    height: 900,
-    isPlaceholder: true,
+    alt: 'Grazing table with charcuterie, desserts, and fruit displays',
+    width: 1448,
+    height: 1086,
+  },
+  grazingPackageA: {
+    src: grazingPackageAUrl,
+    alt: 'Birthday grazing table with pastries, fruit, and desserts',
+    width: 1448,
+    height: 1086,
+  },
+  grazingPackageB: {
+    src: grazingPackageBUrl,
+    alt: 'Blue birthday grazing table with cakes, pastries, and fruit',
+    width: 1448,
+    height: 1086,
+  },
+  grazingPackageC: {
+    src: grazingPackageCUrl,
+    alt: 'Grazing table with desserts, spring rolls, and fruit',
+    width: 1448,
+    height: 1086,
+  },
+  popularGrazingTable: {
+    src: popularGrazingTableUrl,
+    alt: 'Overhead grazing table with charcuterie, desserts, and canapes',
+    width: 1448,
+    height: 1086,
   },
   foodTrays: {
     src: foodTraysUrl,
-    alt: 'Sample food trays',
-    width: 1200,
-    height: 900,
-    isPlaceholder: true,
+    alt: 'Food trays with seafood, vegetables, and steamed fish',
+    width: 1448,
+    height: 1086,
+  },
+  foodTraysFeature: {
+    src: foodTraysFeatureUrl,
+    alt: 'Food trays with chicken wings, shrimp, and baked pasta dishes',
+    width: 1448,
+    height: 1086,
   },
   packedMeals: {
     src: packedMealsUrl,
-    alt: 'Sample packed meals',
-    width: 1200,
-    height: 900,
-    isPlaceholder: true,
+    alt: 'Packed meal box with fried chicken, rice, vegetables, and a gift-wrapped apple',
+    width: 1448,
+    height: 1086,
   },
   porkMenudo: {
     src: porkMenudoUrl,
-    alt: 'Sample Pork Menudo dish',
-    width: 1200,
-    height: 900,
-    isPlaceholder: true,
+    alt: 'Pork menudo served in a gold chafing dish',
+    width: 1448,
+    height: 1086,
   },
   beefCaldereta: {
     src: beefCalderetaUrl,
-    alt: 'Sample Beef Caldereta dish',
-    width: 1200,
-    height: 900,
-    isPlaceholder: true,
+    alt: 'Beef caldereta with potatoes and peppers in a serving tray',
+    width: 1448,
+    height: 1086,
+  },
+  regularPackageThree: {
+    src: regularPackageThreeUrl,
+    alt: 'Lumpiang Shanghai arranged in a serving tray',
+    width: 1448,
+    height: 1086,
   },
   sampleBuffet: {
     src: sampleBuffetUrl,
-    alt: 'Sample buffet setup',
-    width: 1200,
-    height: 800,
-    isPlaceholder: true,
+    alt: 'Christmas dinner tables with red linens and festive tree decor',
+    width: 1448,
+    height: 1086,
   },
   sampleGrazingTable: {
     src: sampleGrazingTableUrl,
-    alt: 'Sample grazing-table presentation',
-    width: 1200,
-    height: 800,
-    isPlaceholder: true,
+    alt: 'Blue-and-yellow decorated celebration venue',
+    width: 1448,
+    height: 1086,
   },
   sampleReception: {
     src: sampleReceptionUrl,
-    alt: 'Sample decorated reception venue',
-    width: 1200,
-    height: 800,
-    isPlaceholder: true,
+    alt: 'Evening buffet setup with chafing dishes and string lights',
+    width: 1448,
+    height: 1086,
   },
   breakfastPack: {
     src: breakfastPackUrl,
     alt: 'Sample breakfast food pack',
-    width: 1200,
-    height: 900,
-    isPlaceholder: true,
-  },
-  lunchPack: {
-    src: lunchPackUrl,
-    alt: 'Sample lunch food pack',
     width: 1200,
     height: 900,
     isPlaceholder: true,

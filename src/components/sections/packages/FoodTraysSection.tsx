@@ -20,10 +20,7 @@ export function FoodTraysSection() {
           </ButtonLink>
         </div>
         <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border-2 border-cream-50 bg-cream-200 shadow-lg [&_img]:h-full">
-          <ResponsiveImage asset={GALLERY.foodTrays} />
-          <span className="absolute bottom-3 right-3 rounded-full bg-cream-50/90 px-3 py-1 font-body text-xs font-semibold text-ink-700">
-            Sample image
-          </span>
+          <ResponsiveImage asset={GALLERY.foodTraysFeature} />
         </div>
       </Container>
     </section>

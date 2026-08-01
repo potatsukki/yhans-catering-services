@@ -27,9 +27,11 @@ export function PackedMealsSection() {
             <article className="w-[84vw] max-w-[22rem] shrink-0 snap-start overflow-hidden rounded-xl border border-cream-300 bg-cream-50 shadow-sm md:w-auto md:max-w-none" key={meal.id}>
               <div className="relative aspect-[16/10] overflow-hidden bg-cream-200">
                 <ResponsiveImage asset={GALLERY[PACKED_MEAL_IMAGE_KEYS[meal.id]]} />
-                <span className="absolute bottom-3 right-3 rounded-full bg-cream-50/90 px-3 py-1 font-body text-xs font-semibold text-ink-700">
-                  Sample image
-                </span>
+                {GALLERY[PACKED_MEAL_IMAGE_KEYS[meal.id]].isPlaceholder ? (
+                  <span className="absolute bottom-3 right-3 rounded-full bg-cream-50/90 px-3 py-1 font-body text-xs font-semibold text-ink-700">
+                    Sample image
+                  </span>
+                ) : null}
               </div>
               <div className="flex min-h-40 flex-col gap-2 p-4">
                 <h3 className="font-display text-xl font-bold text-burgundy-900">{meal.name}</h3>
