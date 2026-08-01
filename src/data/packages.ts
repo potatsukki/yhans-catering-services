@@ -46,7 +46,7 @@ export const REGULAR_OVERFLOW_NOTE =
 export const REGULAR_PACKAGE_IMAGE_KEYS = {
   'regular-01': 'porkMenudo',
   'regular-02': 'beefCaldereta',
-  'regular-03': 'porkMenudo',
+  'regular-03': 'regularPackageThree',
 } as const satisfies Record<(typeof REGULAR_PACKAGES)[number]['id'], GalleryKey>;
 
 export const GRAZING_PACKAGES = [
@@ -132,9 +132,9 @@ export const GRAZING_INCLUSIONS = {
 } as const;
 
 export const GRAZING_PACKAGE_IMAGE_KEYS = {
-  'grazing-a': 'grazingTable',
-  'grazing-b': 'grazingTable',
-  'grazing-c': 'grazingTable',
+  'grazing-a': 'grazingPackageA',
+  'grazing-b': 'grazingPackageB',
+  'grazing-c': 'grazingPackageC',
   'grazing-d': 'grazingTable',
 } as const satisfies Record<(typeof GRAZING_PACKAGES)[number]['id'], GalleryKey>;
 
@@ -167,7 +167,7 @@ export const PACKED_MEALS = [
 
 export const PACKED_MEAL_IMAGE_KEYS = {
   breakfast: 'breakfastPack',
-  lunch: 'lunchPack',
+  lunch: 'packedMeals',
   dinner: 'groupMealPack',
 } as const satisfies Record<(typeof PACKED_MEALS)[number]['id'], GalleryKey>;
 
@@ -205,6 +205,6 @@ export const HOME_POPULAR_CHOICES = [
   {
     id: 'grazing-table',
     name: 'Grazing Table',
-    imageKey: 'grazingTable',
+    imageKey: 'popularGrazingTable',
   },
 ] as const;

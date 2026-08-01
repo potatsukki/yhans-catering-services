@@ -25,8 +25,11 @@ export function ServicesGrid() {
         <div className="horizontal-card-scroller -mx-4 mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0 lg:pb-0" data-testid="services-scroller">
           {SERVICE_OFFERINGS.map((service) => (
             <article className="w-[82vw] max-w-[20rem] shrink-0 snap-start overflow-hidden rounded-xl border border-cream-300 bg-cream-50 shadow-[0_4px_16px_rgba(74,7,17,0.07)] lg:w-auto lg:max-w-none" key={service.id}>
-              <div className="aspect-[16/10] overflow-hidden bg-cream-200">
-                <ResponsiveImage asset={GALLERY[SERVICE_IMAGE_BY_ID[service.id]]} />
+              <div className="aspect-[4/3] overflow-hidden bg-cream-200">
+                <ResponsiveImage
+                  asset={GALLERY[SERVICE_IMAGE_BY_ID[service.id]]}
+                  className={`h-full ${service.id === 'grazing-tables' ? 'object-center' : ''}`}
+                />
               </div>
               <div className="flex min-h-36 flex-col gap-2 p-4">
                 <h3 className="font-display text-xl font-bold text-burgundy-900">{service.name}</h3>

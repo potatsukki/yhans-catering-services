@@ -17,9 +17,6 @@ export function RecentEvents() {
             </div>
           ))}
         </div>
-        <p className="mt-5 text-center text-sm leading-6 text-ink-500">
-          Sample images only. Approved real event photos will replace these temporary placeholders.
-        </p>
       </Container>
     </section>
   );

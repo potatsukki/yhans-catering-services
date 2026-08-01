@@ -58,7 +58,9 @@ describe('HomePage', () => {
     expect(screen.getByText('Trusted since 2010')).toBeInTheDocument();
     expect(screen.getByText('Professional presentation')).toBeInTheDocument();
     expect(screen.getAllByText('DTI and BIR registered')).toHaveLength(2);
-    expect(screen.getByText(/Sample images only/)).toBeInTheDocument();
+    expect(screen.getByAltText('Christmas dinner tables with red linens and festive tree decor')).toBeInTheDocument();
+    expect(screen.getByAltText('Blue-and-yellow decorated celebration venue')).toBeInTheDocument();
+    expect(screen.getByAltText('Evening buffet setup with chafing dishes and string lights')).toBeInTheDocument();
     ['Glydel Anne Dabu', 'Yhen Natanawan', 'Jonathan Camara', 'Alexandra Alarcon'].forEach((name) => {
       expect(screen.getByText(name)).toBeInTheDocument();
     });
