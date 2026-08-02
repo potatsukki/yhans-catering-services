@@ -6,7 +6,7 @@ import { ResponsiveImage } from '../../ui/ResponsiveImage';
 
 export function PackagesHero() {
   return (
-    <section aria-labelledby="packages-hero-title" className="relative isolate overflow-hidden border-b-4 border-gold-400 bg-cream-100" data-testid="packages-hero">
+    <section aria-labelledby="packages-hero-title" className="relative isolate overflow-hidden border-b-4 border-gold-400 bg-cream-100" data-testid="packages-hero" id="packages-overview">
       <div className="absolute inset-0 -z-20 [&_img]:h-full">
         <ResponsiveImage asset={GALLERY.buffetHero} className="h-full w-full object-center" eager />
       </div>

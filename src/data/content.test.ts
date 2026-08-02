@@ -3,40 +3,117 @@ import { describe, expect, it } from 'vitest';
 import { BUSINESS, CONTACT_LINKS } from './business';
 import { BOOKING_POLICY_NOTE, BOOKING_STEPS } from './booking';
 import {
+  BREAKFAST_FOOD_PACK,
   FOOD_TRAY,
-  GRAZING_INCLUSIONS,
-  GRAZING_PACKAGES,
+  FOOD_TRAY_CATEGORIES,
+  GRAZING_TABLE_OFFER,
+  LUNCH_DINNER_PACKED_MEALS,
+  MENU_CATEGORIES,
   PACKED_MEAL_PRICE_RANGE,
-  PACKED_MEALS,
   REGULAR_SHARED_INCLUSIONS,
-  REGULAR_PACKAGES,
 } from './packages';
 
 describe('confirmed catering content', () => {
-  it('keeps the three regular packages at the confirmed fixed price and capacity', () => {
-    expect(REGULAR_PACKAGES).toHaveLength(3);
-    expect(REGULAR_PACKAGES.every((item) => item.pricePhp === 30000)).toBe(true);
-    expect(REGULAR_PACKAGES.every((item) => item.guestCapacity === 50)).toBe(true);
-    expect(REGULAR_PACKAGES.every((item) => item.dishes.length === 5)).toBe(true);
+  it('keeps the customizable catering menu complete and free of fixed package prices', () => {
+    expect(MENU_CATEGORIES.map((category) => category.id)).toEqual([
+      'beef',
+      'pork',
+      'chicken',
+      'vegetables',
+      'pasta-noodles',
+      'rice',
+      'dessert',
+      'drink',
+    ]);
+    expect(MENU_CATEGORIES.flatMap((category) => category.dishes)).toHaveLength(33);
+    expect(MENU_CATEGORIES.flatMap((category) => category.dishes.map((dish) => dish.name))).toEqual([
+      'Beef with Mushrooms', 'Beef Caldereta', 'Beef Kare-Kare', 'Roast Beef',
+      'Menudo', 'Pork Caldereta', 'Pork Hamonado', 'Lumpiang Shanghai', 'Pork Sisig',
+      'Chicken Cordon Bleu', 'Buffalo Chicken Wings', 'Chicken Hamonado', 'Chicken Pochero',
+      'Chop Suey', 'Mixed Vegetables', 'Broccoli with Garlic', 'Vegetable Salad', 'Lumpiang Hubad',
+      'Spaghetti', 'Carbonara', 'Truffle Pasta', 'Alfredo Pasta', 'Cajun Pasta', 'Baked Macaroni',
+      'Chicken Pesto Pasta', 'Pancit Canton', 'Pancit Sotanghon', 'White Rice',
+      'Coffee Jelly', 'Mango Tapioca', 'Buko Pandan', 'Lemon Iced Tea', 'Red Iced Tea',
+    ]);
+    expect(MENU_CATEGORIES.flatMap((category) => category.dishes).find((dish) => dish.isBestSeller)?.name).toBe('Menudo');
+    expect(JSON.stringify(MENU_CATEGORIES)).not.toMatch(/pricePhp|30000|Package 0/);
   });
 
-  it('keeps all four grazing packages at the confirmed per-guest rate and minimum', () => {
-    expect(GRAZING_PACKAGES).toHaveLength(4);
-    expect(GRAZING_PACKAGES.every((item) => item.pricePerGuestPhp === 1000)).toBe(true);
-    expect(GRAZING_PACKAGES.every((item) => item.minimumGuests === 50)).toBe(true);
-    expect(GRAZING_PACKAGES.every((item) => item.dishes.length === 7)).toBe(true);
-    expect(GRAZING_PACKAGES.find((item) => item.isBestSeller)?.bestSellerDish).toBe('Pork Menudo');
-    expect(GRAZING_INCLUSIONS.fruits).toContain('Seasonal fruits');
-    expect(GRAZING_INCLUSIONS.savoryItems).toContain('Camembert Cheese');
+  it('keeps one unified grazing table offer with the corrected inclusions', () => {
+    expect(GRAZING_TABLE_OFFER.pricePerGuestPhp).toBe(1000);
+    expect(GRAZING_TABLE_OFFER.minimumGuests).toBe(50);
+    expect(GRAZING_TABLE_OFFER.imageKey).toBe('grazingTableComplete');
+    expect(GRAZING_TABLE_OFFER.inclusions).toEqual([
+      'Muffins',
+      'Chicken Empanada',
+      'Chicken with Nori',
+      'Waffles',
+      'Corn Dogs',
+      'Clubhouse Sandwiches',
+      'Cupcakes',
+      'Seasonal Fruits (Grapes, Watermelon, Oranges, and Strawberries)',
+      'Cheese Selection (Camembert Cheese, Brie Cheese, and Regular Cheese)',
+      'Ham',
+      'Salami',
+      'Bread Bites',
+      'Mini Bread with Sausage',
+      'Pepero Chocolate',
+      'Pepero Cookies & Cream',
+      'Cashew Nuts',
+      'Crackers',
+      'Cake Bites',
+    ]);
+    expect(JSON.stringify(GRAZING_TABLE_OFFER)).not.toMatch(/Package [A-D]|Pork Menudo|Fish with Creamy Sauce/);
   });
 
   it('keeps packed meals and food trays free of invented prices', () => {
-    expect(PACKED_MEALS).toHaveLength(3);
     expect(PACKED_MEAL_PRICE_RANGE).toEqual([250, 300]);
-    expect(PACKED_MEALS[0].sampleMenu).toEqual(['Rice', 'Egg', 'Hotdog']);
-    expect(PACKED_MEALS[1].sampleMenu).toEqual(['One piece of chicken', 'Vegetables', 'Pancit']);
-    expect(FOOD_TRAY.price).toBeUndefined();
-    expect(FOOD_TRAY.description).not.toMatch(/₱\s*\d/);
+    expect(BREAKFAST_FOOD_PACK.options.map((meal) => meal.name)).toEqual([
+      'Hotdog, Egg, Rice',
+      'Corned Beef, Egg, Rice',
+      'Longganisa, Egg, Rice',
+      'Chicken Adobo, Egg, Rice',
+      'Tocino, Egg, Rice',
+      'Ham, Egg, Rice',
+    ]);
+    expect(BREAKFAST_FOOD_PACK.options.filter((meal) => meal.imageIsFallback)).toHaveLength(5);
+    expect(LUNCH_DINNER_PACKED_MEALS.map((meal) => meal.name)).toEqual([
+      'Beef Caldereta',
+      'Fried Chicken',
+      'Fried Bangus',
+      'Pork Adobo',
+      'Menudo',
+      'Lumpiang Shanghai',
+      'Beef Steak',
+      'Bicol Express',
+      'Chicken Hamonado',
+      'Chicken Afritada',
+      'Pork Sisig',
+    ]);
+    expect(LUNCH_DINNER_PACKED_MEALS.find((meal) => meal.badge)?.name).toBe('Menudo');
+    expect(LUNCH_DINNER_PACKED_MEALS.filter((meal) => meal.imageIsFallback)).toHaveLength(7);
+    expect(JSON.stringify(LUNCH_DINNER_PACKED_MEALS)).not.toMatch(/Chicken Afretada|vegies|veggies/i);
+    expect(FOOD_TRAY.minimumGuests).toBe(25);
+    expect(FOOD_TRAY.priceNote).toBe('Prices vary depending on the selected dish and quantity.');
+    expect(FOOD_TRAY_CATEGORIES.map((category) => category.id)).toEqual([
+      'beef', 'pork', 'chicken', 'vegetables', 'pasta-noodles', 'fish-seafood', 'rice', 'desserts', 'drinks',
+    ]);
+    expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items).map((item) => item.name)).toEqual([
+      'Beef with Mushrooms', 'Beef Caldereta', 'Beef Kare-Kare', 'Roast Beef',
+      'Menudo', 'Pork Caldereta', 'Pork Hamonado', 'Lumpiang Shanghai', 'Pork Sisig',
+      'Chicken Cordon Bleu', 'Buffalo Chicken Wings', 'Chicken Hamonado', 'Chicken Pochero',
+      'Chop Suey', 'Mixed Vegetables', 'Broccoli with Garlic', 'Vegetable Salad', 'Lumpiang Hubad',
+      'Spaghetti', 'Carbonara', 'Truffle Pasta', 'Alfredo Pasta', 'Cajun Pasta', 'Baked Macaroni',
+      'Chicken Pesto Pasta', 'Pancit Canton', 'Pancit Sotanghon',
+      'Salted Egg Shrimp', 'Crabs in Cajun Sauce', 'Shrimp in Cajun Sauce', 'Cheesy Baked Shrimp',
+      'Steamed Lapu-Lapu', 'Steamed Pompano', 'Sweet and Sour Pompano', 'Cheesy Baked Bangus',
+      'Sweet and Sour Fish Fillet', 'White Rice', 'Coffee Jelly', 'Mango Tapioca', 'Buko Pandan',
+      'Lemon Iced Tea', 'Red Iced Tea',
+    ]);
+    expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items)).toHaveLength(42);
+    expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items).filter((item) => item.imageIsFallback)).toHaveLength(39);
+    expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items).find((item) => item.badge)?.name).toBe('Menudo');
+    expect(JSON.stringify({ FOOD_TRAY, FOOD_TRAY_CATEGORIES })).not.toMatch(/pricePhp|₱\s*\d/);
   });
 
   it('preserves the regular inclusions and confirmed booking payment values', () => {
@@ -67,7 +144,7 @@ describe('confirmed catering content', () => {
   });
 
   it('contains no fake ratings, testimonials, or invented review claims', () => {
-    const serializedContent = JSON.stringify({ BUSINESS, REGULAR_PACKAGES, GRAZING_PACKAGES, PACKED_MEALS, FOOD_TRAY });
+    const serializedContent = JSON.stringify({ BUSINESS, MENU_CATEGORIES, GRAZING_TABLE_OFFER, LUNCH_DINNER_PACKED_MEALS, FOOD_TRAY, FOOD_TRAY_CATEGORIES });
     expect(serializedContent).not.toMatch(/testimonial|customer review|rating|five stars|\b[1-5]\.0\s*\/\s*5/i);
   });
 });

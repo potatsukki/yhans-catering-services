@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 
@@ -13,8 +14,8 @@ describe('Header', () => {
     );
 
     expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Packages & Services' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'About & Contact' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Packages & Services' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'About & Contact' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Request a Quote/ })).toHaveAttribute(
       'href',
       'https://www.facebook.com/share/1EnpK8EnM1/',
@@ -28,8 +29,31 @@ describe('Header', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole('link', { name: 'Packages & Services' })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('button', { name: 'Packages & Services' })).toHaveAttribute('aria-current', 'page');
     expect(screen.getByRole('link', { name: 'Home' })).not.toHaveAttribute('aria-current', 'page');
+  });
+
+  it('opens section menus and exposes direct anchor links', async () => {
+    const user = userEvent.setup();
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Header />
+      </MemoryRouter>,
+    );
+
+    const packagesButton = screen.getByRole('button', { name: 'Packages & Services' });
+    await user.click(packagesButton);
+
+    expect(packagesButton).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getByRole('link', { name: 'Customize Your Catering Menu' })).toHaveAttribute(
+      'href',
+      '/packages#regular-packages',
+    );
+    expect(screen.getByRole('link', { name: 'Food Trays' })).toHaveAttribute('href', '/packages#food-trays');
+
+    await user.keyboard('{Escape}');
+    expect(packagesButton).toHaveAttribute('aria-expanded', 'false');
+    expect(packagesButton).toHaveFocus();
   });
 
   it('uses the official logo asset and exposes a keyboard-sized quote action', () => {

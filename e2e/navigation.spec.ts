@@ -33,10 +33,17 @@ test.describe('shared navigation', () => {
     await expect(page).toHaveTitle("Yhan's Catering Services | Catering in Quezon City");
 
     const primaryNavigation = page.getByRole('navigation', { name: 'Primary navigation' });
-    await primaryNavigation.getByRole('link', { name: 'Packages & Services' }).click();
-    await expect(page).toHaveURL(/\/packages$/);
+    const packagesMenu = primaryNavigation.getByRole('button', { name: 'Packages & Services' });
+    await packagesMenu.click();
+    await expect(packagesMenu).toHaveAttribute('aria-expanded', 'true');
+    await primaryNavigation.getByRole('link', { name: 'Food Trays' }).click();
+    await expect(page).toHaveURL(/\/packages#food-trays$/);
     await expect(page.locator('h1')).toHaveText('Packages & Services');
-    await expect(primaryNavigation.getByRole('link', { name: 'Packages & Services' })).toHaveAttribute('aria-current', 'page');
+    await expect(primaryNavigation.getByRole('button', { name: 'Packages & Services' })).toHaveAttribute('aria-current', 'page');
+    await expect.poll(async () => page.locator('#food-trays').evaluate((target) => {
+      const header = document.querySelector('[data-site-header]');
+      return Math.round(target.getBoundingClientRect().top - (header?.getBoundingClientRect().height ?? 0));
+    })).toBe(12);
     await expect(page).toHaveTitle("Catering Packages | Yhan's Catering Services");
     expect(consoleErrors).toEqual([]);
   });
@@ -57,16 +64,18 @@ test.describe('shared navigation', () => {
 
     await page.goto('/');
     const navigation = page.getByRole('navigation', { name: 'Primary navigation' });
+    await navigation.getByRole('button', { name: 'Packages & Services' }).click();
     await navigation.getByRole('link', { name: 'Packages & Services' }).click();
+    await navigation.getByRole('button', { name: 'About & Contact' }).click();
     await navigation.getByRole('link', { name: 'About & Contact' }).click();
-    await expect(navigation.locator('a[aria-current="page"]')).toHaveAttribute('href', '/about-contact');
+    await expect(navigation.getByRole('button', { name: 'About & Contact' })).toHaveAttribute('aria-current', 'page');
 
     await page.goBack();
-    await expect(page).toHaveURL(/\/packages$/);
-    await expect(navigation.locator('a[aria-current="page"]')).toHaveAttribute('href', '/packages');
+    await expect(page).toHaveURL(/\/packages#packages-overview$/);
+    await expect(navigation.getByRole('button', { name: 'Packages & Services' })).toHaveAttribute('aria-current', 'page');
 
     await page.goForward();
-    await expect(page).toHaveURL(/\/about-contact$/);
-    await expect(navigation.locator('a[aria-current="page"]')).toHaveAttribute('href', '/about-contact');
+    await expect(page).toHaveURL(/\/about-contact#about-overview$/);
+    await expect(navigation.getByRole('button', { name: 'About & Contact' })).toHaveAttribute('aria-current', 'page');
   });
 });

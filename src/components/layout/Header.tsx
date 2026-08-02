@@ -1,18 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import { BUSINESS } from '../../data/business';
 import { GALLERY } from '../../data/gallery';
-import { NAVIGATION_ITEMS, PRIMARY_CTA } from '../../data/navigation';
+import { DESKTOP_NAVIGATION_GROUPS, PRIMARY_CTA } from '../../data/navigation';
 import { ButtonLink } from '../ui/ButtonLink';
 import { Container } from '../ui/Container';
+import { Icon } from '../ui/Icon';
 import { ResponsiveImage } from '../ui/ResponsiveImage';
 import { MobileNavigation } from './MobileNavigation';
 
 export function Header() {
   const [isHidden, setIsHidden] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const { hash, pathname } = useLocation();
   const lastScrollY = useRef(0);
   const frame = useRef<number | null>(null);
+  const desktopNavRef = useRef<HTMLElement>(null);
+  const dropdownButtonRefs = useRef(new Map<string, HTMLButtonElement>());
 
   useEffect(() => {
     lastScrollY.current = window.scrollY;
@@ -42,6 +47,34 @@ export function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    setOpenDropdown(null);
+  }, [hash, pathname]);
+
+  useEffect(() => {
+    if (!openDropdown) return undefined;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!desktopNavRef.current?.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      const activeButton = dropdownButtonRefs.current.get(openDropdown);
+      setOpenDropdown(null);
+      window.requestAnimationFrame(() => activeButton?.focus());
+    };
+
+    document.addEventListener('pointerdown', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [openDropdown]);
+
   return (
     <header
       className={`sticky top-0 z-30 transform-gpu border-b border-gold-200 bg-cream-50 shadow-[0_2px_14px_rgba(74,7,17,0.05)] transition-transform duration-300 ease-out will-change-transform ${isHidden ? '-translate-y-full' : 'translate-y-0'}`}
@@ -61,21 +94,64 @@ export function Header() {
           />
         </NavLink>
 
-        <nav aria-label="Primary navigation" className="hidden items-center gap-8 lg:flex">
+        <nav aria-label="Primary navigation" className="hidden items-center gap-8 lg:flex" ref={desktopNavRef}>
           <ul className="flex items-center gap-8">
-            {NAVIGATION_ITEMS.map((item) => (
-              <li key={item.href}>
-                <NavLink
-                  className={({ isActive }) =>
-                    `relative flex min-h-11 items-center px-1 font-body text-[0.9375rem] font-semibold transition-colors after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:bg-burgundy-800 after:transition-all ${isActive ? 'text-burgundy-900 after:w-full' : 'text-ink-700 hover:text-burgundy-900 after:w-0 hover:after:w-full'}`
-                  }
-                  end={item.href === '/'}
-                  to={item.href}
-                >
-                  {item.label}
-                </NavLink>
-              </li>
-            ))}
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  `relative flex min-h-11 items-center px-1 font-body text-[0.9375rem] font-semibold transition-colors after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:bg-burgundy-800 after:transition-all ${isActive ? 'text-burgundy-900 after:w-full' : 'text-ink-700 hover:text-burgundy-900 after:w-0 hover:after:w-full'}`
+                }
+                end
+                to="/"
+              >
+                Home
+              </NavLink>
+            </li>
+            {DESKTOP_NAVIGATION_GROUPS.map((group) => {
+              const isActive = pathname === group.href;
+              const isOpen = openDropdown === group.href;
+
+              return (
+                <li className="relative" key={group.href}>
+                  <button
+                    aria-controls={`desktop-dropdown-${group.href.slice(1)}`}
+                    aria-current={isActive ? 'page' : undefined}
+                    aria-expanded={isOpen}
+                    aria-haspopup="true"
+                    className={`relative flex min-h-11 items-center gap-1 px-1 font-body text-[0.9375rem] font-semibold transition-colors after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:bg-burgundy-800 after:transition-all ${isActive || isOpen ? 'text-burgundy-900 after:w-full' : 'text-ink-700 hover:text-burgundy-900 after:w-0 hover:after:w-full'}`}
+                    onClick={() => setOpenDropdown((current) => current === group.href ? null : group.href)}
+                    ref={(element) => {
+                      if (element) dropdownButtonRefs.current.set(group.href, element);
+                    }}
+                    type="button"
+                  >
+                    {group.label}
+                    <Icon aria-hidden="true" className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} name="chevronDown" size={15} />
+                  </button>
+
+                  {isOpen ? (
+                    <div
+                      className="absolute left-1/2 top-[calc(100%+0.5rem)] z-50 w-64 -translate-x-1/2 overflow-hidden rounded-xl border border-gold-200 bg-cream-50 p-2 shadow-xl"
+                      id={`desktop-dropdown-${group.href.slice(1)}`}
+                    >
+                      <ul aria-label={`${group.label} sections`} className="grid gap-0.5">
+                        {group.items.map((item) => (
+                          <li key={item.href}>
+                            <Link
+                              className="flex min-h-10 items-center rounded-lg px-3 py-2 text-sm font-semibold text-ink-700 transition-colors hover:bg-cream-200 hover:text-burgundy-900 focus-visible:bg-cream-200"
+                              onClick={() => setOpenDropdown(null)}
+                              to={item.href}
+                            >
+                              {item.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                </li>
+              );
+            })}
           </ul>
           <ButtonLink className="px-6" external href={PRIMARY_CTA.href}>
             {PRIMARY_CTA.label}

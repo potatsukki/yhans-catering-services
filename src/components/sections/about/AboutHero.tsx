@@ -6,7 +6,7 @@ import { ResponsiveImage } from '../../ui/ResponsiveImage';
 
 export function AboutHero() {
   return (
-    <section aria-labelledby="about-hero-title" className="relative isolate overflow-hidden border-b-4 border-gold-400 bg-cream-100" data-testid="about-hero">
+    <section aria-labelledby="about-hero-title" className="relative isolate overflow-hidden border-b-4 border-gold-400 bg-cream-100" data-testid="about-hero" id="about-overview">
       <div className="absolute inset-0 -z-20 [&_img]:h-full">
         <ResponsiveImage asset={GALLERY.buffetHero} className="h-full w-full object-center" eager />
       </div>

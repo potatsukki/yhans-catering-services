@@ -6,6 +6,7 @@ import buffetHeroUrl from '../assets/images/hero-buffet.png';
 import receptionTableUrl from '../assets/images/placeholders/shared/reception-table.webp';
 import whyChooseEventUrl from '../assets/images/why-choose-blue-event.png';
 import fullCateringUrl from '../assets/images/full-catering-team.png';
+import grazingTableCompleteUrl from '../assets/images/grazing-table-complete-spread.png';
 import grazingTableUrl from '../assets/images/grazing-table-spread.png';
 import grazingPackageAUrl from '../assets/images/grazing-package-a.png';
 import grazingPackageBUrl from '../assets/images/grazing-package-b.png';
@@ -32,6 +33,7 @@ export type GalleryKey =
   | 'receptionTable'
   | 'whyChooseEvent'
   | 'fullCatering'
+  | 'grazingTableComplete'
   | 'grazingTable'
   | 'grazingPackageA'
   | 'grazingPackageB'
@@ -100,6 +102,12 @@ export const GALLERY: Record<GalleryKey, ImageAsset> = {
     alt: "Yhan's Catering Services team standing behind a buffet setup",
     width: 1536,
     height: 1024,
+  },
+  grazingTableComplete: {
+    src: grazingTableCompleteUrl,
+    alt: 'Complete grazing table setup with assorted sweet and savory food',
+    width: 1672,
+    height: 941,
   },
   grazingTable: {
     src: grazingTableUrl,

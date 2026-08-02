@@ -1,8 +1,7 @@
 import { AdditionalServicesSection } from '../components/sections/packages/AdditionalServicesSection';
 import { CustomizationNote } from '../components/sections/packages/CustomizationNote';
 import { FoodTraysSection } from '../components/sections/packages/FoodTraysSection';
-import { GrazingInclusions } from '../components/sections/packages/GrazingInclusions';
-import { GrazingPackagesSection } from '../components/sections/packages/GrazingPackagesSection';
+import { GrazingTableSection } from '../components/sections/packages/GrazingTableSection';
 import { PackedMealsSection } from '../components/sections/packages/PackedMealsSection';
 import { PackagesHero } from '../components/sections/packages/PackagesHero';
 import { RegularPackagesSection } from '../components/sections/packages/RegularPackagesSection';
@@ -15,8 +14,7 @@ export function PackagesPage() {
     <>
       <PackagesHero />
       <RegularPackagesSection />
-      <GrazingPackagesSection />
-      <GrazingInclusions />
+      <GrazingTableSection />
       <PackedMealsSection />
       <FoodTraysSection />
       <AdditionalServicesSection />

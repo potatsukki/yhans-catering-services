@@ -28,38 +28,6 @@ export type NavigationItem = {
   readonly href: string;
 };
 
-export type RegularPackage = {
-  readonly id: string;
-  readonly name: string;
-  readonly pricePhp: 30000;
-  readonly guestCapacity: 50;
-  readonly dishes: readonly string[];
-};
-
-export type GrazingPackage = {
-  readonly id: string;
-  readonly name: string;
-  readonly pricePerGuestPhp: 1000;
-  readonly minimumGuests: 50;
-  readonly dishes: readonly string[];
-  readonly bestSellerDish?: string;
-  readonly isBestSeller?: boolean;
-};
-
-export type PackedMealOffering = {
-  readonly id: string;
-  readonly name: string;
-  readonly description: string;
-  readonly sampleMenu?: readonly string[];
-};
-
-export type FoodTrayOffering = {
-  readonly id: string;
-  readonly name: string;
-  readonly description: string;
-  readonly price?: never;
-};
-
 export type ServiceOffering = {
   readonly id: string;
   readonly name: string;

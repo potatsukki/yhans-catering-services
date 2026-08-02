@@ -12,7 +12,7 @@ const VIEWPORTS = [
 ] as const;
 
 async function waitForImages(page: Page) {
-  const images = page.locator('main img');
+  const images = page.locator('main img:visible');
   for (let index = 0; index < await images.count(); index += 1) {
     await images.nth(index).scrollIntoViewIfNeeded();
   }
@@ -126,7 +126,7 @@ test.describe('accessibility', () => {
     await page.goto('/packages');
 
     const navigation = page.getByRole('navigation', { name: 'Primary navigation' });
-    await expect(navigation.locator('a[aria-current="page"]')).toHaveAttribute('href', '/packages');
+    await expect(navigation.getByRole('button', { name: 'Packages & Services' })).toHaveAttribute('aria-current', 'page');
 
     await page.keyboard.press('Tab');
     const focusState = await page.evaluate(() => {

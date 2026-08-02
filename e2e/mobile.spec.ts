@@ -25,15 +25,36 @@ test.describe('mobile navigation', () => {
     await expect(page.getByRole('button', { name: 'Open menu' })).toBeFocused();
   });
 
-  test('keeps package cards, grazing inclusions, contact actions, and footer readable', async ({ page }) => {
+  test('keeps the customizable menu, grazing table, contact actions, and footer readable', async ({ page }) => {
     await page.goto('/packages');
     await expect(page.getByRole('heading', { level: 1, name: 'Packages & Services' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Package 01' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Package D' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Grazing-table inclusions' })).toBeVisible();
-    await expect(page.getByText('Seasonal fruits')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Customize Your Catering Menu' })).toBeVisible();
+    await expect(page.getByRole('radio')).toHaveCount(33);
+    await expect(page.getByTestId('menu-category-beef').getByText('Swipe to browse dishes')).toBeVisible();
+    expect(await page.getByTestId('custom-menu-categories').evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
+    expect(await page.getByTestId('menu-dishes-beef').evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
+    await page
+      .getByTestId('menu-dishes-beef')
+      .getByText('Beef with Mushrooms', { exact: true })
+      .click();
+    await expect(page.getByTestId('choice-beef')).toHaveText('Beef with Mushrooms');
+    await expect(page.getByTestId('menu-category-beef').getByText('Swipe to browse dishes')).toBeVisible();
+    await page.getByTestId('menu-dishes-beef').getByText('Beef with Mushrooms', { exact: true }).click();
+    await expect(page.getByTestId('choice-beef')).toHaveText('Not selected yet');
+    await page.getByTestId('menu-dishes-beef').getByText('Beef with Mushrooms', { exact: true }).click();
+    await page.getByRole('button', { name: 'Go to next Pork category' }).click();
+    await expect.poll(() => page.getByTestId('custom-menu-categories').evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
+    await page.getByRole('button', { name: 'Go back to Beef category' }).click();
+    await expect.poll(() => page.getByTestId('custom-menu-categories').evaluate((element) => element.scrollLeft)).toBe(0);
+    const grazingTable = page.getByRole('region', { name: 'Grazing Table' });
+    await expect(grazingTable).toBeVisible();
+    await expect(grazingTable.getByText('Seasonal Fruits (Grapes, Watermelon, Oranges, and Strawberries)')).toBeVisible();
+    await expect(grazingTable.getByRole('link', { name: /Ask About This Grazing Table/ })).toBeVisible();
     await expect(page.getByRole('contentinfo')).toBeVisible();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    expect(await page.evaluate(() => {
+      window.scrollTo(1_000, window.scrollY);
+      return window.scrollX === 0;
+    })).toBe(true);
 
     await page.goto('/about-contact');
     await expect(page.locator('#contact a[href="tel:+639566755148"]')).toBeVisible();
