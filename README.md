@@ -1,6 +1,41 @@
 # Yhan's Catering Services
 
-Yhan's Catering Services is a static React marketing website for a Quezon City catering business. It presents confirmed catering packages, grazing tables, packed meals, food-tray inquiries, event services, business information, and direct contact actions. The site has three main public routes plus a not-found fallback. It has no backend, account system, booking engine, checkout, payment processing, or inquiry form.
+This repository contains the official website for **Yhan's Catering Services**, a catering business serving Quezon City and nearby areas. The website gives the business a professional identity on the internet and provides customers with one reliable place to learn about its food, services, packages, and contact information.
+
+It is designed for both potential customers and the Yhan's Catering Services team. Visitors can explore the available catering options before sending an inquiry, while the business can direct people to one organized source instead of repeatedly explaining the same details through messages.
+
+## Why this website exists
+
+Before having a dedicated website, important information can become scattered across social-media posts, photos, and private conversations. Customers may need to ask several basic questions before they can decide whether a catering service is suitable for their event.
+
+This website solves that problem by:
+
+- Giving Yhan's Catering Services a professional and trustworthy online presence.
+- Keeping its main services, menu choices, package details, inclusions, and business information in one place.
+- Helping customers understand their options before contacting the business.
+- Answering roughly 80% of common preliminary inquiry questions through the information already available on the website.
+- Reducing repetitive messages about available food, guest minimums, package inclusions, service areas, and ways to get in touch.
+- Making it easier for customers to move from browsing to discussing their event through direct Facebook contact buttons.
+- Presenting the business consistently on desktop computers, tablets, and mobile phones.
+
+The website does not replace personal customer service. Final prices, availability, menu changes, quantities, and event arrangements are still discussed directly with Yhan's Catering Services.
+
+## What visitors can find
+
+The website brings together the information customers usually need before making an inquiry:
+
+- Customizable catering-menu choices for a 50-guest package.
+- Grazing-table pricing, minimum guest count, setup details, and inclusions.
+- Breakfast, lunch, and dinner packed-meal choices.
+- A categorized food-tray catalog for parties, offices, meetings, seminars, and group events.
+- Additional event services and customization guidance.
+- The business story, service areas, booking process, contact details, location, business hours, and payment information.
+
+## Website scope
+
+This is an informational marketing website with three main pages: Home, Packages & Services, and About & Contact. It connects customers to the business through its existing Facebook page but does not include online accounts, automatic quotations, booking, checkout, payment processing, or a backend ordering system.
+
+The remaining sections below are intended for developers and future maintainers of the website.
 
 ## Technology stack
 

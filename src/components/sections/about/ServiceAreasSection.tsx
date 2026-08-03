@@ -4,8 +4,8 @@ import { GALLERY } from '../../../data/gallery';
 import { Container } from '../../ui/Container';
 import { DecorativeDivider } from '../../ui/DecorativeDivider';
 import { Icon } from '../../ui/Icon';
-import { ResponsiveImage } from '../../ui/ResponsiveImage';
 import { SectionHeading } from '../../ui/SectionHeading';
+import { ZoomableImage } from '../../ui/ZoomableImage';
 
 export function ServiceAreasSection() {
   return (
@@ -27,10 +27,7 @@ export function ServiceAreasSection() {
           </p>
         </div>
         <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border-2 border-cream-100 bg-cream-200 shadow-lg [&_img]:h-full">
-          <ResponsiveImage asset={GALLERY.receptionTable} />
-          <span className="absolute bottom-3 right-3 rounded-full bg-cream-50/90 px-3 py-1 font-body text-xs font-semibold text-ink-700">
-            Sample image
-          </span>
+          <ZoomableImage asset={GALLERY.receptionTable} />
         </div>
       </Container>
     </section>

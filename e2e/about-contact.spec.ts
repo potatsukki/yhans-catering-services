@@ -79,7 +79,7 @@ test.describe('About & Contact page', () => {
     await page.goto('/about-contact');
     await expect(page.getByRole('heading', { level: 1, name: 'About & Contact' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Serving Celebrations Since 2010' })).toBeVisible();
-    await expect(page.getByTestId('about-hero-content')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+    await expect(page.getByTestId('about-hero-content')).not.toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
 
     const highlightColumns = await page.getByTestId('about-highlights').evaluate((element) =>
       getComputedStyle(element).gridTemplateColumns.split(' ').filter(Boolean).length,

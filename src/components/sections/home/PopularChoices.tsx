@@ -3,8 +3,8 @@ import { HOME_POPULAR_CHOICES } from '../../../data/packages';
 import { Badge } from '../../ui/Badge';
 import { Container } from '../../ui/Container';
 import { DecorativeDivider } from '../../ui/DecorativeDivider';
-import { ResponsiveImage } from '../../ui/ResponsiveImage';
 import { SectionHeading } from '../../ui/SectionHeading';
+import { ZoomableImage } from '../../ui/ZoomableImage';
 
 export function PopularChoices() {
   return (
@@ -25,7 +25,7 @@ export function PopularChoices() {
                 </Badge>
               ) : null}
               <div className="aspect-[16/10] overflow-hidden rounded-t-[calc(0.75rem-1px)] bg-cream-200 md:aspect-auto md:rounded-l-[calc(0.75rem-1px)] md:rounded-tr-none [&_img]:h-full">
-                <ResponsiveImage asset={GALLERY[choice.imageKey as GalleryKey]} className="h-full" />
+                <ZoomableImage asset={GALLERY[choice.imageKey as GalleryKey]} className="h-full" />
               </div>
               <div className="flex min-h-24 flex-col items-start justify-center p-4">
                 <h3 className="font-display text-lg font-bold text-burgundy-900 sm:text-xl">{choice.name}</h3>

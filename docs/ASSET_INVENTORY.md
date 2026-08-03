@@ -36,7 +36,6 @@ Generate consistent warm catering photography without text, logos, watermarks, i
 | Destination | Target size | Purpose | Replacement status |
 |---|---:|---|---|
 | `src/assets/images/placeholders/shared/buffet-hero.webp` | 1600×900 | Shared page hero buffet scene | Replace with approved real photo |
-| `src/assets/images/placeholders/shared/reception-table.webp` | 1200×900 | Story/trust reception scene | Replace with approved real photo |
 | `src/assets/images/placeholders/services/full-catering.webp` | 1200×900 | Full Catering card | Temporary |
 | `src/assets/images/placeholders/services/grazing-table.webp` | 1200×900 | Grazing Tables card/package imagery | Temporary |
 | `src/assets/images/placeholders/services/food-trays.webp` | 1200×900 | Food Trays card/section | Temporary |

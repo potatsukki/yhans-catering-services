@@ -6,8 +6,8 @@ import { Container } from '../../ui/Container';
 import { DecorativeDivider } from '../../ui/DecorativeDivider';
 import { Icon, type IconName } from '../../ui/Icon';
 import { Price } from '../../ui/Price';
-import { ResponsiveImage } from '../../ui/ResponsiveImage';
 import { SectionHeading } from '../../ui/SectionHeading';
+import { ZoomableImage } from '../../ui/ZoomableImage';
 
 const offerFacts = [
   { label: 'Price', icon: 'cash', kind: 'price' },
@@ -61,7 +61,7 @@ export function GrazingTableSection() {
         </dl>
 
         <div className="mx-auto mt-5 aspect-[16/9] max-w-7xl overflow-hidden rounded-2xl border border-gold-200 bg-cream-200 shadow-sm sm:aspect-[16/7] lg:aspect-[16/5]">
-          <ResponsiveImage asset={GALLERY[GRAZING_TABLE_OFFER.imageKey]} className="h-full" />
+          <ZoomableImage asset={GALLERY[GRAZING_TABLE_OFFER.imageKey]} className="h-full" />
         </div>
 
         <div className="mx-auto mt-5 max-w-7xl rounded-2xl border border-gold-200 bg-cream-50 px-5 py-6 shadow-sm sm:px-7 lg:px-10 lg:py-7">

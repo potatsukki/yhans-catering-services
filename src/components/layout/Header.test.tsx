@@ -15,6 +15,7 @@ describe('Header', () => {
 
     expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Packages & Services' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Events' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'About & Contact' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Request a Quote/ })).toHaveAttribute(
       'href',

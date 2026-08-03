@@ -5,6 +5,7 @@ import { FACEBOOK_URL } from './business';
 export const NAVIGATION_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Packages & Services', href: '/packages' },
+  { label: 'Events', href: '/events' },
   { label: 'About & Contact', href: '/about-contact' },
 ] as const satisfies readonly NavigationItem[];
 
@@ -20,6 +21,14 @@ export const DESKTOP_NAVIGATION_GROUPS = [
       { label: 'Food Trays', href: '/packages#food-trays' },
       { label: 'Additional Event Services', href: '/packages#additional-services' },
       { label: 'Menu customization', href: '/packages#customization-note' },
+    ],
+  },
+  {
+    label: 'Events',
+    href: '/events',
+    items: [
+      { label: 'Our Events', href: '/events#events-overview' },
+      { label: 'Events Gallery', href: '/events#events-gallery' },
     ],
   },
   {

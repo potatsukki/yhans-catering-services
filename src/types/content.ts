@@ -1,4 +1,4 @@
-export type ContactLinkKind = 'facebook' | 'email' | 'phone';
+type ContactLinkKind = 'facebook' | 'email' | 'phone';
 
 export type ContactLink = {
   readonly label: string;

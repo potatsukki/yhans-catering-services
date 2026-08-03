@@ -3,8 +3,8 @@ import { GALLERY } from '../../../data/gallery';
 import { Container } from '../../ui/Container';
 import { DecorativeDivider } from '../../ui/DecorativeDivider';
 import { Icon } from '../../ui/Icon';
-import { ResponsiveImage } from '../../ui/ResponsiveImage';
 import { SectionHeading } from '../../ui/SectionHeading';
+import { ZoomableImage } from '../../ui/ZoomableImage';
 
 export function WhyChooseYhans() {
   return (
@@ -31,7 +31,7 @@ export function WhyChooseYhans() {
           </p>
         </div>
         <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border-2 border-cream-50 bg-cream-200 shadow-lg [&_img]:h-full">
-          <ResponsiveImage asset={GALLERY.whyChooseEvent} />
+          <ZoomableImage asset={GALLERY.whyChooseEvent} />
         </div>
       </Container>
     </section>

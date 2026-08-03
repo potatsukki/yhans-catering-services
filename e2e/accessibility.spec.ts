@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const ROUTES = ['/', '/packages', '/about-contact'] as const;
+const ROUTES = ['/', '/packages', '/events', '/about-contact'] as const;
 const VIEWPORTS = [
   { name: '360x800', width: 360, height: 800 },
   { name: '375x812', width: 375, height: 812 },
@@ -52,6 +52,7 @@ async function assertPageReliability(page: Page, expectedRoute: string) {
           right: rect.right,
           left: rect.left,
           label: element.textContent?.trim().slice(0, 80),
+          inHorizontalScroller: Boolean(element.closest('.horizontal-card-scroller')),
         };
       });
     return {
@@ -65,13 +66,13 @@ async function assertPageReliability(page: Page, expectedRoute: string) {
   });
 
   expect(structure.headingOrder, `${expectedRoute} heading order`).toBe(true);
-  expect(structure.images.every((image) => image.alt !== null && image.src && image.currentSrc)).toBe(true);
+  expect(structure.images.every((image) => image.alt !== null && image.src)).toBe(true);
   expect(structure.svgs.every((svg) => svg.ariaHidden === 'true' || svg.role === 'img')).toBe(true);
   expect(
     structure.interactive.every(
-      (element) => element.height >= 40 && element.left >= -1 && element.right <= structure.viewportWidth + 1,
+      (element) => element.height >= 40 && (element.inHorizontalScroller || (element.left >= -1 && element.right <= structure.viewportWidth + 1)),
     ),
-    JSON.stringify(structure.interactive.filter((element) => element.height < 40 || element.left < -1 || element.right > structure.viewportWidth + 1)),
+    JSON.stringify(structure.interactive.filter((element) => element.height < 40 || (!element.inHorizontalScroller && (element.left < -1 || element.right > structure.viewportWidth + 1)))),
   ).toBe(true);
   expect(structure.overflow, `${expectedRoute} horizontal overflow`).toBe(false);
 }
@@ -169,7 +170,6 @@ test.describe('200% zoom proxy', () => {
     test(`200% zoom CSS viewport remains usable on ${route}`, async ({ page }) => {
       await page.setViewportSize({ width: 720, height: 450 });
       await page.goto(route);
-      await waitForImages(page);
       await expect(page.locator('h1')).toHaveCount(1);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
     });

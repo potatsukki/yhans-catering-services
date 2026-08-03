@@ -1,4 +1,4 @@
-const INDEXABLE_PATHS = ['/', '/packages', '/about-contact'] as const;
+const INDEXABLE_PATHS = ['/', '/packages', '/about-contact', '/events'] as const;
 
 function escapeXml(value: string): string {
   return value.replace(/[<>&'\"]/g, (character) => {
@@ -24,4 +24,3 @@ export function createSitemapXml(siteUrl: string): string {
 export function createRobotsTxt(siteUrl: string): string {
   return `User-agent: *\nAllow: /\nSitemap: ${siteUrl}/sitemap.xml\n`;
 }
-

@@ -21,19 +21,17 @@ describe('confirmed catering content', () => {
       'chicken',
       'vegetables',
       'pasta-noodles',
-      'rice',
       'dessert',
-      'drink',
     ]);
-    expect(MENU_CATEGORIES.flatMap((category) => category.dishes)).toHaveLength(33);
+    expect(MENU_CATEGORIES.flatMap((category) => category.dishes)).toHaveLength(30);
     expect(MENU_CATEGORIES.flatMap((category) => category.dishes.map((dish) => dish.name))).toEqual([
       'Beef with Mushrooms', 'Beef Caldereta', 'Beef Kare-Kare', 'Roast Beef',
       'Menudo', 'Pork Caldereta', 'Pork Hamonado', 'Lumpiang Shanghai', 'Pork Sisig',
       'Chicken Cordon Bleu', 'Buffalo Chicken Wings', 'Chicken Hamonado', 'Chicken Pochero',
       'Chop Suey', 'Mixed Vegetables', 'Broccoli with Garlic', 'Vegetable Salad', 'Lumpiang Hubad',
       'Spaghetti', 'Carbonara', 'Truffle Pasta', 'Alfredo Pasta', 'Cajun Pasta', 'Baked Macaroni',
-      'Chicken Pesto Pasta', 'Pancit Canton', 'Pancit Sotanghon', 'White Rice',
-      'Coffee Jelly', 'Mango Tapioca', 'Buko Pandan', 'Lemon Iced Tea', 'Red Iced Tea',
+      'Chicken Pesto Pasta', 'Pancit Canton', 'Pancit Sotanghon',
+      'Mango Tapioca', 'Coffee Jelly', 'Buko Pandan',
     ]);
     expect(MENU_CATEGORIES.flatMap((category) => category.dishes).find((dish) => dish.isBestSeller)?.name).toBe('Menudo');
     expect(JSON.stringify(MENU_CATEGORIES)).not.toMatch(/pricePhp|30000|Package 0/);
@@ -69,14 +67,13 @@ describe('confirmed catering content', () => {
   it('keeps packed meals and food trays free of invented prices', () => {
     expect(PACKED_MEAL_PRICE_RANGE).toEqual([250, 300]);
     expect(BREAKFAST_FOOD_PACK.options.map((meal) => meal.name)).toEqual([
-      'Hotdog, Egg, Rice',
-      'Corned Beef, Egg, Rice',
-      'Longganisa, Egg, Rice',
-      'Chicken Adobo, Egg, Rice',
-      'Tocino, Egg, Rice',
-      'Ham, Egg, Rice',
+      'Hotdog, Egg & Rice',
+      'Corned Beef, Egg & Rice',
+      'Longganisa, Egg & Rice',
+      'Chicken Adobo, Egg & Rice',
+      'Tocino, Egg & Rice',
+      'Ham, Egg & Rice',
     ]);
-    expect(BREAKFAST_FOOD_PACK.options.filter((meal) => meal.imageIsFallback)).toHaveLength(5);
     expect(LUNCH_DINNER_PACKED_MEALS.map((meal) => meal.name)).toEqual([
       'Beef Caldereta',
       'Fried Chicken',
@@ -91,12 +88,11 @@ describe('confirmed catering content', () => {
       'Pork Sisig',
     ]);
     expect(LUNCH_DINNER_PACKED_MEALS.find((meal) => meal.badge)?.name).toBe('Menudo');
-    expect(LUNCH_DINNER_PACKED_MEALS.filter((meal) => meal.imageIsFallback)).toHaveLength(7);
     expect(JSON.stringify(LUNCH_DINNER_PACKED_MEALS)).not.toMatch(/Chicken Afretada|vegies|veggies/i);
     expect(FOOD_TRAY.minimumGuests).toBe(25);
     expect(FOOD_TRAY.priceNote).toBe('Prices vary depending on the selected dish and quantity.');
     expect(FOOD_TRAY_CATEGORIES.map((category) => category.id)).toEqual([
-      'beef', 'pork', 'chicken', 'vegetables', 'pasta-noodles', 'fish-seafood', 'rice', 'desserts', 'drinks',
+      'beef', 'pork', 'chicken', 'vegetables', 'pasta-noodles', 'fish-seafood', 'desserts',
     ]);
     expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items).map((item) => item.name)).toEqual([
       'Beef with Mushrooms', 'Beef Caldereta', 'Beef Kare-Kare', 'Roast Beef',
@@ -107,11 +103,10 @@ describe('confirmed catering content', () => {
       'Chicken Pesto Pasta', 'Pancit Canton', 'Pancit Sotanghon',
       'Salted Egg Shrimp', 'Crabs in Cajun Sauce', 'Shrimp in Cajun Sauce', 'Cheesy Baked Shrimp',
       'Steamed Lapu-Lapu', 'Steamed Pompano', 'Sweet and Sour Pompano', 'Cheesy Baked Bangus',
-      'Sweet and Sour Fish Fillet', 'White Rice', 'Coffee Jelly', 'Mango Tapioca', 'Buko Pandan',
-      'Lemon Iced Tea', 'Red Iced Tea',
+      'Sweet and Sour Fish Fillet', 'Mango Tapioca', 'Coffee Jelly', 'Buko Pandan',
     ]);
-    expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items)).toHaveLength(42);
-    expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items).filter((item) => item.imageIsFallback)).toHaveLength(39);
+    expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items)).toHaveLength(39);
+    expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items).filter((item) => item.imageIsFallback)).toHaveLength(13);
     expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items).find((item) => item.badge)?.name).toBe('Menudo');
     expect(JSON.stringify({ FOOD_TRAY, FOOD_TRAY_CATEGORIES })).not.toMatch(/pricePhp|₱\s*\d/);
   });

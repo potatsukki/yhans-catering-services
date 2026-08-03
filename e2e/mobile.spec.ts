@@ -29,19 +29,11 @@ test.describe('mobile navigation', () => {
     await page.goto('/packages');
     await expect(page.getByRole('heading', { level: 1, name: 'Packages & Services' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Customize Your Catering Menu' })).toBeVisible();
-    await expect(page.getByRole('radio')).toHaveCount(33);
+    await expect(page.getByRole('radio')).toHaveCount(0);
     await expect(page.getByTestId('menu-category-beef').getByText('Swipe to browse dishes')).toBeVisible();
     expect(await page.getByTestId('custom-menu-categories').evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
     expect(await page.getByTestId('menu-dishes-beef').evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
-    await page
-      .getByTestId('menu-dishes-beef')
-      .getByText('Beef with Mushrooms', { exact: true })
-      .click();
-    await expect(page.getByTestId('choice-beef')).toHaveText('Beef with Mushrooms');
     await expect(page.getByTestId('menu-category-beef').getByText('Swipe to browse dishes')).toBeVisible();
-    await page.getByTestId('menu-dishes-beef').getByText('Beef with Mushrooms', { exact: true }).click();
-    await expect(page.getByTestId('choice-beef')).toHaveText('Not selected yet');
-    await page.getByTestId('menu-dishes-beef').getByText('Beef with Mushrooms', { exact: true }).click();
     await page.getByRole('button', { name: 'Go to next Pork category' }).click();
     await expect.poll(() => page.getByTestId('custom-menu-categories').evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
     await page.getByRole('button', { name: 'Go back to Beef category' }).click();

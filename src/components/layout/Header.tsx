@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import { BUSINESS } from '../../data/business';
@@ -112,7 +112,8 @@ export function Header() {
               const isOpen = openDropdown === group.href;
 
               return (
-                <li className="relative" key={group.href}>
+                <Fragment key={group.href}>
+                <li className="relative">
                   <button
                     aria-controls={`desktop-dropdown-${group.href.slice(1)}`}
                     aria-current={isActive ? 'page' : undefined}
@@ -150,6 +151,7 @@ export function Header() {
                     </div>
                   ) : null}
                 </li>
+                </Fragment>
               );
             })}
           </ul>

@@ -1,7 +1,7 @@
 import type { RouteMeta } from '../types/content';
 import { getRuntimeSiteUrl } from '../config/siteUrl';
 
-export const ROUTE_META: Record<string, RouteMeta> = {
+const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
     title: "Yhan's Catering Services | Catering in Quezon City",
     description:
@@ -16,6 +16,11 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     title: "About & Contact | Yhan's Catering Services",
     description:
       "Learn about Yhan's Catering Services, view service areas and business hours, and contact Marianne P. Natanawan for your event requirements.",
+  },
+  '/events': {
+    title: "Events Gallery | Yhan's Catering Services",
+    description:
+      "Explore celebrations, table setups, buffet arrangements, and special occasions catered by Yhan's Catering Services.",
   },
 };
 

@@ -21,7 +21,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   tertiary: 'border border-burgundy-800 bg-cream-50 !text-burgundy-900 hover:bg-cream-100',
 };
 
-export function buttonLinkClassName(variant: ButtonVariant, fullWidth: boolean, className = '') {
+function buttonLinkClassName(variant: ButtonVariant, fullWidth: boolean, className = '') {
   return `inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-3 text-center font-body text-sm font-semibold leading-tight transition-colors duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-focus/40 ${variantClasses[variant]} ${fullWidth ? 'w-full' : ''} ${className}`;
 }
 

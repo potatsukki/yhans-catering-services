@@ -71,7 +71,7 @@ test.describe('Home page', () => {
     await expect(page.getByTestId('home-hero').getByRole('link', { name: 'View Packages' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'View Packages' })).toHaveAttribute('href', '/packages');
     await expect(page.getByText('Sample images only')).not.toBeVisible();
-    await expect(page.getByTestId('home-hero-content')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+    await expect(page.getByTestId('home-hero-content')).not.toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
 
     const servicesScroller = page.getByTestId('services-scroller');
     const testimonialsScroller = page.getByTestId('testimonials-scroller');
