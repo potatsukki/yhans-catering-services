@@ -104,8 +104,8 @@ describe('PackagesPage', () => {
     const foodTrayCatalog = within(foodTrays).getByTestId('food-tray-catalog');
     expect(foodTrayCatalog.querySelectorAll('article')).toHaveLength(39);
     expect(foodTrayCatalog.querySelectorAll('[data-testid^="food-tray-category-"]')).toHaveLength(7);
-    expect(foodTrayCatalog.querySelectorAll('[data-testid="food-tray-placeholder"]')).toHaveLength(13);
-    expect(foodTrayCatalog.querySelectorAll('img')).toHaveLength(26);
+    expect(foodTrayCatalog.querySelectorAll('[data-testid="food-tray-placeholder"]')).toHaveLength(0);
+    expect(foodTrayCatalog.querySelectorAll('img')).toHaveLength(39);
     expect(within(foodTrays).queryByText('Price upon inquiry')).not.toBeInTheDocument();
     expect(within(foodTrays).queryByText('Good for at least 25 guests')).not.toBeInTheDocument();
     ['Beef', 'Pork', 'Chicken', 'Vegetables', 'Pasta & Noodles', 'Fish & Seafood', 'Desserts'].forEach((category) => {

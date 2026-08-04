@@ -27,23 +27,34 @@ import menudoTrayUrl from '../assets/images/menudo-tray.webp';
 import porkHamonadoTrayUrl from '../assets/images/pork-hamonado-tray.webp';
 import lumpiangShanghaiTrayUrl from '../assets/images/lumpiang-shanghai-tray.webp';
 import porkSisigTrayUrl from '../assets/images/pork-sisig-tray.webp';
+import porkCalderetaTrayUrl from '../assets/images/pork-caldereta-tray.webp';
 import chickenCordonBleuTrayUrl from '../assets/images/chicken-cordon-bleu-tray.webp';
 import buffaloChickenWingsTrayUrl from '../assets/images/buffalo-chicken-wings-tray.webp';
+import chickenHamonadoTrayUrl from '../assets/images/chicken-hamonado-tray.webp';
 import chickenPocheroTrayUrl from '../assets/images/chicken-pochero-tray.webp';
 import chopSueyTrayUrl from '../assets/images/chop-suey-tray.webp';
 import mixedVegetablesTrayUrl from '../assets/images/mixed-vegetables-tray.webp';
+import broccoliWithGarlicTrayUrl from '../assets/images/broccoli-with-garlic-tray.webp';
+import vegetableSaladTrayUrl from '../assets/images/vegetable-salad-tray.webp';
 import lumpiangHubadTrayUrl from '../assets/images/lumpiang-hubad-tray.webp';
 import spaghettiTrayUrl from '../assets/images/spaghetti-tray.webp';
 import carbonaraTrayUrl from '../assets/images/carbonara-tray.webp';
 import trufflePastaTrayUrl from '../assets/images/truffle-pasta-tray.webp';
+import alfredoPastaTrayUrl from '../assets/images/alfredo-pasta-tray.webp';
+import cajunPastaTrayUrl from '../assets/images/cajun-pasta-tray.webp';
 import bakedMacaroniTrayUrl from '../assets/images/baked-macaroni-tray.webp';
 import chickenPestoPastaTrayUrl from '../assets/images/chicken-pesto-pasta-tray.webp';
 import pancitCantonTrayUrl from '../assets/images/pancit-canton-tray.webp';
 import pancitSotanghonTrayUrl from '../assets/images/pancit-sotanghon-tray.webp';
 import saltedEggShrimpTrayUrl from '../assets/images/salted-egg-shrimp-tray.webp';
 import crabsInCajunSauceTrayUrl from '../assets/images/crabs-in-cajun-sauce-tray.webp';
+import shrimpCajunSauceTrayUrl from '../assets/images/shrimp-cajun-sauce-tray.webp';
 import cheesyBakedShrimpTrayUrl from '../assets/images/cheesy-baked-shrimp-tray.webp';
 import steamedLapuLapuTrayUrl from '../assets/images/steamed-lapu-lapu-tray.webp';
+import steamedPompanoTrayUrl from '../assets/images/steamed-pompano-tray.webp';
+import sweetSourPompanoTrayUrl from '../assets/images/sweet-sour-pompano-tray.webp';
+import cheesyBakedBangusTrayUrl from '../assets/images/cheesy-baked-bangus-tray.webp';
+import sweetSourFishFilletTrayUrl from '../assets/images/sweet-sour-fish-fillet-tray.webp';
 import beefCalderetaMenuUrl from '../assets/images/beef-caldereta-menu.webp';
 import beefKareKareMenuUrl from '../assets/images/beef-kare-kare-menu.webp';
 import roastBeefMenuUrl from '../assets/images/roast-beef-menu.webp';
@@ -67,6 +78,12 @@ import carbonaraMenuUrl from '../assets/images/carbonara-menu.webp';
 import bakedMacaroniMenuUrl from '../assets/images/baked-macaroni-menu.webp';
 import pancitCantonMenuUrl from '../assets/images/pancit-canton-menu.webp';
 import mangoTapiocaMenuUrl from '../assets/images/mango-tapioca-menu.webp';
+import broccoliWithGarlicMenuUrl from '../assets/images/broccoli-with-garlic-menu.webp';
+import alfredoPastaMenuUrl from '../assets/images/alfredo-pasta-menu.webp';
+import cajunPastaMenuUrl from '../assets/images/cajun-pasta-menu.webp';
+import pancitSotanghonMenuUrl from '../assets/images/pancit-sotanghon-menu.webp';
+import coffeeJellyMenuUrl from '../assets/images/coffee-jelly-menu.webp';
+import bukoPandanMenuUrl from '../assets/images/buko-pandan-menu.webp';
 import sampleBuffetUrl from '../assets/images/recent-event-christmas-dinner.webp';
 import sampleGrazingTableUrl from '../assets/images/recent-event-blue-celebration.webp';
 import sampleReceptionUrl from '../assets/images/recent-event-evening-buffet.webp';
@@ -100,26 +117,37 @@ export type GalleryKey =
   | 'beefKareKareTray'
   | 'roastBeefTray'
   | 'menudoTray'
+  | 'porkCalderetaTray'
   | 'porkHamonadoTray'
   | 'lumpiangShanghaiTray'
   | 'porkSisigTray'
   | 'chickenCordonBleuTray'
   | 'buffaloChickenWingsTray'
+  | 'chickenHamonadoTray'
   | 'chickenPocheroTray'
   | 'chopSueyTray'
   | 'mixedVegetablesTray'
+  | 'broccoliWithGarlicTray'
+  | 'vegetableSaladTray'
   | 'lumpiangHubadTray'
   | 'spaghettiTray'
   | 'carbonaraTray'
   | 'trufflePastaTray'
+  | 'alfredoPastaTray'
+  | 'cajunPastaTray'
   | 'bakedMacaroniTray'
   | 'chickenPestoPastaTray'
   | 'pancitCantonTray'
   | 'pancitSotanghonTray'
   | 'saltedEggShrimpTray'
   | 'crabsInCajunSauceTray'
+  | 'shrimpCajunSauceTray'
   | 'cheesyBakedShrimpTray'
   | 'steamedLapuLapuTray'
+  | 'steamedPompanoTray'
+  | 'sweetSourPompanoTray'
+  | 'cheesyBakedBangusTray'
+  | 'sweetSourFishFilletTray'
   | 'beefCalderetaMenu'
   | 'beefKareKareMenu'
   | 'roastBeefMenu'
@@ -143,6 +171,12 @@ export type GalleryKey =
   | 'bakedMacaroniMenu'
   | 'pancitCantonMenu'
   | 'mangoTapiocaMenu'
+  | 'broccoliWithGarlicMenu'
+  | 'alfredoPastaMenu'
+  | 'cajunPastaMenu'
+  | 'pancitSotanghonMenu'
+  | 'coffeeJellyMenu'
+  | 'bukoPandanMenu'
   | 'sampleBuffet'
   | 'sampleGrazingTable'
   | 'sampleReception'
@@ -301,6 +335,12 @@ export const GALLERY: Record<GalleryKey, ImageAsset> = {
     width: 1448,
     height: 1086,
   },
+  porkCalderetaTray: {
+    src: porkCalderetaTrayUrl,
+    alt: 'Pork caldereta with potatoes, carrots, and bell peppers served in a food tray',
+    width: 1448,
+    height: 1086,
+  },
   porkHamonadoTray: {
     src: porkHamonadoTrayUrl,
     alt: 'Pork Hamonado with pineapple served in a food tray',
@@ -331,6 +371,12 @@ export const GALLERY: Record<GalleryKey, ImageAsset> = {
     width: 1448,
     height: 1086,
   },
+  chickenHamonadoTray: {
+    src: chickenHamonadoTrayUrl,
+    alt: 'Chicken hamonado with pineapple and vegetables served in a food tray',
+    width: 1448,
+    height: 1086,
+  },
   chickenPocheroTray: {
     src: chickenPocheroTrayUrl,
     alt: 'Chicken Pochero with vegetables served in a food tray',
@@ -346,6 +392,18 @@ export const GALLERY: Record<GalleryKey, ImageAsset> = {
   mixedVegetablesTray: {
     src: mixedVegetablesTrayUrl,
     alt: 'Mixed vegetables baked with cheese in a food tray',
+    width: 1448,
+    height: 1086,
+  },
+  broccoliWithGarlicTray: {
+    src: broccoliWithGarlicTrayUrl,
+    alt: 'Broccoli with garlic served in a food tray',
+    width: 1448,
+    height: 1086,
+  },
+  vegetableSaladTray: {
+    src: vegetableSaladTrayUrl,
+    alt: 'Fresh garden salad with lettuce, cucumber, and tomatoes served in a food tray',
     width: 1448,
     height: 1086,
   },
@@ -370,6 +428,18 @@ export const GALLERY: Record<GalleryKey, ImageAsset> = {
   trufflePastaTray: {
     src: trufflePastaTrayUrl,
     alt: 'Creamy mushroom truffle pasta served in a food tray',
+    width: 1448,
+    height: 1086,
+  },
+  alfredoPastaTray: {
+    src: alfredoPastaTrayUrl,
+    alt: 'Creamy Alfredo pasta with mushrooms served in a food tray',
+    width: 1448,
+    height: 1086,
+  },
+  cajunPastaTray: {
+    src: cajunPastaTrayUrl,
+    alt: 'Cajun pasta with chicken and bell peppers served in a food tray',
     width: 1448,
     height: 1086,
   },
@@ -409,6 +479,12 @@ export const GALLERY: Record<GalleryKey, ImageAsset> = {
     width: 1448,
     height: 1086,
   },
+  shrimpCajunSauceTray: {
+    src: shrimpCajunSauceTrayUrl,
+    alt: 'Shrimp in Cajun sauce with corn served in a food tray',
+    width: 1448,
+    height: 1086,
+  },
   cheesyBakedShrimpTray: {
     src: cheesyBakedShrimpTrayUrl,
     alt: 'Cheesy baked shrimp served in a food tray',
@@ -418,6 +494,30 @@ export const GALLERY: Record<GalleryKey, ImageAsset> = {
   steamedLapuLapuTray: {
     src: steamedLapuLapuTrayUrl,
     alt: 'Steamed Lapu-Lapu served in a food tray',
+    width: 1448,
+    height: 1086,
+  },
+  steamedPompanoTray: {
+    src: steamedPompanoTrayUrl,
+    alt: 'Steamed pompano with ginger and scallions served in a food tray',
+    width: 1448,
+    height: 1086,
+  },
+  sweetSourPompanoTray: {
+    src: sweetSourPompanoTrayUrl,
+    alt: 'Sweet and sour pompano with pineapple and bell peppers served in a food tray',
+    width: 1448,
+    height: 1086,
+  },
+  cheesyBakedBangusTray: {
+    src: cheesyBakedBangusTrayUrl,
+    alt: 'Cheesy baked bangus served in a food tray',
+    width: 1448,
+    height: 1086,
+  },
+  sweetSourFishFilletTray: {
+    src: sweetSourFishFilletTrayUrl,
+    alt: 'Sweet and sour fish fillet served in a food tray',
     width: 1448,
     height: 1086,
   },
@@ -556,6 +656,42 @@ export const GALLERY: Record<GalleryKey, ImageAsset> = {
   mangoTapiocaMenu: {
     src: mangoTapiocaMenuUrl,
     alt: 'Mango tapioca dessert cups with mango chunks',
+    width: 1448,
+    height: 1086,
+  },
+  broccoliWithGarlicMenu: {
+    src: broccoliWithGarlicMenuUrl,
+    alt: 'Broccoli with garlic in a chafing dish',
+    width: 1448,
+    height: 1086,
+  },
+  alfredoPastaMenu: {
+    src: alfredoPastaMenuUrl,
+    alt: 'Creamy Alfredo pasta with mushrooms in a chafing dish',
+    width: 1448,
+    height: 1086,
+  },
+  cajunPastaMenu: {
+    src: cajunPastaMenuUrl,
+    alt: 'Cajun pasta with chicken and bell peppers in a chafing dish',
+    width: 1448,
+    height: 1086,
+  },
+  pancitSotanghonMenu: {
+    src: pancitSotanghonMenuUrl,
+    alt: 'Pancit sotanghon with chicken and vegetables in a chafing dish',
+    width: 1448,
+    height: 1086,
+  },
+  coffeeJellyMenu: {
+    src: coffeeJellyMenuUrl,
+    alt: 'Coffee jelly dessert cups on a catering tray',
+    width: 1448,
+    height: 1086,
+  },
+  bukoPandanMenu: {
+    src: bukoPandanMenuUrl,
+    alt: 'Buko pandan dessert cups on a catering tray',
     width: 1448,
     height: 1086,
   },

@@ -108,7 +108,7 @@ describe('confirmed catering content', () => {
       'Sweet and Sour Fish Fillet', 'Mango Tapioca', 'Coffee Jelly', 'Buko Pandan',
     ]);
     expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items)).toHaveLength(39);
-    expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items).filter((item) => item.imageIsFallback)).toHaveLength(13);
+    expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items).filter((item) => item.imageIsFallback)).toHaveLength(0);
     expect(FOOD_TRAY_CATEGORIES.flatMap((category) => category.items).find((item) => item.badge)?.name).toBe('Menudo');
     expect(JSON.stringify({ FOOD_TRAY, FOOD_TRAY_CATEGORIES })).not.toMatch(/pricePhp|₱\s*\d/);
   });

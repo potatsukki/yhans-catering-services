@@ -71,10 +71,7 @@ export const MENU_CATEGORIES = [
       {
         id: 'broccoli-with-garlic',
         name: 'Broccoli with Garlic',
-        imageKey: 'imageFallback',
-        imageIsTemporary: true,
-        imageAlt: 'Placeholder image for Broccoli with Garlic',
-        imageIsFallback: true,
+        imageKey: 'broccoliWithGarlicMenu',
       },
       { id: 'vegetable-salad', name: 'Vegetable Salad', imageKey: 'vegetableSaladMenu' },
       { id: 'lumpiang-hubad', name: 'Lumpiang Hubad', imageKey: 'lumpiangHubadMenu' },
@@ -91,18 +88,12 @@ export const MENU_CATEGORIES = [
       {
         id: 'alfredo-pasta',
         name: 'Alfredo Pasta',
-        imageKey: 'imageFallback',
-        imageIsTemporary: true,
-        imageAlt: 'Placeholder image for Alfredo Pasta',
-        imageIsFallback: true,
+        imageKey: 'alfredoPastaMenu',
       },
       {
         id: 'cajun-pasta',
         name: 'Cajun Pasta',
-        imageKey: 'imageFallback',
-        imageIsTemporary: true,
-        imageAlt: 'Placeholder image for Cajun Pasta',
-        imageIsFallback: true,
+        imageKey: 'cajunPastaMenu',
       },
       { id: 'baked-macaroni', name: 'Baked Macaroni', imageKey: 'bakedMacaroniMenu' },
       { id: 'chicken-pesto-pasta', name: 'Chicken Pesto Pasta', imageKey: 'chickenPestoPastaMenu' },
@@ -110,10 +101,7 @@ export const MENU_CATEGORIES = [
       {
         id: 'pancit-sotanghon',
         name: 'Pancit Sotanghon',
-        imageKey: 'imageFallback',
-        imageIsTemporary: true,
-        imageAlt: 'Placeholder image for Pancit Sotanghon',
-        imageIsFallback: true,
+        imageKey: 'pancitSotanghonMenu',
       },
     ],
   },
@@ -126,18 +114,12 @@ export const MENU_CATEGORIES = [
       {
         id: 'coffee-jelly',
         name: 'Coffee Jelly',
-        imageKey: 'imageFallback',
-        imageIsTemporary: true,
-        imageAlt: 'Placeholder image for Coffee Jelly',
-        imageIsFallback: true,
+        imageKey: 'coffeeJellyMenu',
       },
       {
         id: 'buko-pandan',
         name: 'Buko Pandan',
-        imageKey: 'imageFallback',
-        imageIsTemporary: true,
-        imageAlt: 'Placeholder image for Buko Pandan',
-        imageIsFallback: true,
+        imageKey: 'bukoPandanMenu',
       },
     ],
   },
@@ -277,16 +259,6 @@ export type FoodTrayOffer = {
   readonly imageKey: GalleryKey;
 };
 
-function unavailableFoodTray(id: string, name: string): FoodTrayItem {
-  return {
-    id,
-    name,
-    imageKey: 'imageFallback',
-    imageAlt: `${name} food tray photo not yet available`,
-    imageIsFallback: true,
-  };
-}
-
 export const FOOD_TRAY = {
   id: 'food-trays',
   name: 'Food Trays',
@@ -312,7 +284,7 @@ export const FOOD_TRAY_CATEGORIES = [
     name: 'Pork',
     items: [
       { id: 'menudo', name: 'Menudo', imageKey: 'menudoTray', imageAlt: 'Menudo with vegetables served in a food tray', badge: 'Best Seller' },
-      unavailableFoodTray('pork-caldereta', 'Pork Caldereta'),
+      { id: 'pork-caldereta', name: 'Pork Caldereta', imageKey: 'porkCalderetaTray', imageAlt: 'Pork caldereta with potatoes, carrots, and bell peppers served in a food tray' },
       { id: 'pork-hamonado', name: 'Pork Hamonado', imageKey: 'porkHamonadoTray', imageAlt: 'Pork Hamonado with pineapple served in a food tray' },
       { id: 'lumpiang-shanghai', name: 'Lumpiang Shanghai', imageKey: 'lumpiangShanghaiTray', imageAlt: 'Lumpiang Shanghai served in a food tray with lettuce' },
       { id: 'pork-sisig', name: 'Pork Sisig', imageKey: 'porkSisigTray', imageAlt: 'Pork Sisig with peppers served in a food tray' },
@@ -324,7 +296,7 @@ export const FOOD_TRAY_CATEGORIES = [
     items: [
       { id: 'chicken-cordon-bleu', name: 'Chicken Cordon Bleu', imageKey: 'chickenCordonBleuTray', imageAlt: 'Chicken Cordon Bleu slices served in a food tray' },
       { id: 'buffalo-chicken-wings', name: 'Buffalo Chicken Wings', imageKey: 'buffaloChickenWingsTray', imageAlt: 'Buffalo chicken wings served in a food tray' },
-      unavailableFoodTray('chicken-hamonado', 'Chicken Hamonado'),
+      { id: 'chicken-hamonado', name: 'Chicken Hamonado', imageKey: 'chickenHamonadoTray', imageAlt: 'Chicken hamonado with pineapple and vegetables served in a food tray' },
       { id: 'chicken-pochero', name: 'Chicken Pochero', imageKey: 'chickenPocheroTray', imageAlt: 'Chicken Pochero with vegetables served in a food tray' },
     ],
   },
@@ -334,8 +306,8 @@ export const FOOD_TRAY_CATEGORIES = [
     items: [
       { id: 'chop-suey', name: 'Chop Suey', imageKey: 'chopSueyTray', imageAlt: 'Chop Suey with quail eggs and vegetables served in a food tray' },
       { id: 'mixed-vegetables', name: 'Mixed Vegetables', imageKey: 'mixedVegetablesTray', imageAlt: 'Mixed vegetables baked with cheese in a food tray' },
-      unavailableFoodTray('broccoli-with-garlic', 'Broccoli with Garlic'),
-      unavailableFoodTray('vegetable-salad', 'Vegetable Salad'),
+      { id: 'broccoli-with-garlic', name: 'Broccoli with Garlic', imageKey: 'broccoliWithGarlicTray', imageAlt: 'Broccoli with garlic served in a food tray' },
+      { id: 'vegetable-salad', name: 'Vegetable Salad', imageKey: 'vegetableSaladTray', imageAlt: 'Fresh garden salad with lettuce, cucumber, and tomatoes served in a food tray' },
       { id: 'lumpiang-hubad', name: 'Lumpiang Hubad', imageKey: 'lumpiangHubadTray', imageAlt: 'Lumpiang Hubad with vegetables and sauce served in a food tray' },
     ],
   },
@@ -346,8 +318,8 @@ export const FOOD_TRAY_CATEGORIES = [
       { id: 'spaghetti', name: 'Spaghetti', imageKey: 'spaghettiTray', imageAlt: 'Spaghetti with tomato sauce, cheese, and sausage served in a food tray' },
       { id: 'carbonara', name: 'Carbonara', imageKey: 'carbonaraTray', imageAlt: 'Creamy carbonara pasta with sausage served in a food tray' },
       { id: 'truffle-pasta', name: 'Truffle Pasta', imageKey: 'trufflePastaTray', imageAlt: 'Creamy mushroom truffle pasta served in a food tray' },
-      unavailableFoodTray('alfredo-pasta', 'Alfredo Pasta'),
-      unavailableFoodTray('cajun-pasta', 'Cajun Pasta'),
+      { id: 'alfredo-pasta', name: 'Alfredo Pasta', imageKey: 'alfredoPastaTray', imageAlt: 'Creamy Alfredo pasta with mushrooms served in a food tray' },
+      { id: 'cajun-pasta', name: 'Cajun Pasta', imageKey: 'cajunPastaTray', imageAlt: 'Cajun pasta with chicken and bell peppers served in a food tray' },
       { id: 'baked-macaroni', name: 'Baked Macaroni', imageKey: 'bakedMacaroniTray', imageAlt: 'Baked macaroni served in a food tray' },
       { id: 'chicken-pesto-pasta', name: 'Chicken Pesto Pasta', imageKey: 'chickenPestoPastaTray', imageAlt: 'Chicken pesto pasta served in a food tray' },
       { id: 'pancit-canton', name: 'Pancit Canton', imageKey: 'pancitCantonTray', imageAlt: 'Pancit Canton served in a food tray' },
@@ -370,7 +342,7 @@ export const FOOD_TRAY_CATEGORIES = [
         imageKey: 'crabsInCajunSauceTray',
         imageAlt: 'Crabs in Cajun sauce served in a food tray',
       },
-      unavailableFoodTray('shrimp-in-cajun-sauce', 'Shrimp in Cajun Sauce'),
+      { id: 'shrimp-in-cajun-sauce', name: 'Shrimp in Cajun Sauce', imageKey: 'shrimpCajunSauceTray', imageAlt: 'Shrimp in Cajun sauce with corn served in a food tray' },
       {
         id: 'cheesy-baked-shrimp',
         name: 'Cheesy Baked Shrimp',
@@ -378,10 +350,10 @@ export const FOOD_TRAY_CATEGORIES = [
         imageAlt: 'Cheesy baked shrimp served in a food tray',
       },
       { id: 'steamed-lapu-lapu', name: 'Steamed Lapu-Lapu', imageKey: 'steamedLapuLapuTray', imageAlt: 'Steamed Lapu-Lapu served in a food tray' },
-      unavailableFoodTray('steamed-pompano', 'Steamed Pompano'),
-      unavailableFoodTray('sweet-and-sour-pompano', 'Sweet and Sour Pompano'),
-      unavailableFoodTray('cheesy-baked-bangus', 'Cheesy Baked Bangus'),
-      unavailableFoodTray('sweet-and-sour-fish-fillet', 'Sweet and Sour Fish Fillet'),
+      { id: 'steamed-pompano', name: 'Steamed Pompano', imageKey: 'steamedPompanoTray', imageAlt: 'Steamed pompano with ginger and scallions served in a food tray' },
+      { id: 'sweet-and-sour-pompano', name: 'Sweet and Sour Pompano', imageKey: 'sweetSourPompanoTray', imageAlt: 'Sweet and sour pompano with pineapple and bell peppers served in a food tray' },
+      { id: 'cheesy-baked-bangus', name: 'Cheesy Baked Bangus', imageKey: 'cheesyBakedBangusTray', imageAlt: 'Cheesy baked bangus served in a food tray' },
+      { id: 'sweet-and-sour-fish-fillet', name: 'Sweet and Sour Fish Fillet', imageKey: 'sweetSourFishFilletTray', imageAlt: 'Sweet and sour fish fillet served in a food tray' },
     ],
   },
   {
@@ -389,8 +361,8 @@ export const FOOD_TRAY_CATEGORIES = [
     name: 'Desserts',
     items: [
       { id: 'mango-tapioca', name: 'Mango Tapioca', imageKey: 'mangoTapiocaMenu', imageAlt: 'Mango tapioca dessert cups with mango chunks' },
-      unavailableFoodTray('coffee-jelly', 'Coffee Jelly'),
-      unavailableFoodTray('buko-pandan', 'Buko Pandan'),
+      { id: 'coffee-jelly', name: 'Coffee Jelly', imageKey: 'coffeeJellyMenu', imageAlt: 'Coffee jelly dessert cups on a catering tray' },
+      { id: 'buko-pandan', name: 'Buko Pandan', imageKey: 'bukoPandanMenu', imageAlt: 'Buko pandan dessert cups on a catering tray' },
     ],
   },
 ] as const satisfies readonly FoodTrayCategory[];
