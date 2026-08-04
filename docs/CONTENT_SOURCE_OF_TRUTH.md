@@ -283,8 +283,7 @@ Suitable for:
 
 ## Pricing
 
-- **₱250 to ₱300 per pack / person**
-- The final price depends on menu, quantity, and requirements
+- Pricing is available on request and depends on menu, quantity, delivery location, and requirements.
 
 Do not invent bulk discounts.
 

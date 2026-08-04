@@ -5,7 +5,6 @@ import { FACEBOOK_CTA } from '../../../data/navigation';
 import {
   BREAKFAST_FOOD_PACK,
   LUNCH_DINNER_PACKED_MEALS,
-  PACKED_MEAL_PRICE_RANGE,
   type PackedMealDish,
 } from '../../../data/packages';
 import { Badge } from '../../ui/Badge';
@@ -15,7 +14,6 @@ import { DecorativeDivider } from '../../ui/DecorativeDivider';
 import { Icon, type IconName } from '../../ui/Icon';
 import { SectionHeading } from '../../ui/SectionHeading';
 import { ZoomableImage } from '../../ui/ZoomableImage';
-import { formatPhp } from '../../ui/Price';
 
 const packedMealBenefits = [
   { icon: 'utensils', text: 'Individually packed meals' },
@@ -68,8 +66,6 @@ function MealMenu({ children, description, id, meals, name, testId }: MealMenuPr
 }
 
 export function PackedMealsSection() {
-  const priceLabel = `${formatPhp(PACKED_MEAL_PRICE_RANGE[0])}–${formatPhp(PACKED_MEAL_PRICE_RANGE[1])}`;
-
   return (
     <section aria-labelledby="packed-meals-title" className="bg-gradient-to-br from-cream-100 via-cream-50 to-gold-200/35 py-12 sm:py-14 lg:py-16" id="packed-meals">
       <Container>
@@ -105,11 +101,8 @@ export function PackedMealsSection() {
             </ul>
 
             <div className="mt-6 border-t border-gold-200 pt-5">
-              <p className="font-display text-4xl font-bold text-burgundy-900">
-                {priceLabel} <span className="font-body text-sm font-semibold text-ink-700">per pack</span>
-              </p>
-              <p className="mt-2 text-xs leading-5 text-ink-600">
-                Final pricing may vary depending on the selected meal, order quantity, delivery location, and arrangement.
+              <p className="text-sm leading-6 text-ink-700">
+                Tell us your preferred menu, quantity, delivery location, and event requirements for a tailored quotation.
               </p>
               <ButtonLink className="mt-5 w-full sm:w-auto" external href={FACEBOOK_CTA.href} icon="facebook">
                 Ask About Packed Meals
@@ -143,11 +136,9 @@ export function PackedMealsSection() {
 
         <aside className="mt-7 overflow-hidden rounded-2xl border border-gold-300 bg-gradient-to-r from-burgundy-950 to-burgundy-900 text-cream-50 shadow-lg sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center" aria-label="Packed meal pricing and inquiry">
           <div className="px-6 py-6 sm:px-8">
-            <p className="font-display text-3xl font-bold text-gold-200">
-              {priceLabel} <span className="font-body text-sm font-semibold text-cream-100">per pack</span>
-            </p>
+            <p className="font-display text-3xl font-bold text-gold-200">Request a packed-meal quotation</p>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-cream-100/90">
-              Final pricing may vary depending on the selected meal, quantity, delivery arrangement, and location.
+              Share your selected meals, quantity, delivery arrangement, and location so we can prepare your quotation.
             </p>
             <p className="mt-1 max-w-3xl text-sm font-semibold leading-6 text-gold-100">
               Ideal for offices, call center accounts, meetings, seminars, business events, and group orders.

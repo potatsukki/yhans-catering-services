@@ -48,7 +48,7 @@ describe('PackagesPage', () => {
     expect(within(grazingTable).getByText('Total depends on confirmed guest count')).toBeInTheDocument();
     expect(within(grazingTable).getByText('Includes tables and chairs')).toBeInTheDocument();
     expect(within(grazingTable).getByRole('img', { name: /Complete grazing table setup/ })).toHaveAttribute('loading', 'lazy');
-    expect(within(grazingTable).getByTestId('grazing-table-inclusions').querySelectorAll('li')).toHaveLength(18);
+    expect(within(grazingTable).getByTestId('grazing-table-inclusions').querySelectorAll('li')).toHaveLength(22);
     expect(within(grazingTable).getByText('Seasonal Fruits (Grapes, Watermelon, Oranges, and Strawberries)')).toBeInTheDocument();
     expect(within(grazingTable).getByText('Cheese Selection (Camembert Cheese, Brie Cheese, and Regular Cheese)')).toBeInTheDocument();
     expect(within(grazingTable).getByRole('link', { name: /Ask About This Grazing Table/ })).toHaveAttribute(
@@ -83,8 +83,9 @@ describe('PackagesPage', () => {
     expect(within(packedMeals).queryByText(/Photo coming soon/i)).not.toBeInTheDocument();
     expect(within(packedMeals).getAllByRole('img')).toHaveLength(1);
     expect(within(packedMeals).getByRole('img', { name: /Prepared packed meals with fried chicken/ })).toBeInTheDocument();
-    expect(packedMeals).toHaveTextContent('₱250–₱300 per pack');
-    expect(within(packedMeals).getAllByText(/Final pricing may vary depending/)).toHaveLength(2);
+    expect(packedMeals).not.toHaveTextContent(/₱250|₱300|per pack/);
+    expect(within(packedMeals).getByText('Request a packed-meal quotation')).toBeInTheDocument();
+    expect(within(packedMeals).getByText(/tailored quotation/)).toBeInTheDocument();
     expect(within(packedMeals).getByText(/Ideal for offices, call center accounts/)).toBeInTheDocument();
     expect(within(packedMeals).getAllByRole('link', { name: /Ask About Packed Meals/ })).toHaveLength(2);
     within(packedMeals).getAllByRole('link', { name: /Ask About Packed Meals/ }).forEach((link) => {

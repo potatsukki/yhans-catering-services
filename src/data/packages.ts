@@ -195,13 +195,15 @@ export const GRAZING_TABLE_OFFER = {
     'Cashew Nuts',
     'Crackers',
     'Cake Bites',
+    'Sushi',
+    'Cookies',
+    'Lumpia ala Cubana',
+    'Nachos',
   ],
 } as const satisfies GrazingTableOffer;
 
 export const GRAZING_ESTIMATE_DISCLAIMER =
   'Estimate only. Final menu, guest count, location, and event arrangements are confirmed directly.';
-
-export const PACKED_MEAL_PRICE_RANGE = [250, 300] as const;
 
 export type PackedMealDish = {
   readonly id: string;

@@ -9,7 +9,6 @@ import {
   GRAZING_TABLE_OFFER,
   LUNCH_DINNER_PACKED_MEALS,
   MENU_CATEGORIES,
-  PACKED_MEAL_PRICE_RANGE,
   REGULAR_SHARED_INCLUSIONS,
 } from './packages';
 
@@ -60,12 +59,15 @@ describe('confirmed catering content', () => {
       'Cashew Nuts',
       'Crackers',
       'Cake Bites',
+      'Sushi',
+      'Cookies',
+      'Lumpia ala Cubana',
+      'Nachos',
     ]);
     expect(JSON.stringify(GRAZING_TABLE_OFFER)).not.toMatch(/Package [A-D]|Pork Menudo|Fish with Creamy Sauce/);
   });
 
   it('keeps packed meals and food trays free of invented prices', () => {
-    expect(PACKED_MEAL_PRICE_RANGE).toEqual([250, 300]);
     expect(BREAKFAST_FOOD_PACK.options.map((meal) => meal.name)).toEqual([
       'Hotdog, Egg & Rice',
       'Corned Beef, Egg & Rice',
