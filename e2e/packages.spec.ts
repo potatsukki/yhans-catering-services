@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test.describe('Packages & Services page', () => {
+test.describe('Menu page', () => {
   test('loads confirmed packages, inquiries, and partner services without console errors', async ({ page }) => {
     const consoleErrors: string[] = [];
     page.on('console', (message) => {
@@ -12,13 +12,13 @@ test.describe('Packages & Services page', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/packages');
     await expect(page).toHaveTitle("Catering Packages | Yhan's Catering Services");
-    await expect(page.getByRole('heading', { level: 1, name: 'Packages & Services' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'Menu' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Customize Your Catering Menu' })).toBeVisible();
     const grazingTable = page.getByRole('region', { name: 'Grazing Table' });
     await expect(grazingTable.getByRole('heading', { name: 'Grazing Table', exact: true })).toBeVisible();
     await expect(grazingTable.getByText(/A complete grazing table setup/)).toBeVisible();
     await expect(grazingTable.getByRole('heading', { name: 'Grazing Table Inclusions' })).toBeVisible();
-    await expect(grazingTable.getByTestId('grazing-table-inclusions').locator('li')).toHaveCount(18);
+    await expect(grazingTable.getByTestId('grazing-table-inclusions').locator('li')).toHaveCount(22);
     const packedMeals = page.getByRole('region', { name: 'Packed Meals' });
     await expect(packedMeals.getByRole('heading', { name: 'Packed Meals', exact: true })).toBeVisible();
     await expect(packedMeals.getByRole('heading', { name: 'Breakfast Food Packs' })).toBeVisible();
@@ -39,9 +39,9 @@ test.describe('Packages & Services page', () => {
     await expect(foodTrays.getByTestId('food-tray-catalog').locator('article')).toHaveCount(39);
     await expect(foodTrays.getByText('Good for at least 25 guests')).toHaveCount(0);
     await expect(foodTrays.getByText('Price upon inquiry')).toHaveCount(0);
-    await expect(foodTrays.getByText('Photo coming soon')).toHaveCount(13);
-    await expect(foodTrays.getByTestId('food-tray-placeholder')).toHaveCount(13);
-    await expect(foodTrays.getByTestId('food-tray-catalog').locator('img')).toHaveCount(26);
+    await expect(foodTrays.getByText('Photo coming soon')).toHaveCount(0);
+    await expect(foodTrays.getByTestId('food-tray-placeholder')).toHaveCount(0);
+    await expect(foodTrays.getByTestId('food-tray-catalog').locator('img')).toHaveCount(39);
     await expect(foodTrays.locator('[data-testid^="food-tray-category-"]')).toHaveCount(7);
     await expect(foodTrays.getByText('Best Seller')).toHaveCount(1);
     await expect(foodTrays.getByRole('link', { name: /Ask for Food Tray Prices/ })).toHaveAttribute(
@@ -67,7 +67,7 @@ test.describe('Packages & Services page', () => {
       'https://www.facebook.com/share/1EnpK8EnM1/',
     );
     await expect(page.getByTestId('custom-menu-categories').getByText('Chicken Pesto Pasta', { exact: true })).toBeVisible();
-    await expect(page.getByText('₱250–₱300 per pack')).toHaveCount(2);
+    await expect(packedMeals).not.toHaveText(/₱250|₱300|per pack/);
 
     await expect(grazingTable.getByText('₱1,000')).toHaveCount(1);
     await expect(grazingTable.getByText('50 guests')).toBeVisible();

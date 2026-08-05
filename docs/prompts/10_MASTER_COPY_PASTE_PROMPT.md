@@ -6,7 +6,7 @@ I attached:
 
 - the official Yhan's Catering Services logo;
 - an original UI reference;
-- generated mockups for Home, Packages & Services, and About & Contact;
+- generated mockups for Home, Menu, and About & Contact;
 - a Facebook page screenshot for identity/contact reference;
 - a set of project `.md` documents.
 
@@ -62,7 +62,7 @@ At the end of each phase:
 
 ## Core product rules
 
-- Three routes: Home, Packages & Services, About & Contact.
+- Three routes: Home, Menu, About & Contact.
 - No backend.
 - No authentication.
 - No database.

@@ -26,7 +26,7 @@ export function HomeHero() {
           </p>
           <div className="mt-6 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
             <ButtonLink href="/packages" icon="utensils">
-              View Packages
+              View Menu
             </ButtonLink>
             <ButtonLink external href={FACEBOOK_CTA.href} icon="facebook" variant="secondary">
               {FACEBOOK_CTA.label}

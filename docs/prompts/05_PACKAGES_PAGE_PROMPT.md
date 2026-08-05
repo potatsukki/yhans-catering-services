@@ -1,10 +1,10 @@
-# Phase 5 Prompt — Implement Packages & Services
+# Phase 5 Prompt — Implement Menu
 
 Proceed only after the Home page passes its checks.
 
 ## Visual source
 
-Use the attached generated Packages & Services mockup as the primary visual target.
+Use the attached generated Menu mockup as the primary visual target.
 
 The exact content in this prompt and `docs/CONTENT_SOURCE_OF_TRUTH.md` overrides any incorrect text generated inside the image mockup.
 
@@ -12,11 +12,11 @@ The exact content in this prompt and `docs/CONTENT_SOURCE_OF_TRUTH.md` overrides
 
 ### 1. Page hero
 
-- H1: `Packages & Services`
+- H1: `Menu`
 - Supporting text:
   `Choose the right setup for your celebration, meeting, or group event.`
 - Warm buffet image
-- Active Packages & Services navigation state
+- Active Menu navigation state
 
 ### 2. Regular Catering Packages
 

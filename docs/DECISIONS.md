@@ -100,7 +100,7 @@
 ## D-012 — Phase 2 route smoke expectation
 
 - Status: Approved.
-- The `/packages` Phase 2 placeholder page uses the exact heading `Packages & Services`; the Playwright smoke test asserts that heading rather than inventing a shortened label.
+- The `/packages` Phase 2 placeholder page uses the exact heading `Menu`; the Playwright smoke test asserts that heading rather than inventing a shortened label.
 
 ## D-013 — React Router audit risk retained for Phase 3
 
@@ -228,7 +228,7 @@
 ## D-033 — Owner-directed hero parity, motion, and testimonial safeguards
 
 - Status: Approved by direct visual feedback on 2026-08-01.
-- Packages and About & Contact use the same full-background buffet-image hero treatment as Home, with route-specific confirmed copy protected by a cream contrast gradient.
+-- Menu and About & Contact use the same full-background buffet-image hero treatment as Home, with route-specific confirmed copy protected by a cream contrast gradient.
 - The header animates out while scrolling down and returns while scrolling up or when keyboard focus enters it. Section reveal motion uses translation only, not opacity, so text and controls retain compliant contrast throughout the animation. All new motion respects the existing reduced-motion preference.
 - The Home page includes four testimonial placeholders because no customer quotations, names, or ratings have been approved. Every card explicitly says that approved customer feedback will be added and remains pending owner approval. Real testimonials must replace these only after the owner supplies and approves them.
 - The About final CTA exposes only the Facebook message action because the removed Request a Quote action used the same Facebook destination. No contact channel or confirmed business fact was removed.
@@ -236,8 +236,8 @@
 ## D-034 — Owner-directed CTA deduplication and occasion marquee
 
 - Status: Approved by direct visual feedback on 2026-08-01.
-- The Home hero now exposes `View Packages` and one `Message Us on Facebook` action; the former Request a Quote action used the same Facebook destination and was relabeled instead of retaining two duplicate Facebook controls.
-- The Packages final CTA now exposes only `Message Us on Facebook` for the same deduplication reason. Header and footer navigation retain their existing Request a Quote links because the owner comments targeted the page CTA bands, not global navigation.
+-- The Home hero now exposes `View Menu` and one `Message Us on Facebook` action; the former Request a Quote action used the same Facebook destination and was relabeled instead of retaining two duplicate Facebook controls.
+-- The Menu final CTA now exposes only `Message Us on Facebook` for the same deduplication reason. Header and footer navigation retain their existing Request a Quote links because the owner comments targeted the page CTA bands, not global navigation.
 - Home occasions use a single-line, slow left-to-right marquee that pauses on hover or focus. A duplicate visual track makes the loop seamless, is hidden from assistive technology, and becomes a static horizontally scrollable row when reduced motion is requested.
 - The visible grazing-card Best Seller badge is suppressed at the owner's direction. The confirmed Pork Menudo best-seller fact remains unchanged in centralized package data and in the approved Home Popular Choices presentation.
 

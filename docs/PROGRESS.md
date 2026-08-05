@@ -6,7 +6,7 @@
 - [x] Phase 2 — Scaffold
 - [x] Phase 3 — Shared foundation
 - [x] Phase 4 — Home page
-- [x] Phase 5 — Packages and Services
+- [x] Phase 5 — Menu
 - [x] Phase 6 — About and Contact
 - [x] Phase 7 — Responsive and accessibility
 - [x] Phase 8 — Testing and CI
@@ -62,7 +62,7 @@ The fifteen generated placeholder images listed in `docs/ASSET_INVENTORY.md` wer
 
 ## Phase 2 validation log
 
-- Initial Playwright smoke run failed because the test expected `/packages` to use `Packages`, while the Phase 2 page heading is `Packages & Services`. This was a test expectation mismatch; no application defect was observed. The smoke test is being corrected to assert the existing planned heading before the gate is rerun.
+- Initial Playwright smoke run failed because the test expected `/packages` to use `Packages`, while the Phase 2 page heading is `Menu`. This was a test expectation mismatch; no application defect was observed. The smoke test is being corrected to assert the existing planned heading before the gate is rerun.
 - The corrected smoke test passed 2/2 tests, and the complete P2-T09 gate passed after the targeted rerun and once more after the final canonical URL helper change.
 
 ## Phase 2 completed
@@ -88,7 +88,7 @@ Phase 7 — Responsive, Accessibility, and Visual Refinement. Stop here and wait
 
 ## Phase 3 validation log
 
-- Initial Phase 3 Playwright run failed in `e2e/navigation.spec.ts` because the desktop navigation link and footer quick link share the accessible name `Packages & Services`, causing a strict-mode selector error. The application route behavior was not defective. The test is being scoped to the `Primary navigation` landmark before the gate is rerun.
+- Initial Phase 3 Playwright run failed in `e2e/navigation.spec.ts` because the desktop navigation link and footer quick link share the accessible name `Menu`, causing a strict-mode selector error. The application route behavior was not defective. The test is being scoped to the `Primary navigation` landmark before the gate is rerun.
 - The corrected navigation test passed 4/4 tests, and the complete P3-T07 gate passed.
 
 ## Phase 3 completed
@@ -288,7 +288,7 @@ Phase 9 — Final QA and Production Readiness. Stop here and wait for approval; 
 
 - Reinspected all three approved mockups and the official logo, then captured all three local routes at 1440×900 and 390×844 before and after refinement.
 - Tightened the shared 1180px layout, header/logo, image-led heroes, typography hierarchy, section rhythm, cards, image ratios, package presentation, grazing inclusions, CTA bands, and footer proportions without changing confirmed business content or adding features.
-- Estimated visual similarity improved from 62% to 84% for Home, 58% to 87% for Packages & Services, and 64% to 86% for About & Contact; overall estimated match is 86%.
+- Estimated visual similarity improved from 62% to 84% for Home, 58% to 87% for Menu, and 64% to 86% for About & Contact; overall estimated match is 86%.
 - The first requested Playwright run exposed six desktop accessibility failures because compact footer links measured 32–36px. Footer interactive rows were restored to a 40px minimum, after which the complete requested 35-test run passed.
 - Final validation: typecheck passed; 16 Vitest files/51 tests passed; production build passed with 108 modules; 35 requested Playwright tests passed; all route/viewport geometry checks passed; and Axe reported zero serious or critical violations.
 - Details, remaining visual differences, exact files, viewport results, and validation evidence are recorded in `docs/VISUAL_AUDIT_REPORT.md`.
@@ -300,7 +300,7 @@ Phase 9 — Final QA and Production Readiness. Stop here and wait for approval; 
 - Centered the regular-package inclusions heading, changed grazing package cards to image-first stacked layouts, and compacted the footer Request a Quote control to a single line while preserving accessible dimensions.
 - Removed the optional grazing estimator from the rendered Packages page at the owner's direction. Confirmed grazing pricing and minimum information remain visible, and the isolated estimator calculations remain tested.
 - Final validation passed: typecheck; 16 Vitest files/51 tests; production build with 106 modules; and 35 Home, Packages, About/Contact, mobile, and accessibility Playwright tests. All six geometry viewports passed on every route, including 390×844 and 1440×900, with zero serious or critical Axe violations.
-- Updated overall visual-match estimate: Home 88%, Packages & Services 89%, About & Contact 86%, overall 88%.
+- Updated overall visual-match estimate: Home 88%, Menu 89%, About & Contact 86%, overall 88%.
 - Changes remain local and uncommitted. No dependency, confirmed business-content, GitHub, or Vercel change was made.
 
 ## Owner hero, testimonial, and motion follow-up completed
@@ -311,12 +311,12 @@ Phase 9 — Final QA and Production Readiness. Stop here and wait for approval; 
 - Added reduced-motion-safe section translation reveals and an animated sticky header that hides on downward scrolling, returns on upward scrolling, and returns when it receives keyboard focus.
 - The first 36-test Playwright run found two temporary contrast violations while Axe sampled a section during an opacity fade. Opacity animation was removed while retaining translation motion; the repeated full run passed 36/36 with zero serious or critical Axe violations.
 - Final validation passed: typecheck; 16 Vitest files/51 tests; production build with 108 modules; and 36 requested Home, Packages, About/Contact, mobile, and accessibility Playwright tests. All required geometry viewports, including 390×844 and 1440×900, passed without horizontal overflow.
-- Updated visual-match estimate: Home 89%, Packages & Services 90%, About & Contact 90%, overall 90%.
+- Updated visual-match estimate: Home 89%, Menu 90%, About & Contact 90%, overall 90%.
 - Changes remain local and uncommitted. No dependency, confirmed business-content, package data, GitHub, or Vercel change was made.
 
 ## Owner CTA, occasion-row, and package-density follow-up completed
 
-- Home hero actions were reduced to `View Packages` and one `Message Us on Facebook` control. The Packages final CTA now contains only the Facebook action, removing duplicate destinations without changing the confirmed URL.
+- Home hero actions were reduced to `View Menu` and one `Message Us on Facebook` control. The Menu final CTA now contains only the Facebook action, removing duplicate destinations without changing the confirmed URL.
 - Replaced the Home occasion grid with a slow, seamless, one-line left-to-right marquee. Hover and keyboard focus pause it; reduced-motion mode disables animation and retains horizontal access to every occasion.
 - Increased spacing below the Regular package inclusions heading, reduced grazing image height, removed the visible grazing Best Seller badge, and kept the footer tagline on one line.
 - Centralized package facts remain unchanged: Pork Menudo remains the confirmed best seller in typed data and Home Popular Choices, but the grazing-card badge is intentionally hidden per owner direction.

@@ -14,7 +14,7 @@ test.describe('mobile navigation', () => {
     await expect(panel).toBeVisible();
     await expect(page.getByRole('button', { name: 'Close menu' })).toHaveAttribute('aria-expanded', 'true');
 
-    await panel.getByRole('link', { name: 'Packages & Services' }).click();
+    await panel.getByRole('link', { name: 'Menu' }).click();
     await expect(page).toHaveURL(/\/packages$/);
     await expect(page.getByRole('dialog', { name: 'Mobile navigation' })).toHaveCount(0);
 
@@ -27,7 +27,7 @@ test.describe('mobile navigation', () => {
 
   test('keeps the customizable menu, grazing table, contact actions, and footer readable', async ({ page }) => {
     await page.goto('/packages');
-    await expect(page.getByRole('heading', { level: 1, name: 'Packages & Services' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'Menu' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Customize Your Catering Menu' })).toBeVisible();
     await expect(page.getByRole('radio')).toHaveCount(0);
     await expect(page.getByTestId('menu-category-beef').getByText('Swipe to browse dishes')).toBeVisible();

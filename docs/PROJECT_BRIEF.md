@@ -19,7 +19,7 @@ Create a professional web presence that helps prospective customers:
 The website has exactly three public routes:
 
 1. `/` — Home
-2. `/packages` — Packages & Services
+2. `/packages` — Menu
 3. `/about-contact` — About & Contact
 
 A friendly not-found route may be added.

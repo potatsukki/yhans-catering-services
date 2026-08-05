@@ -415,7 +415,7 @@ Use these actions:
 - `Request a Quote`
 - `Call Us Today`
 - `Send an Email`
-- `View Packages`
+- `View Menu`
 - `Ask for the Food Tray Menu`
 - `Discuss Your Event`
 

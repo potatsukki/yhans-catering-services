@@ -4,17 +4,17 @@ import { FACEBOOK_URL } from './business';
 
 export const NAVIGATION_ITEMS = [
   { label: 'Home', href: '/' },
-  { label: 'Packages & Services', href: '/packages' },
+  { label: 'Menu', href: '/packages' },
   { label: 'Events', href: '/events' },
   { label: 'About & Contact', href: '/about-contact' },
 ] as const satisfies readonly NavigationItem[];
 
 export const DESKTOP_NAVIGATION_GROUPS = [
   {
-    label: 'Packages & Services',
+    label: 'Menu',
     href: '/packages',
     items: [
-      { label: 'Packages & Services', href: '/packages#packages-overview' },
+      { label: 'Menu', href: '/packages#packages-overview' },
       { label: 'Customize Your Catering Menu', href: '/packages#regular-packages' },
       { label: 'Grazing Table', href: '/packages#grazing-table' },
       { label: 'Packed Meals', href: '/packages#packed-meals' },

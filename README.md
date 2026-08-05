@@ -33,7 +33,7 @@ The website brings together the information customers usually need before making
 
 ## Website scope
 
-This is an informational marketing website with three main pages: Home, Packages & Services, and About & Contact. It connects customers to the business through its existing Facebook page but does not include online accounts, automatic quotations, booking, checkout, payment processing, or a backend ordering system.
+This is an informational marketing website with three main pages: Home, Menu, and About & Contact. It connects customers to the business through its existing Facebook page but does not include online accounts, automatic quotations, booking, checkout, payment processing, or a backend ordering system.
 
 The remaining sections below are intended for developers and future maintainers of the website.
 

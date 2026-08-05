@@ -36,7 +36,7 @@ describe('MobileNavigation', () => {
     );
 
     fireEvent.click(screen.getByRole('button', { name: 'Open menu' }));
-    fireEvent.click(screen.getByRole('link', { name: 'Packages & Services' }));
+    fireEvent.click(screen.getByRole('link', { name: 'Menu' }));
     expect(screen.queryByRole('dialog', { name: 'Mobile navigation' })).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: 'Open menu' }));

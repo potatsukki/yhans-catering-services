@@ -7,7 +7,7 @@ Attach the following visual files together with this prompt pack:
 1. The official Yhan's Catering Services logo.
 2. The original two-page UI reference provided by the client.
 3. The generated Home page mockup.
-4. The generated Packages & Services page mockup.
+4. The generated Menu page mockup.
 5. The generated About & Contact page mockup.
 6. The Facebook page screenshot, only as a reference for the business identity and contact details.
 

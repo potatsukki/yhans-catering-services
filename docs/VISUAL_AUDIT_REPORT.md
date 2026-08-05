@@ -4,14 +4,14 @@ Date: 2026-08-01
 
 ## Scope
 
-The implemented Home, Packages & Services, and About & Contact routes were compared with the approved generated mockups at 1440×900 and 390×844. The review preserved the written content source of truth whenever mockup content differed from confirmed business information.
+The implemented Home, Menu, and About & Contact routes were compared with the approved generated mockups at 1440×900 and 390×844. The review preserved the written content source of truth whenever mockup content differed from confirmed business information.
 
 ## Estimated visual match
 
 | Route | Before | After |
 | --- | ---: | ---: |
 | Home | 62% | 89% |
-| Packages & Services | 58% | 90% |
+| Menu | 58% | 90% |
 | About & Contact | 64% | 90% |
 | Overall | 61% | 90% |
 

@@ -24,12 +24,12 @@ describe('ButtonLink', () => {
     render(
       <MemoryRouter>
         <ButtonLink fullWidth href="/packages" icon={undefined} variant="secondary">
-          View Packages
-        </ButtonLink>
+              View Menu
+            </ButtonLink>
       </MemoryRouter>,
     );
 
-    const link = screen.getByRole('link', { name: 'View Packages' });
+    const link = screen.getByRole('link', { name: 'View Menu' });
     expect(link).toHaveAttribute('href', '/packages');
     expect(link).not.toHaveAttribute('target');
     expect(link).toHaveClass('w-full', '!text-burgundy-950');

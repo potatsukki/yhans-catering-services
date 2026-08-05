@@ -27,7 +27,7 @@ describe('HomePage', () => {
     expect(screen.getByText("Let's Make Your Next Event Delicious & Memorable")).toBeInTheDocument();
 
     const hero = screen.getByTestId('home-hero');
-    expect(within(hero).getByRole('link', { name: 'View Packages' })).toHaveAttribute('href', '/packages');
+    expect(within(hero).getByRole('link', { name: 'View Menu' })).toHaveAttribute('href', '/packages');
     expect(within(hero).getByRole('link', { name: /Message Us on Facebook/ })).toHaveAttribute(
       'href',
       'https://www.facebook.com/share/1EnpK8EnM1/',

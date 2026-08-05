@@ -17,7 +17,7 @@ describe('PackagesPage', () => {
     renderPackages();
 
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
-    expect(screen.getByRole('heading', { level: 1, name: 'Packages & Services' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: 'Menu' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Customize Your Catering Menu' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Grazing Table' })).toBeInTheDocument();
     expect(screen.getByRole('region', { name: 'Grazing Table' })).toBeInTheDocument();

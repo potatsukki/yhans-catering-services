@@ -26,7 +26,7 @@ test.describe('Home page', () => {
     await expect(page.getByText("Let's Make Your Next Event Delicious & Memorable")).toBeVisible();
 
     const hero = page.getByTestId('home-hero');
-    await expect(hero.getByRole('link', { name: 'View Packages' })).toHaveAttribute('href', '/packages');
+    await expect(hero.getByRole('link', { name: 'View Menu' })).toHaveAttribute('href', '/packages');
     const facebookCta = hero.getByRole('link', { name: /Message Us on Facebook/ });
     await expect(facebookCta).toHaveAttribute('href', 'https://www.facebook.com/share/1EnpK8EnM1/');
     await expect(facebookCta).toHaveAttribute('target', '_blank');
@@ -68,8 +68,8 @@ test.describe('Home page', () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');
     await expect(page.getByRole('heading', { level: 1, name: 'Making Every Celebration Delicious' })).toBeVisible();
-    await expect(page.getByTestId('home-hero').getByRole('link', { name: 'View Packages' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'View Packages' })).toHaveAttribute('href', '/packages');
+    await expect(page.getByTestId('home-hero').getByRole('link', { name: 'View Menu' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'View Menu' })).toHaveAttribute('href', '/packages');
     await expect(page.getByText('Sample images only')).not.toBeVisible();
     await expect(page.getByTestId('home-hero-content')).not.toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
 
@@ -89,9 +89,9 @@ test.describe('Home page', () => {
     await page.goto('/');
     await expect(page.getByTestId('home-hero-content')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
 
-    await page.getByTestId('home-hero').getByRole('link', { name: 'View Packages' }).click();
+    await page.getByTestId('home-hero').getByRole('link', { name: 'View Menu' }).click();
     await expect(page).toHaveURL(/\/packages$/);
-    await expect(page.locator('h1')).toHaveText('Packages & Services');
+    await expect(page.locator('h1')).toHaveText('Menu');
   });
 
   test('hides the header while scrolling down and restores it while scrolling up', async ({ page }) => {

@@ -34,7 +34,7 @@ Build the reusable visual foundation used by all three pages.
 Desktop:
 
 - official logo on the left;
-- links: Home, Packages & Services, About & Contact;
+- links: Home, Menu, About & Contact;
 - active underline;
 - burgundy Request a Quote button;
 - layout visually close to the mockups.

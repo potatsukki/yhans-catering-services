@@ -4,7 +4,7 @@ test.describe('shared navigation', () => {
   test('renders the three public routes with one meaningful heading', async ({ page }) => {
     const routes = [
       ['/', 'Making Every Celebration Delicious'],
-      ['/packages', 'Packages & Services'],
+      ['/packages', 'Menu'],
       ['/about-contact', 'About & Contact'],
     ] as const;
 
@@ -33,13 +33,13 @@ test.describe('shared navigation', () => {
     await expect(page).toHaveTitle("Yhan's Catering Services | Catering in Quezon City");
 
     const primaryNavigation = page.getByRole('navigation', { name: 'Primary navigation' });
-    const packagesMenu = primaryNavigation.getByRole('button', { name: 'Packages & Services' });
+    const packagesMenu = primaryNavigation.getByRole('button', { name: 'Menu' });
     await packagesMenu.click();
     await expect(packagesMenu).toHaveAttribute('aria-expanded', 'true');
     await primaryNavigation.getByRole('link', { name: 'Food Trays' }).click();
     await expect(page).toHaveURL(/\/packages#food-trays$/);
-    await expect(page.locator('h1')).toHaveText('Packages & Services');
-    await expect(primaryNavigation.getByRole('button', { name: 'Packages & Services' })).toHaveAttribute('aria-current', 'page');
+    await expect(page.locator('h1')).toHaveText('Menu');
+    await expect(primaryNavigation.getByRole('button', { name: 'Menu' })).toHaveAttribute('aria-current', 'page');
     await expect.poll(async () => page.locator('#food-trays').evaluate((target) => {
       const header = document.querySelector('[data-site-header]');
       return Math.round(target.getBoundingClientRect().top - (header?.getBoundingClientRect().height ?? 0));
@@ -52,7 +52,7 @@ test.describe('shared navigation', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     const routes = [
       ['/', 'Making Every Celebration Delicious'],
-      ['/packages', 'Packages & Services'],
+      ['/packages', 'Menu'],
       ['/about-contact', 'About & Contact'],
     ] as const;
 
@@ -64,15 +64,15 @@ test.describe('shared navigation', () => {
 
     await page.goto('/');
     const navigation = page.getByRole('navigation', { name: 'Primary navigation' });
-    await navigation.getByRole('button', { name: 'Packages & Services' }).click();
-    await navigation.getByRole('link', { name: 'Packages & Services' }).click();
+    await navigation.getByRole('button', { name: 'Menu' }).click();
+    await navigation.getByRole('link', { name: 'Menu', exact: true }).click();
     await navigation.getByRole('button', { name: 'About & Contact' }).click();
     await navigation.getByRole('link', { name: 'About & Contact' }).click();
     await expect(navigation.getByRole('button', { name: 'About & Contact' })).toHaveAttribute('aria-current', 'page');
 
     await page.goBack();
     await expect(page).toHaveURL(/\/packages#packages-overview$/);
-    await expect(navigation.getByRole('button', { name: 'Packages & Services' })).toHaveAttribute('aria-current', 'page');
+    await expect(navigation.getByRole('button', { name: 'Menu' })).toHaveAttribute('aria-current', 'page');
 
     await page.goForward();
     await expect(page).toHaveURL(/\/about-contact#about-overview$/);

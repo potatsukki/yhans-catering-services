@@ -14,7 +14,7 @@ describe('Header', () => {
     );
 
     expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Packages & Services' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Menu' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Events' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'About & Contact' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Request a Quote/ })).toHaveAttribute(
@@ -30,7 +30,7 @@ describe('Header', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole('button', { name: 'Packages & Services' })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('button', { name: 'Menu' })).toHaveAttribute('aria-current', 'page');
     expect(screen.getByRole('link', { name: 'Home' })).not.toHaveAttribute('aria-current', 'page');
   });
 
@@ -42,7 +42,7 @@ describe('Header', () => {
       </MemoryRouter>,
     );
 
-    const packagesButton = screen.getByRole('button', { name: 'Packages & Services' });
+    const packagesButton = screen.getByRole('button', { name: 'Menu' });
     await user.click(packagesButton);
 
     expect(packagesButton).toHaveAttribute('aria-expanded', 'true');

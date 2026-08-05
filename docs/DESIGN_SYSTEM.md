@@ -2,7 +2,7 @@
 
 ## Design target
 
-The attached generated Home, Packages & Services, and About & Contact mockups are the main visual target.
+The attached generated Home, Menu, and About & Contact mockups are the main visual target.
 
 The original reference image is inspiration only.
 

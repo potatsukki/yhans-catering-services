@@ -29,8 +29,8 @@ Content:
 - H1: `Making Every Celebration Delicious`
 - Supporting copy:
   `Dependable catering, grazing tables, food trays, and packed meals for special occasions, business functions, and group events.`
-- Buttons:
-  - View Packages → `/packages`
+-- Buttons:
+  - View Menu → `/packages`
   - Request a Quote → Facebook
   - Message Us on Facebook → Facebook
 - Hero image: tasteful placeholder buffet/event photo
@@ -147,7 +147,7 @@ Playwright:
 
 - Home loads;
 - hero is visible;
-- View Packages navigates correctly;
+-- View Menu navigates correctly;
 - Facebook CTA has correct destination;
 - desktop and mobile layout do not overflow;
 - no broken images;

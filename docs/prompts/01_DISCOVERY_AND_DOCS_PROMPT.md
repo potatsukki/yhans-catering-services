@@ -7,7 +7,7 @@ I have attached:
 - the official business logo;
 - an original catering website UI reference;
 - a generated Home page mockup;
-- a generated Packages & Services page mockup;
+- a generated Menu page mockup;
 - a generated About & Contact page mockup;
 - a Facebook page screenshot for business identity and contact reference;
 - this project prompt pack.

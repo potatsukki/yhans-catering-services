@@ -127,7 +127,7 @@ test.describe('accessibility', () => {
     await page.goto('/packages');
 
     const navigation = page.getByRole('navigation', { name: 'Primary navigation' });
-    await expect(navigation.getByRole('button', { name: 'Packages & Services' })).toHaveAttribute('aria-current', 'page');
+    await expect(navigation.getByRole('button', { name: 'Menu' })).toHaveAttribute('aria-current', 'page');
 
     await page.keyboard.press('Tab');
     const focusState = await page.evaluate(() => {
