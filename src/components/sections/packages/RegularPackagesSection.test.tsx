@@ -19,7 +19,7 @@ describe('RegularPackagesSection', () => {
     expect(beef).toHaveTextContent('4 choices • Choose 1');
     expect(chicken).toHaveTextContent('4 choices • Choose 1');
     expect(within(beef).getByText('Beef with Mushrooms')).toBeInTheDocument();
-    expect(within(chicken).getByText('Creamy Tuscan Chicken')).toBeInTheDocument();
+    expect(within(chicken).getByText('Chicken Cordon Bleu')).toBeInTheDocument();
     expect(screen.getByText('Scroll down to explore more categories')).toBeInTheDocument();
   });
 

@@ -55,7 +55,7 @@ export const MENU_CATEGORIES = [
     name: 'Chicken',
     summaryLabel: 'Chicken',
     dishes: [
-      { id: 'creamy-tuscan-chicken', name: 'Creamy Tuscan Chicken', imageKey: 'chickenCordonBleuMenu', imageAlt: 'Creamy chicken dish prepared for buffet service' },
+      { id: 'chicken-cordon-bleu', name: 'Chicken Cordon Bleu', imageKey: 'chickenCordonBleuMenu', imageAlt: 'Chicken Cordon Bleu slices served in a food tray' },
       { id: 'buffalo-chicken-wings', name: 'Buffalo Chicken Wings', imageKey: 'buffaloChickenWingsMenu' },
       { id: 'chicken-hamonado', name: 'Chicken Hamonado', imageKey: 'chickenHamonadoMenu' },
       { id: 'chicken-pochero', name: 'Chicken Pochero', imageKey: 'chickenPocheroMenu' },

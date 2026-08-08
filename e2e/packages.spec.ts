@@ -65,7 +65,7 @@ test.describe('Menu page', () => {
       'href',
       'https://www.facebook.com/share/1EnpK8EnM1/',
     );
-    await expect(page.getByTestId('menu-dishes-chicken').getByText('Creamy Tuscan Chicken', { exact: true })).toBeVisible();
+    await expect(page.getByTestId('menu-dishes-chicken').getByText('Chicken Cordon Bleu', { exact: true })).toBeVisible();
     await expect(packedMeals).not.toHaveText(/₱250|₱300|per pack/);
 
     await expect(grazingTable.getByText('₱1,000')).toHaveCount(1);
