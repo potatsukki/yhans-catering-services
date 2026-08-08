@@ -1,69 +1,118 @@
-import { useRef } from 'react';
+import { useRef, useState, type UIEvent } from 'react';
 
 import {
   MENU_CATEGORIES,
   REGULAR_OVERFLOW_NOTE,
   REGULAR_SHARED_INCLUSIONS,
-  type MenuDish,
+  type MenuCategory,
 } from '../../../data/packages';
 import { GALLERY } from '../../../data/gallery';
 import { FACEBOOK_CTA } from '../../../data/navigation';
-import { Badge } from '../../ui/Badge';
 import { ButtonLink } from '../../ui/ButtonLink';
-import {
-  catalogCardBodyClass,
-  catalogCardClass,
-  catalogCardWidth,
-  catalogMediaClass,
-  CatalogPlaceholder,
-} from '../../ui/CatalogCard';
 import { Container } from '../../ui/Container';
 import { DecorativeDivider } from '../../ui/DecorativeDivider';
 import { Icon } from '../../ui/Icon';
 import { SectionHeading } from '../../ui/SectionHeading';
 import { ZoomableImage } from '../../ui/ZoomableImage';
 
-type DishCardProps = {
-  readonly dish: MenuDish;
+const ORDERED_MENU_CATEGORIES = [
+  MENU_CATEGORIES.find((category) => category.id === 'beef'),
+  MENU_CATEGORIES.find((category) => category.id === 'chicken'),
+  ...MENU_CATEGORIES.filter((category) => category.id !== 'beef' && category.id !== 'chicken'),
+].filter((category): category is MenuCategory => Boolean(category));
+
+type DishCarouselProps = {
+  readonly category: MenuCategory;
 };
 
-function DishCard({ dish }: DishCardProps) {
-  const image = dish.imageAlt ? { ...GALLERY[dish.imageKey], alt: dish.imageAlt } : GALLERY[dish.imageKey];
+function DishCarousel({ category }: DishCarouselProps) {
+  const railRef = useRef<HTMLDivElement>(null);
+  const [currentDishIndex, setCurrentDishIndex] = useState(0);
+
+  const updateCurrentDish = (event: UIEvent<HTMLDivElement>) => {
+    const rail = event.currentTarget;
+    const slides = Array.from(rail.children) as HTMLElement[];
+    const viewportCenter = rail.scrollLeft + rail.clientWidth / 2;
+    let closestIndex = 0;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    slides.forEach((slide, index) => {
+      const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+      const distance = Math.abs(viewportCenter - slideCenter);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    setCurrentDishIndex(closestIndex);
+  };
 
   return (
-    <article className={`relative flex shrink-0 snap-start flex-col ${catalogCardClass} ${catalogCardWidth}`}>
-      <span className={catalogMediaClass}>
-        {dish.imageIsFallback ? <CatalogPlaceholder alt={dish.imageAlt ?? `${dish.name} photo coming soon`} testId="custom-menu-placeholder" /> : <ZoomableImage asset={image} className="h-full" />}
-        {!dish.imageIsFallback ? <span className={`absolute top-1.5 flex max-w-[calc(100%-0.75rem)] flex-wrap gap-1 ${dish.isBestSeller ? 'right-1.5 justify-end' : 'left-1.5'}`}>
-          {dish.isBestSeller ? <Badge tone="gold" className="min-h-4 px-1.5 py-0 text-[0.5rem]">Best Seller</Badge> : null}
-          {dish.imageIsTemporary ? <Badge tone="neutral" className="min-h-5 px-1.5 py-0 text-[0.55rem]">{dish.imageBadge ?? 'Sample image'}</Badge> : null}
-        </span> : null}
-      </span>
-      <span className={`${catalogCardBodyClass} flex-1 text-xs font-semibold leading-4 text-ink-700 sm:text-sm`} data-testid="custom-menu-card-body">
-        {dish.name}
-      </span>
-    </article>
+    <section
+      aria-labelledby={`menu-category-${category.id}`}
+      className="overflow-hidden rounded-3xl border border-gold-200 bg-cream-50 shadow-[0_12px_32px_rgba(74,7,17,0.08)]"
+      data-testid={`menu-category-${category.id}`}
+    >
+      <header className="flex items-end justify-between gap-3 border-b border-gold-200 bg-cream-100/80 px-4 py-4 sm:px-6">
+        <div>
+          <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-gold-700">Menu category</p>
+          <h3 className="mt-1 font-display text-2xl font-bold uppercase leading-none text-burgundy-900 sm:text-3xl" id={`menu-category-${category.id}`}>
+            {category.name}
+          </h3>
+        </div>
+        <p className="shrink-0 text-xs font-bold text-burgundy-800 sm:text-sm">
+          {category.dishes.length} choices <span aria-hidden="true">•</span> Choose 1
+        </p>
+      </header>
+
+      <div className="p-3 sm:p-5">
+        <div
+          aria-label={`${category.name} dishes. Swipe to browse.`}
+          className="flex w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          data-testid={`menu-dishes-${category.id}`}
+          onScroll={updateCurrentDish}
+          ref={railRef}
+          role="group"
+          tabIndex={0}
+        >
+          {category.dishes.map((dish) => {
+            const image = dish.imageAlt ? { ...GALLERY[dish.imageKey], alt: dish.imageAlt } : GALLERY[dish.imageKey];
+
+            return (
+              <article className="w-full shrink-0 snap-center" key={dish.id}>
+                <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-cream-100">
+                  <ZoomableImage asset={image} className="h-full" />
+                </div>
+                <h4 className="px-2 pt-4 text-center font-display text-2xl font-bold text-burgundy-900 sm:text-3xl">
+                  {dish.name}
+                </h4>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="mt-3 flex items-center justify-center gap-3" aria-label={`${currentDishIndex + 1} of ${category.dishes.length}`}>
+          <span className="min-w-10 text-right text-xs font-semibold text-ink-600">
+            {currentDishIndex + 1} of {category.dishes.length}
+          </span>
+          <span aria-hidden="true" className="flex items-center gap-1.5">
+            {category.dishes.map((dish, index) => (
+              <span
+                className={`block rounded-full transition-all ${index === currentDishIndex ? 'h-2.5 w-6 bg-burgundy-900' : 'h-2.5 w-2.5 bg-gold-300'}`}
+                key={dish.id}
+              />
+            ))}
+          </span>
+        </div>
+
+        <p className="mt-2 text-center text-[0.68rem] font-semibold text-ink-500">Swipe the image to browse dishes</p>
+      </div>
+    </section>
   );
 }
 
 export function RegularPackagesSection() {
-  const categoryRailRef = useRef<HTMLDivElement>(null);
-  const categoryCardRefs = useRef<Array<HTMLElement | null>>([]);
-
-  const goToCategory = (categoryIndex: number) => {
-    const rail = categoryRailRef.current;
-    const targetCategory = categoryCardRefs.current[categoryIndex];
-    if (!rail || !targetCategory) {
-      return;
-    }
-    const railBounds = rail.getBoundingClientRect();
-    const categoryBounds = targetCategory.getBoundingClientRect();
-    rail.scrollTo({
-      behavior: 'smooth',
-      left: rail.scrollLeft + categoryBounds.left - railBounds.left,
-    });
-  };
-
   return (
     <section aria-labelledby="regular-packages-title" className="overflow-x-clip bg-gradient-to-br from-cream-100 via-cream-50 to-gold-200/35 py-9 sm:py-10 lg:py-11" id="regular-packages">
       <Container>
@@ -74,68 +123,22 @@ export function RegularPackagesSection() {
         />
         <DecorativeDivider className="mt-3" />
 
-        <div className="mt-6 max-w-full overflow-hidden md:rounded-2xl md:border md:border-gold-200 md:bg-cream-50/75 md:shadow-md">
-          <div
-            className="horizontal-card-scroller flex max-w-full snap-x snap-mandatory items-start gap-3 overflow-x-auto pb-2 md:block md:overflow-visible md:pb-0"
-            data-testid="custom-menu-categories"
-            ref={categoryRailRef}
-          >
-            {MENU_CATEGORIES.map((category, categoryIndex) => (
-            <section
-              className={`min-w-0 w-[88vw] max-w-[22rem] shrink-0 snap-start rounded-2xl border border-cream-300 bg-cream-50 p-3 shadow-[0_4px_18px_rgba(74,7,17,0.055)] sm:p-4 md:w-full md:max-w-none md:rounded-none md:border-x-0 md:border-t-0 md:bg-transparent md:p-5 md:shadow-none lg:p-6 ${categoryIndex === MENU_CATEGORIES.length - 1 ? 'md:border-b-0' : 'md:border-b md:border-gold-200'}`}
-              data-testid={`menu-category-${category.id}`}
-              key={category.id}
-              ref={(element) => {
-                categoryCardRefs.current[categoryIndex] = element;
-              }}
-            >
-              <div className="flex items-center gap-3">
-                <Icon aria-hidden="true" className="hidden shrink-0 text-gold-600 md:block" name={category.id === 'vegetables' ? 'leaf' : 'utensils'} size={21} />
-                <h3 className="shrink-0 font-display text-[1.35rem] font-bold uppercase leading-none text-burgundy-900 sm:text-2xl">{category.name}</h3>
-                <span aria-hidden="true" className="hidden h-px min-w-5 flex-1 bg-gold-300 md:block" />
-                <p className="ml-auto shrink-0 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-gold-600 sm:text-xs">
-                  {category.dishes.length} choices · Choose 1
+        <div className="mx-auto mt-6 flex max-w-2xl flex-col gap-5" data-testid="custom-menu-categories">
+          {ORDERED_MENU_CATEGORIES.map((category, categoryIndex) => (
+            <div key={category.id}>
+              {categoryIndex === 1 ? (
+                <p className="mb-5 flex items-center justify-center gap-2 text-center text-xs font-semibold text-burgundy-800 sm:text-sm">
+                  <span aria-hidden="true" className="h-px w-8 bg-gold-300" />
+                  Scroll down to explore more categories
+                  <span aria-hidden="true" className="h-px w-8 bg-gold-300" />
                 </p>
-              </div>
-              <div className="horizontal-card-scroller mt-4 flex min-w-0 snap-x snap-mandatory items-stretch justify-start gap-3 overflow-x-auto pb-1 sm:gap-4 md:flex-wrap md:overflow-visible md:pb-0" data-testid={`menu-dishes-${category.id}`}>
-                {category.dishes.map((dish) => (
-                  <DishCard
-                    dish={dish}
-                    key={dish.id}
-                  />
-                ))}
-              </div>
-              <div className="mt-2 flex min-h-9 items-center justify-between gap-2 md:hidden">
-                {categoryIndex > 0 ? (
-                  <button
-                    aria-label={`Go back to ${MENU_CATEGORIES[categoryIndex - 1].name} category`}
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold-400 bg-cream-50 text-burgundy-900 shadow-sm transition-colors hover:bg-gold-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-focus/35"
-                    onClick={() => goToCategory(categoryIndex - 1)}
-                    type="button"
-                  >
-                    <Icon aria-hidden="true" className="rotate-180" name="chevronRight" size={18} />
-                  </button>
-                ) : <span aria-hidden="true" className="h-10 w-10 shrink-0" />}
-                <p className="flex-1 text-center text-[0.68rem] font-semibold text-burgundy-800">
-                  Swipe to browse dishes
-                </p>
-                {categoryIndex < MENU_CATEGORIES.length - 1 ? (
-                  <button
-                    aria-label={`Go to next ${MENU_CATEGORIES[categoryIndex + 1].name} category`}
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold-400 bg-cream-50 text-burgundy-900 shadow-sm transition-colors hover:bg-gold-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-focus/35"
-                    onClick={() => goToCategory(categoryIndex + 1)}
-                    type="button"
-                  >
-                    <Icon aria-hidden="true" name="chevronRight" size={18} />
-                  </button>
-                ) : <span aria-hidden="true" className="h-10 w-10 shrink-0" />}
-              </div>
-            </section>
-            ))}
-          </div>
+              ) : null}
+              <DishCarousel category={category} />
+            </div>
+          ))}
         </div>
 
-        <section aria-labelledby="regular-inclusions-title" className="mt-5 overflow-hidden rounded-2xl border border-gold-200 bg-cream-100 shadow-sm">
+        <section aria-labelledby="regular-inclusions-title" className="mx-auto mt-5 max-w-2xl overflow-hidden rounded-2xl border border-gold-200 bg-cream-100 shadow-sm">
           <div className="p-3 sm:p-4">
             <div className="flex items-center gap-2.5">
               <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gold-400 text-burgundy-950">

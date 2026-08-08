@@ -55,6 +55,7 @@ describe('HomePage', () => {
     expect(screen.getByTestId('services-scroller').querySelectorAll('article svg')).toHaveLength(0);
     expect(screen.getByText('Pork Menudo')).toBeInTheDocument();
     expect(screen.getByText('Best choice')).toBeInTheDocument();
+    expect(screen.getByText('Chicken Cordon Bleu')).toBeInTheDocument();
     expect(screen.getByText('Grazing Table')).toBeInTheDocument();
     expect(screen.getByText('Trusted since 2010')).toBeInTheDocument();
     expect(screen.getByText('Professional presentation')).toBeInTheDocument();

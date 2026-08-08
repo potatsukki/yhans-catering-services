@@ -70,7 +70,6 @@ export function PackedMealsSection() {
     <section aria-labelledby="packed-meals-title" className="bg-gradient-to-br from-cream-100 via-cream-50 to-gold-200/35 py-12 sm:py-14 lg:py-16" id="packed-meals">
       <Container>
         <SectionHeading
-          description="Convenient food packs available for breakfast, lunch, dinner, meetings, seminars, offices, and group orders."
           id="packed-meals-title"
           title="Packed Meals"
         />

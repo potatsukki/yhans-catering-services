@@ -58,7 +58,7 @@ describe('PackagesPage', () => {
     ['Package A', 'Package B', 'Package C', 'Package D', 'Fish with Creamy Sauce'].forEach((text) => {
       expect(screen.queryByText(text)).not.toBeInTheDocument();
     });
-    expect(screen.getAllByText('Best Seller')).toHaveLength(2);
+    expect(screen.getAllByText('Best Seller')).toHaveLength(1);
   });
 
   it('renders packed meals, food-tray inquiry, partner services, and customization rules', () => {

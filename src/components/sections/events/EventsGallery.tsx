@@ -80,10 +80,10 @@ export function EventsGallery() {
           </div>
 
           {totalPages > 1 ? (
-            <nav aria-label="Events pagination" className="mt-8 flex items-center justify-center gap-2 pb-2 sm:mt-10">
+            <nav aria-label="Events pagination" className="mt-8 flex items-center justify-center gap-1 pb-2 sm:mt-10 sm:gap-2">
               <button
                 aria-label="Previous page"
-                className="flex h-10 w-10 items-center justify-center rounded-full text-burgundy-900 transition-colors hover:bg-cream-100 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-focus/40 disabled:pointer-events-none disabled:opacity-35"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-burgundy-900 transition-colors hover:bg-cream-100 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-focus/40 disabled:pointer-events-none disabled:opacity-35 sm:h-10 sm:w-10"
                 disabled={currentPage === 1}
                 onClick={() => changePage(currentPage - 1)}
                 type="button"
@@ -94,7 +94,7 @@ export function EventsGallery() {
                 <button
                   aria-current={item === currentPage ? 'page' : undefined}
                   aria-label={'Page ' + item}
-                  className={'flex h-10 w-10 items-center justify-center rounded-full border text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-focus/40 ' + (item === currentPage ? 'border-burgundy-900 bg-burgundy-900 text-cream-50' : 'border-gold-300 bg-cream-50 text-burgundy-900 hover:bg-cream-100')}
+                  className={'flex h-8 w-8 items-center justify-center rounded-full border text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-focus/40 sm:h-10 sm:w-10 sm:text-sm ' + (item === currentPage ? 'border-burgundy-900 bg-burgundy-900 text-cream-50' : 'border-gold-300 bg-cream-50 text-burgundy-900 hover:bg-cream-100')}
                   key={item}
                   onClick={() => changePage(item)}
                   type="button"
@@ -102,11 +102,11 @@ export function EventsGallery() {
                   {item}
                 </button>
               ) : (
-                <span aria-hidden="true" className="flex h-10 w-6 items-center justify-center text-sm font-semibold text-ink-500" key={item}>…</span>
+                <span aria-hidden="true" className="flex h-8 w-4 items-center justify-center text-xs font-semibold text-ink-500 sm:h-10 sm:w-6 sm:text-sm" key={item}>…</span>
               ))}
               <button
                 aria-label="Next page"
-                className="flex h-10 w-10 items-center justify-center rounded-full text-burgundy-900 transition-colors hover:bg-cream-100 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-focus/40 disabled:pointer-events-none disabled:opacity-35"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-burgundy-900 transition-colors hover:bg-cream-100 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-focus/40 disabled:pointer-events-none disabled:opacity-35 sm:h-10 sm:w-10"
                 disabled={currentPage === totalPages}
                 onClick={() => changePage(currentPage + 1)}
                 type="button"

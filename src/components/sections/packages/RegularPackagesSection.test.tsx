@@ -1,80 +1,51 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import { MENU_CATEGORIES } from '../../../data/packages';
 import { RegularPackagesSection } from './RegularPackagesSection';
 
 describe('RegularPackagesSection', () => {
-  it('renders browse-only menu cards with accessible local images', () => {
+  it('stacks Beef then Chicken and renders one full-width swipe rail per category', () => {
     render(<RegularPackagesSection />);
 
-    expect(screen.queryByRole('radio')).not.toBeInTheDocument();
-    expect(screen.getAllByRole('img')).toHaveLength(30);
-    expect(screen.queryByText('Sample image')).not.toBeInTheDocument();
-    expect(screen.queryByText('Photo coming soon')).not.toBeInTheDocument();
-    expect(screen.getByAltText('Broccoli with garlic in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByAltText('Beef with mushrooms in a creamy sauce, served in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByText('Beef with Mushrooms').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Beef kare-kare with vegetables and peanut sauce in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByText('Beef Kare-Kare').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Roast beef with mashed potatoes and green beans in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByText('Roast Beef').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Pork menudo served in a gold chafing dish')).toBeInTheDocument();
-    expect(screen.getByAltText('Pork caldereta with potatoes, carrots, and bell peppers in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByAltText('Pork hamonado with pineapple in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByAltText('Crispy lumpiang Shanghai arranged in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByAltText('Pork sisig with onions and green peppers in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByAltText('Chicken cordon bleu slices arranged in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByAltText('Buffalo chicken wings with sesame seeds in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByAltText('Chicken hamonado with pineapple and potatoes in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByAltText('Chicken pochero with vegetables and potatoes in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByAltText('Chop suey with mixed vegetables and quail eggs in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByText('Chop Suey').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Mixed vegetables with cheese and carrots in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByText('Mixed Vegetables').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Chicken pesto pasta with tomatoes and parmesan in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByText('Chicken Pesto Pasta').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Lumpiang hubad with vegetables and sweet sauce in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByText('Lumpiang Hubad').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Fresh garden salad with lettuce, cucumber, and tomatoes in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByText('Vegetable Salad').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Spaghetti with tomato sauce and cheese in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByText('Spaghetti').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Creamy chicken and mushroom pasta in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByText('Truffle Pasta').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Creamy carbonara pasta with bacon in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByText('Carbonara').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Creamy Alfredo pasta with mushrooms in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByAltText('Cajun pasta with chicken and bell peppers in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByAltText('Pancit sotanghon with chicken and vegetables in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByAltText('Baked macaroni with cheese and bacon in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByText('Baked Macaroni').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Pancit Canton with noodles, chicken, beef, and vegetables in a chafing dish')).toBeInTheDocument();
-    expect(screen.getByText('Pancit Canton').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Mango tapioca dessert cups with mango chunks')).toBeInTheDocument();
-    expect(screen.getByText('Mango Tapioca').closest('article')).not.toHaveTextContent('Sample image');
-    expect(screen.getByAltText('Coffee jelly dessert cups on a catering tray')).toBeInTheDocument();
-    expect(screen.getByAltText('Buko pandan dessert cups on a catering tray')).toBeInTheDocument();
-    expect(screen.getByText('Best Seller')).toBeInTheDocument();
-    expect(screen.queryByText(/Want to replace a category or add another dish/i)).not.toBeInTheDocument();
-    expect(screen.getAllByText(/Additional charges may apply/i)).toHaveLength(1);
-    expect(screen.getByAltText('Pork menudo served in a gold chafing dish')).toHaveAttribute('loading', 'lazy');
-    expect(screen.getByAltText('Pork menudo served in a gold chafing dish')).toHaveAttribute('decoding', 'async');
+    const categories = screen.getByTestId('custom-menu-categories');
+    const categoryCards = categories.querySelectorAll('[data-testid^="menu-category-"]');
+    expect(categoryCards).toHaveLength(MENU_CATEGORIES.length);
+    expect(categoryCards[0]).toHaveAttribute('data-testid', 'menu-category-beef');
+    expect(categoryCards[1]).toHaveAttribute('data-testid', 'menu-category-chicken');
+
+    const beef = screen.getByTestId('menu-category-beef');
+    const chicken = screen.getByTestId('menu-category-chicken');
+    expect(beef).toHaveTextContent('4 choices • Choose 1');
+    expect(chicken).toHaveTextContent('4 choices • Choose 1');
+    expect(within(beef).getByText('Beef with Mushrooms')).toBeInTheDocument();
+    expect(within(chicken).getByText('Creamy Tuscan Chicken')).toBeInTheDocument();
+    expect(screen.getByText('Scroll down to explore more categories')).toBeInTheDocument();
   });
 
-  it('does not render a selection summary or interactive menu cards', () => {
+  it('uses swipe-only dish navigation with passive dots, counts, and zoomable images', () => {
     render(<RegularPackagesSection />);
 
-    expect(screen.queryByTestId('menu-choices-summary')).not.toBeInTheDocument();
-    expect(screen.queryByText('Your Choices')).not.toBeInTheDocument();
-    expect(screen.queryByText('Not selected yet')).not.toBeInTheDocument();
-    expect(screen.getAllByText('Swipe to browse dishes')).toHaveLength(6);
+    expect(screen.queryByText('Choose this dish')).not.toBeInTheDocument();
+    expect(screen.getAllByText('Swipe the image to browse dishes')).toHaveLength(MENU_CATEGORIES.length);
+    expect(screen.getAllByLabelText(/^1 of /)).toHaveLength(MENU_CATEGORIES.length);
+    expect(screen.queryByRole('button', { name: /previous|next|go back|go to/i })).not.toBeInTheDocument();
+
+    const beefRail = screen.getByTestId('menu-dishes-beef');
+    expect(beefRail.querySelectorAll('article')).toHaveLength(4);
+    expect(beefRail.querySelectorAll('img')).toHaveLength(4);
+    expect(within(beefRail).getByRole('button', { name: /Open larger image of Beef with mushrooms/i })).toBeInTheDocument();
+    expect(within(beefRail).getByAltText('Beef with mushrooms in a creamy sauce, served in a chafing dish')).toHaveAttribute('loading', 'lazy');
+  });
+
+  it('keeps the package inclusions and menu inquiry action', () => {
+    render(<RegularPackagesSection />);
+
+    expect(screen.getByRole('heading', { name: 'Included with Your Catering Package' })).toBeInTheDocument();
+    expect(screen.getByTestId('regular-inclusions-grid').querySelectorAll('li')).toHaveLength(7);
     expect(screen.getByRole('link', { name: /Discuss Your Menu with Yhan’s/ })).toHaveAttribute(
       'href',
       'https://www.facebook.com/share/1EnpK8EnM1/',
     );
-    expect(screen.getByRole('button', { name: 'Go to next Pork category' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Go back to Beef category' })).toBeInTheDocument();
-    expect(screen.getByTestId('menu-dishes-beef').querySelectorAll('article')).toHaveLength(MENU_CATEGORIES[0].dishes.length);
   });
 });
