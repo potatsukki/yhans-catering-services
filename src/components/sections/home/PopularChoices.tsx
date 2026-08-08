@@ -4,6 +4,7 @@ import { Badge } from '../../ui/Badge';
 import { Container } from '../../ui/Container';
 import { DecorativeDivider } from '../../ui/DecorativeDivider';
 import { SectionHeading } from '../../ui/SectionHeading';
+import { ButtonLink } from '../../ui/ButtonLink';
 import { ZoomableImage } from '../../ui/ZoomableImage';
 
 export function PopularChoices() {
@@ -32,6 +33,11 @@ export function PopularChoices() {
               </div>
             </article>
           ))}
+        </div>
+        <div className="mt-7 flex justify-center">
+          <ButtonLink href="/packages" icon="utensils">
+            View Full Menu
+          </ButtonLink>
         </div>
       </Container>
     </section>

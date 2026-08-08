@@ -17,15 +17,17 @@ export function Footer() {
   return (
     <footer className="border-t border-gold-200 bg-cream-100" data-site-footer>
       <Container className="grid gap-8 py-9 md:grid-cols-2 lg:grid-cols-[1.15fr_1.25fr_0.8fr_0.9fr] lg:gap-6 lg:[&>*+*]:border-l lg:[&>*+*]:border-cream-300 lg:[&>*+*]:pl-6">
-        <div className="flex flex-col gap-4">
-          <ResponsiveImage
-            alt={GALLERY.logo.alt}
-            className="h-20 w-auto max-w-[240px]"
-            height={GALLERY.logo.height}
-            objectFit="contain"
-            src={GALLERY.logo.src}
-            width={GALLERY.logo.width}
-          />
+        <div className="flex flex-col gap-2">
+          <div className="h-20 w-full max-w-[240px]">
+            <ResponsiveImage
+              alt={GALLERY.logo.alt}
+              className="h-full w-full"
+              height={GALLERY.logo.height}
+              objectFit="contain"
+              src={GALLERY.logo.src}
+              width={GALLERY.logo.width}
+            />
+          </div>
           <div>
             <p className="font-display text-xl font-bold text-burgundy-900">{BUSINESS.name}</p>
             <p className="whitespace-nowrap font-script text-xl leading-none text-burgundy-800 xl:text-2xl">{BUSINESS.tagline}</p>

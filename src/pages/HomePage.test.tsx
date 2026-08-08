@@ -24,6 +24,8 @@ describe('HomePage', () => {
     expect(screen.getByText('Testimonials')).toBeInTheDocument();
     expect(screen.getByText('From Recent Events')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'View All Events' })).toHaveAttribute('href', '/events');
+    expect(screen.getByRole('link', { name: 'View Full Menu' })).toHaveAttribute('href', '/packages');
+    expect(screen.getByRole('link', { name: 'About & Contact' })).toHaveAttribute('href', '/about-contact');
     expect(screen.getByText("Let's Make Your Next Event Delicious & Memorable")).toBeInTheDocument();
 
     const hero = screen.getByTestId('home-hero');

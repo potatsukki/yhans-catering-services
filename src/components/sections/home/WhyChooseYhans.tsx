@@ -4,6 +4,7 @@ import { Container } from '../../ui/Container';
 import { DecorativeDivider } from '../../ui/DecorativeDivider';
 import { Icon } from '../../ui/Icon';
 import { SectionHeading } from '../../ui/SectionHeading';
+import { ButtonLink } from '../../ui/ButtonLink';
 import { ZoomableImage } from '../../ui/ZoomableImage';
 
 export function WhyChooseYhans() {
@@ -29,6 +30,9 @@ export function WhyChooseYhans() {
           <p className="mt-6 text-sm leading-6 text-ink-700">
             {BUSINESS.name} serves celebrations, business functions, and group events with dependable food and service.
           </p>
+          <ButtonLink className="mt-5" href="/about-contact" icon="arrowRight">
+            About &amp; Contact
+          </ButtonLink>
         </div>
         <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border-2 border-cream-50 bg-cream-200 shadow-lg [&_img]:h-full">
           <ZoomableImage asset={GALLERY.whyChooseEvent} />
