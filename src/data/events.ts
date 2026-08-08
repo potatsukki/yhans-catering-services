@@ -1,4 +1,5 @@
 import { GALLERY } from './gallery';
+import { SUPPLIED_EVENT_PHOTOS } from './eventPhotos';
 import type { EventType, ImageAsset } from '../types/content';
 
 export const EVENT_TYPES = [
@@ -23,6 +24,7 @@ export const EVENT_GALLERY_CATEGORIES = [
   { id: 'private-celebrations', label: 'Private Celebrations', icon: 'people' },
   { id: 'table-setups', label: 'Table Setups', icon: 'presentation' },
   { id: 'buffet-setups', label: 'Buffet Setups', icon: 'utensils' },
+  { id: 'food', label: 'Food', icon: 'utensils' },
 ] as const;
 
 export type EventGalleryCategoryId = (typeof EVENT_GALLERY_CATEGORIES)[number]['id'];
@@ -49,7 +51,34 @@ type ComingSoonCateringEvent = CateringEventBase & {
 
 export type CateringEvent = AvailableCateringEvent | ComingSoonCateringEvent;
 
+const SUPPLIED_CATERING_EVENTS = SUPPLIED_EVENT_PHOTOS.map((photo, index) => ({
+  id: `supplied-event-${index + 1}`,
+  title: photo.title,
+  category: photo.category,
+  description: photo.description,
+  photoStatus: 'available' as const,
+  images: [photo] as const,
+}));
+
+const OPENING_EVENT_IDS = [
+  'supplied-event-1',
+  'supplied-event-5',
+  'supplied-event-6',
+  'supplied-event-8',
+  'supplied-event-21',
+  'supplied-event-13',
+] as const;
+
+const ORDERED_SUPPLIED_CATERING_EVENTS = [...SUPPLIED_CATERING_EVENTS].sort((firstEvent, secondEvent) => {
+  const firstPosition = OPENING_EVENT_IDS.indexOf(firstEvent.id as (typeof OPENING_EVENT_IDS)[number]);
+  const secondPosition = OPENING_EVENT_IDS.indexOf(secondEvent.id as (typeof OPENING_EVENT_IDS)[number]);
+  const firstRank = firstPosition === -1 ? Number.MAX_SAFE_INTEGER : firstPosition;
+  const secondRank = secondPosition === -1 ? Number.MAX_SAFE_INTEGER : secondPosition;
+  return firstRank - secondRank;
+});
+
 export const CATERING_EVENTS = [
+  ...ORDERED_SUPPLIED_CATERING_EVENTS,
   {
     id: 'christmas-dinner-celebration',
     title: 'Christmas Dinner Celebration',
@@ -84,27 +113,6 @@ export const CATERING_EVENTS = [
     featured: true,
     photoStatus: 'available',
     images: [GALLERY.sampleReception],
-  },
-  {
-    id: 'wedding-gallery-coming-soon',
-    title: 'Wedding Events',
-    category: 'weddings',
-    description: 'Event photos coming soon.',
-    photoStatus: 'coming-soon',
-  },
-  {
-    id: 'corporate-events-coming-soon',
-    title: 'Corporate Events',
-    category: 'corporate-events',
-    description: 'Event photos coming soon.',
-    photoStatus: 'coming-soon',
-  },
-  {
-    id: 'table-setups-coming-soon',
-    title: 'Table Setups',
-    category: 'table-setups',
-    description: 'Event photos coming soon.',
-    photoStatus: 'coming-soon',
   },
 ] as const satisfies readonly CateringEvent[];
 
