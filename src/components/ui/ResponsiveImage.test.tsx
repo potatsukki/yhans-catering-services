@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { GALLERY } from '../../data/gallery';
 import { ResponsiveImage } from './ResponsiveImage';
@@ -39,5 +39,18 @@ describe('ResponsiveImage', () => {
     expect(image).toHaveClass('object-contain');
     expect(image).toHaveAttribute('width', '1200');
     expect(image).toHaveAttribute('height', '800');
+  });
+
+  it('recognizes an image that completed before the loading effect runs', () => {
+    const completeSpy = vi.spyOn(HTMLImageElement.prototype, 'complete', 'get').mockReturnValue(true);
+    const naturalWidthSpy = vi.spyOn(HTMLImageElement.prototype, 'naturalWidth', 'get').mockReturnValue(1200);
+
+    render(<ResponsiveImage asset={GALLERY.buffetHero} eager />);
+
+    expect(screen.queryByText('Loading image')).not.toBeInTheDocument();
+    expect(screen.getByRole('img', { name: GALLERY.buffetHero.alt })).not.toHaveAttribute('aria-busy');
+
+    completeSpy.mockRestore();
+    naturalWidthSpy.mockRestore();
   });
 });

@@ -41,7 +41,7 @@ describe('RegularPackagesSection', () => {
   it('keeps the package inclusions and menu inquiry action', () => {
     render(<RegularPackagesSection />);
 
-    expect(screen.getByRole('heading', { name: 'Included with Your Catering Package' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Included with Your Catering Menu' })).toBeInTheDocument();
     expect(screen.getByTestId('regular-inclusions-grid').querySelectorAll('li')).toHaveLength(7);
     expect(screen.getByRole('link', { name: /Discuss Your Menu with Yhan’s/ })).toHaveAttribute(
       'href',

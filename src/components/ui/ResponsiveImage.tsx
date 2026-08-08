@@ -1,4 +1,4 @@
-import { useEffect, useState, type ImgHTMLAttributes, type SyntheticEvent } from 'react';
+import { useEffect, useRef, useState, type ImgHTMLAttributes, type SyntheticEvent } from 'react';
 
 import { GALLERY } from '../../data/gallery';
 import type { ImageAsset } from '../../types/content';
@@ -34,6 +34,7 @@ export function ResponsiveImage({
   onError,
   ...props
 }: ResponsiveImageProps) {
+  const imageRef = useRef<HTMLImageElement>(null);
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const source = asset?.src ?? src ?? fallbackSrc;
@@ -43,7 +44,8 @@ export function ResponsiveImage({
 
   useEffect(() => {
     setHasError(false);
-    setIsLoaded(false);
+    const image = imageRef.current;
+    setIsLoaded(Boolean(image?.complete && image.naturalWidth > 0));
   }, [source]);
 
   const handleError = (event: SyntheticEvent<HTMLImageElement, Event>) => {
@@ -63,6 +65,7 @@ export function ResponsiveImage({
       ) : null}
       <img
         {...props}
+        ref={imageRef}
         alt={sourceAlt}
         aria-busy={isLoaded ? undefined : true}
         className={`h-auto w-full transition-opacity duration-200 ${objectFit === 'contain' ? 'object-contain' : 'object-cover'} ${isLoaded ? 'opacity-100' : 'opacity-0'} ${className}`}

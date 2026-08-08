@@ -47,7 +47,7 @@ function FoodTrayCategoryPanel({ category }: { readonly category: FoodTrayCatego
   return (
     <section
       aria-labelledby={`food-tray-${category.id}-title`}
-      className="overflow-hidden rounded-3xl border border-gold-200 bg-cream-50 shadow-[0_12px_32px_rgba(74,7,17,0.08)]"
+      className="overflow-hidden rounded-3xl border border-gold-200 bg-cream-50 shadow-[0_12px_32px_rgba(74,7,17,0.08)] lg:rounded-2xl"
       data-testid={`food-tray-category-${category.id}`}
     >
       <header className="flex items-end justify-between gap-3 border-b border-gold-200 bg-cream-100/80 px-4 py-4 sm:px-6">
@@ -60,10 +60,10 @@ function FoodTrayCategoryPanel({ category }: { readonly category: FoodTrayCatego
         <p className="shrink-0 text-xs font-bold text-burgundy-800 sm:text-sm">{countLabel}</p>
       </header>
 
-      <div className="p-3 sm:p-5">
+      <div className="p-3 sm:p-5 lg:p-4">
         <ul
           aria-label={`${category.name} food trays. Swipe to browse.`}
-          className="flex w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex w-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-2 lg:gap-3 lg:overflow-visible"
           data-testid={`food-tray-grid-${category.id}`}
           onScroll={updateCurrentItem}
         >
@@ -71,7 +71,7 @@ function FoodTrayCategoryPanel({ category }: { readonly category: FoodTrayCatego
             const image = { ...GALLERY[item.imageKey], alt: item.imageAlt };
 
             return (
-              <li className="w-full shrink-0 snap-center" key={item.id}>
+              <li className="w-full shrink-0 snap-center lg:w-auto" key={item.id}>
                 <article>
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-cream-100" data-testid="food-tray-media">
                     <ZoomableImage asset={image} className="h-full" />
@@ -82,7 +82,7 @@ function FoodTrayCategoryPanel({ category }: { readonly category: FoodTrayCatego
                     ) : null}
                   </div>
                   <div className="px-2 pt-4 text-center" data-testid="food-tray-card-body">
-                    <h4 className="font-display text-2xl font-bold text-burgundy-900 sm:text-3xl">{item.name}</h4>
+                    <h4 className="font-display text-2xl font-bold text-burgundy-900 sm:text-3xl lg:text-xl">{item.name}</h4>
                   </div>
                 </article>
               </li>
@@ -90,7 +90,7 @@ function FoodTrayCategoryPanel({ category }: { readonly category: FoodTrayCatego
           })}
         </ul>
 
-        <div className="mt-3 flex items-center justify-center gap-3" aria-label={`${currentItemIndex + 1} of ${category.items.length}`}>
+        <div className="mt-3 flex items-center justify-center gap-3 lg:hidden" aria-label={`${currentItemIndex + 1} of ${category.items.length}`}>
           <span className="min-w-10 text-right text-xs font-semibold text-ink-600">
             {currentItemIndex + 1} of {category.items.length}
           </span>
@@ -104,7 +104,7 @@ function FoodTrayCategoryPanel({ category }: { readonly category: FoodTrayCatego
           </span>
         </div>
 
-        <p className="mt-2 text-center text-[0.68rem] font-semibold text-ink-500">Swipe the image to browse dishes</p>
+        <p className="mt-2 text-center text-[0.68rem] font-semibold text-ink-500 lg:hidden">Swipe the image to browse dishes</p>
       </div>
     </section>
   );
@@ -138,11 +138,11 @@ export function FoodTraysSection() {
           </div>
         </div>
 
-        <div className="mx-auto mt-7 flex max-w-2xl flex-col gap-5" data-testid="food-tray-catalog">
+        <div className="mx-auto mt-7 flex max-w-2xl flex-col gap-5 lg:max-w-6xl lg:grid lg:grid-cols-2 lg:gap-6" data-testid="food-tray-catalog">
           {ORDERED_FOOD_TRAY_CATEGORIES.map((category, categoryIndex) => (
             <div key={category.id}>
               {categoryIndex === 1 ? (
-                <p className="mb-5 flex items-center justify-center gap-2 text-center text-xs font-semibold text-burgundy-800 sm:text-sm">
+                <p className="mb-5 flex items-center justify-center gap-2 text-center text-xs font-semibold text-burgundy-800 sm:text-sm lg:hidden">
                   <span aria-hidden="true" className="h-px w-8 bg-gold-300" />
                   Scroll down to explore more food tray categories
                   <span aria-hidden="true" className="h-px w-8 bg-gold-300" />

@@ -37,7 +37,7 @@ describe('PackagesPage', () => {
     expect(screen.queryByText(/Good for 50 guests/)).not.toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: /Package 0[1-3]/ })).not.toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: 'Your Choices' })).not.toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Included with Your Catering Package' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Included with Your Catering Menu' })).toBeInTheDocument();
     expect(screen.queryByText('Not selected yet')).not.toBeInTheDocument();
     expect(screen.queryByText(/₱600|per head|waiter|waitress|serving staff/i)).not.toBeInTheDocument();
 
