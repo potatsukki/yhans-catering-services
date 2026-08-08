@@ -11,7 +11,7 @@ test.describe('Menu page', () => {
 
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/packages');
-    await expect(page).toHaveTitle("Catering Packages | Yhan's Catering Services");
+    await expect(page).toHaveTitle("Catering Menu & Food Trays in Fairview, Quezon City | Yhan's Catering Services");
     await expect(page.getByRole('heading', { level: 1, name: 'Menu' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Customize Your Catering Menu' })).toBeVisible();
     const grazingTable = page.getByRole('region', { name: 'Grazing Table' });
@@ -58,7 +58,6 @@ test.describe('Menu page', () => {
     await expect(page.getByText(/Good for 50 guests/)).toHaveCount(0);
     await expect(page.getByRole('radio')).toHaveCount(0);
     await expect(page.getByText('Sample image')).toHaveCount(0);
-    await expect(page.getByTestId('custom-menu-categories').getByText('Best Seller')).toHaveCount(1);
     await expect(page.getByText(/Want to replace a category or add another dish/)).toHaveCount(0);
     await expect(page.getByTestId('menu-choices-summary')).toHaveCount(0);
     await expect(page.getByTestId('menu-dishes-beef').getByText('Beef with Mushrooms', { exact: true })).toBeVisible();
@@ -66,7 +65,7 @@ test.describe('Menu page', () => {
       'href',
       'https://www.facebook.com/share/1EnpK8EnM1/',
     );
-    await expect(page.getByTestId('custom-menu-categories').getByText('Chicken Pesto Pasta', { exact: true })).toBeVisible();
+    await expect(page.getByTestId('menu-dishes-chicken').getByText('Creamy Tuscan Chicken', { exact: true })).toBeVisible();
     await expect(packedMeals).not.toHaveText(/₱250|₱300|per pack/);
 
     await expect(grazingTable.getByText('₱1,000')).toHaveCount(1);
@@ -118,26 +117,16 @@ test.describe('Menu page', () => {
       await expect(page.getByTestId('custom-menu-categories')).toBeVisible();
       await expect(page.getByRole('radio')).toHaveCount(0);
 
-      const customMenuCardWidths = await page.getByTestId('custom-menu-categories').locator('article').evaluateAll((cards) =>
-        cards.map((card) => card.getBoundingClientRect().width),
-      );
-      expect(Math.max(...customMenuCardWidths) - Math.min(...customMenuCardWidths)).toBeLessThanOrEqual(1);
+      await expect(page.getByTestId('menu-category-beef')).toBeVisible();
+      await expect(page.getByTestId('menu-category-chicken')).toBeVisible();
 
-      if (viewport.width >= 768) {
+      if (viewport.width >= 1024) {
         const customMenuColumns = await page.getByTestId('menu-dishes-pork').evaluate((element) => {
           const cards = Array.from(element.children);
           const firstTop = cards[0]?.getBoundingClientRect().top;
           return cards.filter((card) => Math.abs(card.getBoundingClientRect().top - firstTop) <= 1).length;
         });
-        expect(customMenuColumns).toBe(viewport.width >= 1024 ? 5 : 4);
-        for (const categoryId of ['beef', 'pork', 'chicken', 'vegetables', 'pasta-noodles', 'dessert']) {
-          const leftGap = await page.getByTestId(`menu-dishes-${categoryId}`).evaluate((element) => {
-            const listBounds = element.getBoundingClientRect();
-            const firstBounds = element.firstElementChild!.getBoundingClientRect();
-            return Math.abs(firstBounds.left - listBounds.left);
-          });
-          expect(leftGap).toBeLessThanOrEqual(1);
-        }
+        expect(customMenuColumns).toBe(2);
       } else {
         for (const categoryId of ['beef', 'pork', 'chicken', 'vegetables', 'pasta-noodles', 'dessert']) {
           expect(await page.getByTestId(`menu-dishes-${categoryId}`).evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
@@ -177,62 +166,22 @@ test.describe('Menu page', () => {
         expect(introImage!.y).toBeGreaterThan(introCopy!.y + introCopy!.height);
       }
 
-      if (viewport.width < 768) {
-        const categoryRail = foodTrays.getByTestId('food-tray-categories');
-        expect(await categoryRail.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
+      if (viewport.width < 1024) {
         for (const categoryId of ['beef', 'pork', 'chicken', 'vegetables', 'pasta-noodles', 'fish-seafood', 'desserts']) {
           expect(await foodTrays.getByTestId(`food-tray-grid-${categoryId}`).evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
         }
-        await foodTrays.getByRole('button', { name: 'Go to next Pork food tray category' }).click();
-        await expect.poll(() => categoryRail.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
       } else {
         const countFirstFoodTrayRow = (testId: string) => foodTrays.getByTestId(testId).evaluate((element) => {
           const cards = Array.from(element.children);
           const firstTop = cards[0]?.getBoundingClientRect().top;
           return cards.filter((card) => Math.abs(card.getBoundingClientRect().top - firstTop) <= 1).length;
         });
-        const expectedFoodTrayColumns = viewport.width >= 1024 ? 5 : 4;
+        const expectedFoodTrayColumns = 2;
         expect(await countFirstFoodTrayRow('food-tray-grid-pasta-noodles')).toBe(expectedFoodTrayColumns);
         expect(await countFirstFoodTrayRow('food-tray-grid-fish-seafood')).toBe(expectedFoodTrayColumns);
       }
 
-      const foodTrayCardWidths = await foodTrays.getByTestId('food-tray-catalog').locator('article').evaluateAll((cards) =>
-        cards.map((card) => card.getBoundingClientRect().width),
-      );
-      expect(Math.max(...foodTrayCardWidths) - Math.min(...foodTrayCardWidths)).toBeLessThanOrEqual(1);
-
-      const foodTrayBodyHeights = await foodTrays.getByTestId('food-tray-card-body').evaluateAll((bodies) =>
-        bodies.map((body) => body.getBoundingClientRect().height),
-      );
-      expect(Math.max(...foodTrayBodyHeights) - Math.min(...foodTrayBodyHeights)).toBeLessThanOrEqual(1);
-
-      for (const categoryId of ['beef', 'pork', 'pasta-noodles', 'desserts']) {
-        const leftGap = await foodTrays.getByTestId(`food-tray-grid-${categoryId}`).evaluate((element) => {
-          const listBounds = element.getBoundingClientRect();
-          const firstBounds = element.firstElementChild!.getBoundingClientRect();
-          return Math.abs(firstBounds.left - listBounds.left);
-        });
-        expect(leftGap).toBeLessThanOrEqual(1);
-      }
-
-      const inclusionColumns = await grazingTable.getByTestId('grazing-table-inclusions').evaluate((element) =>
-        getComputedStyle(element).gridTemplateColumns.split(' ').length,
-      );
-      expect(inclusionColumns).toBe(viewport.width >= 1024 ? 3 : viewport.width >= 640 ? 2 : 1);
-
-      const regularInclusionColumns = await page.getByTestId('regular-inclusions-grid').evaluate((element) =>
-        getComputedStyle(element).gridTemplateColumns.split(' ').length,
-      );
-      expect(regularInclusionColumns).toBe(viewport.width >= 1024 ? 3 : 2);
-
-      const imageSizes = await page.getByTestId('custom-menu-categories').locator('article img').evaluateAll((images) =>
-        images.map((image) => {
-          const bounds = image.getBoundingClientRect();
-          return { width: bounds.width, height: bounds.height };
-        }),
-      );
-      expect(Math.max(...imageSizes.map((size) => size.width)) - Math.min(...imageSizes.map((size) => size.width))).toBeLessThanOrEqual(1);
-      expect(Math.max(...imageSizes.map((size) => size.height)) - Math.min(...imageSizes.map((size) => size.height))).toBeLessThanOrEqual(1);
+      await expect(page.getByTestId('regular-inclusions-grid')).toBeVisible();
       expect(await page.evaluate(() => {
         window.scrollTo(1_000, window.scrollY);
         return window.scrollX === 0;

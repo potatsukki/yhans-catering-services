@@ -25,19 +25,16 @@ test.describe('mobile navigation', () => {
     await expect(page.getByRole('button', { name: 'Open menu' })).toBeFocused();
   });
 
-  test('keeps the customizable menu, grazing table, contact actions, and footer readable', async ({ page }) => {
+  test('keeps the menu, grazing table, contact actions, and footer readable', async ({ page }) => {
     await page.goto('/packages');
     await expect(page.getByRole('heading', { level: 1, name: 'Menu' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Customize Your Catering Menu' })).toBeVisible();
     await expect(page.getByRole('radio')).toHaveCount(0);
-    await expect(page.getByTestId('menu-category-beef').getByText('Swipe to browse dishes')).toBeVisible();
-    expect(await page.getByTestId('custom-menu-categories').evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
+    await expect(page.getByTestId('menu-category-beef').getByText('Swipe the image to browse dishes')).toBeVisible();
+    expect(await page.getByTestId('custom-menu-categories').evaluate((element) => element.scrollWidth <= element.clientWidth + 1)).toBe(true);
     expect(await page.getByTestId('menu-dishes-beef').evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
-    await expect(page.getByTestId('menu-category-beef').getByText('Swipe to browse dishes')).toBeVisible();
-    await page.getByRole('button', { name: 'Go to next Pork category' }).click();
-    await expect.poll(() => page.getByTestId('custom-menu-categories').evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
-    await page.getByRole('button', { name: 'Go back to Beef category' }).click();
-    await expect.poll(() => page.getByTestId('custom-menu-categories').evaluate((element) => element.scrollLeft)).toBe(0);
+    await expect(page.getByTestId('menu-category-beef').getByText('Swipe the image to browse dishes')).toBeVisible();
+    await expect(page.getByRole('button', { name: /Go to (next|previous)|Go back to/ })).toHaveCount(0);
     const grazingTable = page.getByRole('region', { name: 'Grazing Table' });
     await expect(grazingTable).toBeVisible();
     await expect(grazingTable.getByText('Seasonal Fruits (Grapes, Watermelon, Oranges, and Strawberries)')).toBeVisible();

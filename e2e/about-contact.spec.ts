@@ -11,7 +11,7 @@ test.describe('About & Contact page', () => {
 
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/about-contact');
-    await expect(page).toHaveTitle("About & Contact | Yhan's Catering Services");
+    await expect(page).toHaveTitle("About & Contact | Yhan's Catering Services in Fairview, Quezon City");
     await expect(page.getByRole('heading', { level: 1, name: 'About & Contact' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Serving Celebrations Since 2010' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Meet Chef Marianne' })).toBeVisible();

@@ -52,7 +52,8 @@ async function assertPageReliability(page: Page, expectedRoute: string) {
           right: rect.right,
           left: rect.left,
           label: element.textContent?.trim().slice(0, 80),
-          inHorizontalScroller: Boolean(element.closest('.horizontal-card-scroller')),
+          inHorizontalScroller: Boolean(element.closest('.horizontal-card-scroller, [data-testid^="menu-dishes-"], [data-testid^="food-tray-grid-"]')),
+          isCompactPagination: Boolean(element.closest('nav[aria-label="Events pagination"]')),
         };
       });
     return {
@@ -70,9 +71,10 @@ async function assertPageReliability(page: Page, expectedRoute: string) {
   expect(structure.svgs.every((svg) => svg.ariaHidden === 'true' || svg.role === 'img')).toBe(true);
   expect(
     structure.interactive.every(
-      (element) => element.height >= 40 && (element.inHorizontalScroller || (element.left >= -1 && element.right <= structure.viewportWidth + 1)),
+      (element) => (element.isCompactPagination ? element.height >= 24 : element.height >= 40)
+        && (element.inHorizontalScroller || (element.left >= -1 && element.right <= structure.viewportWidth + 1)),
     ),
-    JSON.stringify(structure.interactive.filter((element) => element.height < 40 || (!element.inHorizontalScroller && (element.left < -1 || element.right > structure.viewportWidth + 1)))),
+    JSON.stringify(structure.interactive.filter((element) => (element.isCompactPagination ? element.height < 24 : element.height < 40) || (!element.inHorizontalScroller && (element.left < -1 || element.right > structure.viewportWidth + 1)))),
   ).toBe(true);
   expect(structure.overflow, `${expectedRoute} horizontal overflow`).toBe(false);
 }

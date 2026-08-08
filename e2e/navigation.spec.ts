@@ -30,7 +30,7 @@ test.describe('shared navigation', () => {
 
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
-    await expect(page).toHaveTitle("Yhan's Catering Services | Catering in Quezon City");
+    await expect(page).toHaveTitle("Yhan's Catering Services | Catering in Fairview, Quezon City");
 
     const primaryNavigation = page.getByRole('navigation', { name: 'Primary navigation' });
     const packagesMenu = primaryNavigation.getByRole('button', { name: 'Menu' });
@@ -44,7 +44,7 @@ test.describe('shared navigation', () => {
       const header = document.querySelector('[data-site-header]');
       return Math.round(target.getBoundingClientRect().top - (header?.getBoundingClientRect().height ?? 0));
     })).toBe(12);
-    await expect(page).toHaveTitle("Catering Packages | Yhan's Catering Services");
+    await expect(page).toHaveTitle("Catering Menu & Food Trays in Fairview, Quezon City | Yhan's Catering Services");
     expect(consoleErrors).toEqual([]);
   });
 
