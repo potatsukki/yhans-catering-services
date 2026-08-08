@@ -1,4 +1,4 @@
-import { useState, type ImgHTMLAttributes, type SyntheticEvent } from 'react';
+import { useEffect, useState, type ImgHTMLAttributes, type SyntheticEvent } from 'react';
 
 import { GALLERY } from '../../data/gallery';
 import type { ImageAsset } from '../../types/content';
@@ -30,14 +30,21 @@ export function ResponsiveImage({
   fallbackAlt = 'Image unavailable',
   objectFit = 'cover',
   className = '',
+  onLoad,
   onError,
   ...props
 }: ResponsiveImageProps) {
   const [hasError, setHasError] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const source = asset?.src ?? src ?? fallbackSrc;
   const sourceAlt = hasError ? fallbackAlt : asset?.alt ?? alt ?? '';
   const sourceWidth = asset?.width ?? width;
   const sourceHeight = asset?.height ?? height;
+
+  useEffect(() => {
+    setHasError(false);
+    setIsLoaded(false);
+  }, [source]);
 
   const handleError = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     if (!hasError) {
@@ -47,19 +54,30 @@ export function ResponsiveImage({
   };
 
   return (
-    <img
-      {...props}
-      alt={sourceAlt}
-      aria-busy={hasError ? undefined : false}
-      className={`h-auto w-full ${objectFit === 'contain' ? 'object-contain' : 'object-cover'} ${className}`}
-      decoding="async"
-      fetchPriority={eager ? 'high' : 'auto'}
-      height={sourceHeight}
-      loading={eager ? 'eager' : 'lazy'}
-      onError={handleError}
-      src={hasError ? fallbackSrc : source}
-      width={sourceWidth}
-    />
+    <span className="relative block h-full w-full">
+      {!isLoaded ? (
+        <span aria-live="polite" className="absolute inset-0 z-10 grid place-items-center bg-cream-100/80">
+          <span aria-hidden="true" className="h-8 w-8 animate-spin rounded-full border-4 border-gold-300 border-t-burgundy-800" />
+          <span className="sr-only">Loading image</span>
+        </span>
+      ) : null}
+      <img
+        {...props}
+        alt={sourceAlt}
+        aria-busy={isLoaded ? undefined : true}
+        className={`h-auto w-full transition-opacity duration-200 ${objectFit === 'contain' ? 'object-contain' : 'object-cover'} ${isLoaded ? 'opacity-100' : 'opacity-0'} ${className}`}
+        decoding="async"
+        fetchPriority={eager ? 'high' : 'auto'}
+        height={sourceHeight}
+        loading={eager ? 'eager' : 'lazy'}
+        onError={handleError}
+        onLoad={(event) => {
+          setIsLoaded(true);
+          onLoad?.(event);
+        }}
+        src={hasError ? fallbackSrc : source}
+        width={sourceWidth}
+      />
+    </span>
   );
 }
-

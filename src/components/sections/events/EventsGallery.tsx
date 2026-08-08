@@ -131,4 +131,3 @@ export function EventsGallery() {
     </section>
   );
 }
-
