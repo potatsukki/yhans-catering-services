@@ -1,5 +1,13 @@
 {
+  "redirects": [
+    { "source": "/packages/", "destination": "/packages", "permanent": true },
+    { "source": "/about-contact/", "destination": "/about-contact", "permanent": true },
+    { "source": "/events/", "destination": "/events", "permanent": true }
+  ],
   "rewrites": [
+    { "source": "/packages", "destination": "/packages/index.html" },
+    { "source": "/about-contact", "destination": "/about-contact/index.html" },
+    { "source": "/events", "destination": "/events/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

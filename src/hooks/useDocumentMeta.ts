@@ -44,6 +44,11 @@ export function useDocumentMeta(pathname: string) {
     upsertMeta('og:description', meta.description, true);
     upsertMeta('og:url', canonical, true);
     upsertMeta('og:type', 'website', true);
+    upsertMeta('og:site_name', "Yhan's Catering Services", true);
+    upsertMeta('og:image', `${getRuntimeSiteUrl()}/og.webp`, true);
+    upsertMeta('twitter:card', 'summary_large_image');
+    upsertMeta('twitter:title', meta.title);
+    upsertMeta('twitter:description', meta.description);
+    upsertMeta('twitter:image', `${getRuntimeSiteUrl()}/og.webp`);
   }, [pathname]);
 }
-

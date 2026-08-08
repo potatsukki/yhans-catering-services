@@ -26,7 +26,7 @@ describe('confirmed catering content', () => {
     expect(MENU_CATEGORIES.flatMap((category) => category.dishes.map((dish) => dish.name))).toEqual([
       'Beef with Mushrooms', 'Beef Caldereta', 'Beef Kare-Kare', 'Roast Beef',
       'Menudo', 'Pork Caldereta', 'Pork Hamonado', 'Lumpiang Shanghai', 'Pork Sisig',
-      'Chicken Cordon Bleu', 'Buffalo Chicken Wings', 'Chicken Hamonado', 'Chicken Pochero',
+      'Creamy Tuscan Chicken', 'Buffalo Chicken Wings', 'Chicken Hamonado', 'Chicken Pochero',
       'Chop Suey', 'Mixed Vegetables', 'Broccoli with Garlic', 'Vegetable Salad', 'Lumpiang Hubad',
       'Spaghetti', 'Carbonara', 'Truffle Pasta', 'Alfredo Pasta', 'Cajun Pasta', 'Baked Macaroni',
       'Chicken Pesto Pasta', 'Pancit Canton', 'Pancit Sotanghon',

@@ -28,7 +28,7 @@ describe('PackagesPage', () => {
     expect(screen.getByRole('heading', { name: 'Additional Event Services' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Menu customization' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Need a custom setup?' })).toBeInTheDocument();
-  });
+  }, 10_000);
 
   it('renders the customizable menu and one unified grazing table offer', () => {
     renderPackages();

@@ -1,4 +1,4 @@
-const INDEXABLE_PATHS = ['/', '/packages', '/about-contact', '/events'] as const;
+import { INDEXABLE_PATHS } from './pageMeta.ts';
 
 function escapeXml(value: string): string {
   return value.replace(/[<>&'\"]/g, (character) => {

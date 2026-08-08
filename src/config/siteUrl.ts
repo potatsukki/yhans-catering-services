@@ -1,4 +1,5 @@
 const LOCAL_SITE_URL = 'http://localhost:5173';
+export const PRODUCTION_SITE_URL = 'https://yhanscatering.online';
 
 export type SiteUrlOptions = {
   readonly requireHttps?: boolean;
@@ -48,6 +49,7 @@ export function resolveVercelProjectSiteUrl(hostname: string | undefined): strin
 export function getRuntimeSiteUrl(): string {
   return resolveSiteUrl(
     import.meta.env.VITE_SITE_URL ??
-      resolveVercelProjectSiteUrl(import.meta.env.VITE_VERCEL_PROJECT_PRODUCTION_URL),
+      resolveVercelProjectSiteUrl(import.meta.env.VITE_VERCEL_PROJECT_PRODUCTION_URL) ??
+      PRODUCTION_SITE_URL,
   );
 }
