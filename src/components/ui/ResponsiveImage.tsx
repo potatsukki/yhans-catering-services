@@ -56,13 +56,7 @@ export function ResponsiveImage({
   };
 
   return (
-    <span className="relative block h-full w-full">
-      {!isLoaded ? (
-        <span aria-live="polite" className="absolute inset-0 z-10 grid place-items-center bg-cream-100/80">
-          <span aria-hidden="true" className="h-8 w-8 animate-spin rounded-full border-4 border-gold-300 border-t-burgundy-800" />
-          <span className="sr-only">Loading image</span>
-        </span>
-      ) : null}
+    <span className={`relative block h-full w-full overflow-hidden ${!isLoaded ? 'image-skeleton' : ''}`}>
       <img
         {...props}
         ref={imageRef}

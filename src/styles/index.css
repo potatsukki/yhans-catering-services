@@ -80,12 +80,15 @@ main article img {
 }
 
 .scroll-reveal {
-  transform: translate3d(0, 1.25rem, 0);
+  opacity: 0;
+  transform: translate3d(0, 2rem, 0);
   backface-visibility: hidden;
-  transition: transform 560ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+              transform 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
 }
 
 .scroll-reveal.is-revealed {
+  opacity: 1;
   transform: translate3d(0, 0, 0);
   backface-visibility: visible;
 }
@@ -119,6 +122,23 @@ main article img {
 }
 
 @media (max-width: 1023px) {
+  .horizontal-card-scroller-wrapper {
+    position: relative;
+  }
+  .horizontal-card-scroller-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0.75rem;
+    width: 2rem;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 253, 248, 0.85) 100%);
+    z-index: 10;
+  }
+}
+
+@media (max-width: 1023px) {
   html {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -132,9 +152,45 @@ main article img {
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  main article:hover img {
-    transform: scale(1.018);
+  main article {
+    transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 280ms cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 280ms ease;
   }
+  main article:hover {
+    transform: translate3d(0, -3px, 0);
+    box-shadow: 0 12px 28px -6px rgba(74, 7, 17, 0.12), 0 4px 12px -2px rgba(74, 7, 17, 0.06);
+    border-color: rgba(215, 157, 23, 0.45);
+  }
+  main article:hover img {
+    transform: scale(1.03);
+  }
+
+  button, a {
+    transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 180ms ease,
+                color 180ms ease,
+                box-shadow 180ms ease;
+  }
+  button:active, a:active {
+    transform: scale(0.985);
+  }
+}
+
+.image-skeleton {
+  background: linear-gradient(
+    90deg,
+    #faefd9 0%,
+    #fff8ec 50%,
+    #faefd9 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.8s infinite ease-in-out;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 button,
@@ -185,7 +241,8 @@ select:focus-visible {
   }
 
   .scroll-reveal {
-    transform: none;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   *,

@@ -14,7 +14,7 @@ test.describe('Home page', () => {
     await expect(page.getByRole('heading', { level: 1, name: 'Making Every Celebration Delicious' })).toBeVisible();
     await expect(page.getByText('Catering for Every Occasion')).toBeVisible();
     await expect(page.getByText('Our Services')).toBeVisible();
-    await expect(page.getByText('Popular Choices')).toBeVisible();
+    await expect(page.getByText('Best Seller')).toBeVisible();
     await expect(page.getByText("Why Choose Yhan's?")).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Testimonials' })).toBeVisible();
     await expect(page.getByText(/service helped our school event run smoothly/)).toBeVisible();

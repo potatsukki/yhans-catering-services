@@ -1,5 +1,5 @@
 import { GALLERY, type GalleryKey } from '../../../data/gallery';
-import { HOME_POPULAR_CHOICES } from '../../../data/packages';
+import { HOME_BEST_SELLERS } from '../../../data/packages';
 import { Badge } from '../../ui/Badge';
 import { Container } from '../../ui/Container';
 import { DecorativeDivider } from '../../ui/DecorativeDivider';
@@ -9,16 +9,16 @@ import { ZoomableImage } from '../../ui/ZoomableImage';
 
 export function PopularChoices() {
   return (
-    <section aria-labelledby="popular-choices-title" className="bg-cream-50 py-11 sm:py-12 lg:py-14">
+    <section aria-labelledby="best-seller-title" className="bg-cream-50 py-11 sm:py-12 lg:py-14">
       <Container>
         <SectionHeading
           description="A few confirmed menu and service highlights to help you start planning."
-          id="popular-choices-title"
-          title="Popular Choices"
+          id="best-seller-title"
+          title="Best Seller"
         />
         <DecorativeDivider className="mt-4" />
         <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3" data-testid="popular-choices-grid">
-          {HOME_POPULAR_CHOICES.map((choice) => (
+          {HOME_BEST_SELLERS.map((choice) => (
             <article className="relative rounded-xl border border-cream-300 bg-cream-50 shadow-[0_4px_16px_rgba(74,7,17,0.07)] md:grid md:grid-cols-[0.95fr_1.05fr]" key={choice.id}>
               {choice.badge ? (
                 <Badge className="absolute -right-1 -top-2 z-10 min-h-0 whitespace-nowrap px-2 py-0.5 text-[0.6rem] tracking-[0.1em] shadow-sm" tone="gold">

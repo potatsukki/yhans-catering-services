@@ -367,12 +367,12 @@ export const FOOD_TRAY_CATEGORIES = [
   },
 ] as const satisfies readonly FoodTrayCategory[];
 
-export const HOME_POPULAR_CHOICES = [
+export const HOME_BEST_SELLERS = [
   {
     id: 'pork-menudo',
     name: 'Pork Menudo',
     imageKey: 'menudoTray',
-    badge: 'Best choice',
+    badge: 'Popular Choice',
   },
   {
     id: 'beef-caldereta',
